@@ -22,11 +22,6 @@
         </div>
 
         <div class="container">
-            <header class="well">
-                {% block header %}
-                {% endblock %}
-            </header>
-
                 <div class="span9">
                     {% for type, flashMessages in app.session.flashbag.all() %}
                         {% for flashMessage in flashMessages %}
