@@ -2,4 +2,7 @@ applisun_aire_jeux:
     resource: "@ApplisunAireJeuxBundle/Controller/"
     type:     annotation
     prefix:   /
+    
+user_bundle:
+   resource: "@ApplisunAireJeuxBundle/Resources/config/routing.yml"
 
