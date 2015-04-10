@@ -9,11 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
-     * @Template()
+     * @Route("/", name="index")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return  $this->render('ApplisunAireJeuxBundle:Default:index.html.twig');
     }
 }
