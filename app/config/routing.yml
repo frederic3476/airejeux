@@ -1,0 +1,5 @@
+applisun_aire_jeux:
+    resource: "@ApplisunAireJeuxBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
