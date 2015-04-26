@@ -18,7 +18,7 @@
         {{ form_widget(form.plainPassword.second, {'attr':{'placeholder':'Confirmer mot de passe:', 'class':'form-control'}}) }}
     </div>
     {{ form_row(form._token) }}
-    <div>
+    <div class="form-group">
         <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
 </form>
