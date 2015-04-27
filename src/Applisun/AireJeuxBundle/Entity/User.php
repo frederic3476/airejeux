@@ -22,7 +22,39 @@ class User extends FOSUser
      */
     protected $id;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="Applisun\AireJeuxBundle\Entity\Vote",
+     *     mappedBy="user",
+     *     fetch="EXTRA_LAZY"
+     * )
+     */
+    protected $votes;
+    
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="Applisun\AireJeuxBundle\Entity\Comment",
+     *     mappedBy="user",
+     *     fetch="EXTRA_LAZY"
+     * )
+     */
+    protected $comments;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->votes = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -31,6 +63,46 @@ class User extends FOSUser
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Add vote
+     *
+     * @param Vote $vote
+     */
+    public function addVote(Vote $vote)
+    {
+        $this->votes[] = $vote;
+    }
+
+    /**
+     * Get votes
+     *
+     * @return ArrayCollection
+     */
+    public function getVotes()
+    {
+        return $this->votes;
+    }
+    
+    /**
+     * Add comment
+     *
+     * @param Comment $comment
+     */
+    public function addComment(Comment $comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
 
