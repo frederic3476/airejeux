@@ -13,7 +13,7 @@ use Applisun\AireJeuxBundle\Entity\User;
  * comment
  *
  * @ORM\Table(name="comment")
- * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\commentRepository")
+ * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\CommentRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Comment

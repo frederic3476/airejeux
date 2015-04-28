@@ -11,7 +11,7 @@ use Applisun\AireJeuxBundle\Entity\Departement;
  * ville
  *
  * @ORM\Table(name="ville")
- * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\villeRepository")
+ * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\VilleRepository")
  */
 class Ville
 {

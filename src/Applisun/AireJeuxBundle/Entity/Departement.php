@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * departement
  *
  * @ORM\Table(name="departement")
- * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\departementRepository")
+ * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\DepartementRepository")
  */
 class Departement
 {
@@ -52,6 +52,14 @@ class Departement
      * @ORM\Column(name="soundex", type="string", length=20)
      */
     private $soundex;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hc_key", type="string", length=20)
+     */
+    private $hcKey;
 
     /**
      * @var ArrayCollection
@@ -176,6 +184,30 @@ class Departement
     public function getSoundex()
     {
         return $this->soundex;
+    }
+    
+    /**
+     * Set hcKey
+     *
+     * @param string $soundex
+     *
+     * @return departement
+     */
+    public function setHcKey($hcKey)
+    {
+        $this->hcKey = $hcKey;
+
+        return $this;
+    }
+
+    /**
+     * Get hcKey
+     *
+     * @return string
+     */
+    public function getHcKey()
+    {
+        return $this->hcKey;
     }
     
     /**
