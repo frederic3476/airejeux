@@ -5,4 +5,7 @@ applisun_aire_jeux:
     
 user_bundle:
    resource: "@ApplisunAireJeuxBundle/Resources/config/routing.yml"
+   
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 

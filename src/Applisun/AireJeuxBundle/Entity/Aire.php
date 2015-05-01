@@ -5,6 +5,7 @@ namespace Applisun\AireJeuxBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -113,6 +114,12 @@ class Aire
     private $updatedAt;
     
     /**
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
+     * @Assert\File(maxSize="500k")
+     */
+    public $image;
+    
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(
@@ -154,6 +161,20 @@ class Aire
      * )
      */
     private $ville;
+    
+    /**
+     * @var User $user
+     *
+     * @ORM\ManyToOne(
+     *     targetEntity="Applisun\AireJeuxBundle\Entity\User",
+     *     inversedBy="aires"
+     * )
+     * @ORM\JoinColumn(
+     *     name="user_id",
+     *     referencedColumnName="id"
+     * )
+     */
+    private $user;
 
     /**
      * Constructor
@@ -269,6 +290,54 @@ class Aire
     public function getLatitude()
     {
         return $this->latitude;
+    }
+    
+    /**
+     * Set ageMin
+     *
+     * @param float $ageMin
+     *
+     * @return Aire
+     */
+    public function setAgeMin($ageMin)
+    {
+        $this->ageMin = $ageMin;
+
+        return $this;
+    }
+
+    /**
+     * Get ageMin
+     *
+     * @return integer
+     */
+    public function getAgeMin()
+    {
+        return $this->ageMin;
+    }
+    
+    /**
+     * Set ageMax
+     *
+     * @param float $ageMax
+     *
+     * @return Aire
+     */
+    public function setAgeMax($ageMax)
+    {
+        $this->ageMax = $ageMax;
+
+        return $this;
+    }
+
+    /**
+     * Get ageMax
+     *
+     * @return integer
+     */
+    public function getAgeMax()
+    {
+        return $this->ageMax;
     }
     
     /**
@@ -438,6 +507,50 @@ class Aire
     {
         return $this->fileName;
     }
+    
+    /**
+     * Get image
+     *
+     * @return UploadedFile
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param UploadedFile $file
+     */
+    public function setImage(UploadedFile $file = null)
+    {
+        $this->image = $file;
+    }
+    
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Vote
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
     /**
      * Set createdAt
@@ -533,6 +646,66 @@ class Aire
     public function setUpdatedAtValue()
     {
         $this->updated_at = new \DateTime();
+    }
+    
+    protected function getUploadDir()
+    {
+        return 'uploads/aires';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->fileName ? null : $this->getUploadDir().'/'.$this->fileName;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->fileName ? null : $this->getUploadRootDir().'/'.$this->fileName;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpload()
+    {
+        if (null !== $this->image) {
+            // do whatever you want to generate a unique name
+            $this->fileName = uniqid().'.'.$this->image->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     * @ORM\postUpdate
+     */
+    public function upload()
+    {
+        if (null === $this->image) {
+        return;
+      }
+
+      // if there is an error when moving the image, an exception will
+      // be automatically thrown by move(). This will properly prevent
+      // the entity from being persisted to the database on error
+      $this->image->move($this->getUploadRootDir(), $this->fileName);
+
+      unset($this->image);
+        }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        if ($image = $this->getAbsolutePath()) {
+            unlink($image);
+          }
     }
 }
 

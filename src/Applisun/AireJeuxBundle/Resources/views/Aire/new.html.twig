@@ -1,0 +1,35 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
+
+{% block title %}
+    Ajouter une nouvelle aire de jeux
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+{% endblock %}    
+
+{% block content %}    
+    <form action="{{ path('aire_new') }}" method="post" enctype="multipart/form-data">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.nom) }}
+        {{ form_row(form.ville) }}
+        {{ form_row(form.surface) }}
+        {{ form_row(form.longitude) }}
+        {{ form_row(form.latitude) }}
+        {{ form_row(form.ageMax) }}
+        {{ form_row(form.ageMin) }}
+        {{ form_row(form.image) }}
+
+        {{ form_rest(form) }}
+        <input type="submit" value="Valider" />
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script src="{{ asset('bundles/applisunairejeux/js/autocompletion.js') }}" type="text/javascript"></script>
+{% endblock %}

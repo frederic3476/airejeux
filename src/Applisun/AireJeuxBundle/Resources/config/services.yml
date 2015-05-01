@@ -1,0 +1,19 @@
+parameters:
+    applisun_aire_jeux.aire_manager.class: Applisun\AireJeuxBundle\Service\AireManager
+    applisun_aire_jeux.form.type.aire.class: Applisun\AireJeuxBundle\Form\Type\AireType
+    
+services:
+    # Manager
+    applisun_aire_jeux.aire_manager:
+        class:     %applisun_aire_jeux.aire_manager.class%
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.context"
+    
+    # Form types
+    lexik_top_or_flop.form.type.media:
+        class: %applisun_aire_jeux.form.type.aire.class%
+        tags:
+            - { name: form.type, alias: applisun_aire_form }
+
+

@@ -2,37 +2,34 @@
 
 namespace Applisun\AireJeuxBundle\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Applisun\AireJeuxBundle\Entity\Aire;
 
-class AireController extends Controller
-{
+class AireController extends Controller {
+
     /**
      * @Route("/aire/new", name="aire_new")
      */
-    public function newAction()
-    {
+    public function newAction(Request $request) {
         $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $entity = new Aire();
+        $form = $this->createForm('applisun_aire_form', $entity, array('em' => $this->getDoctrine()->getManager()));
+        $form->handleRequest($request);    
+        if ($form->isValid()) {
+            $aireManager->save($entity);
 
-        $model = new MediaModel($mediaManager->create(), $this->container->getParameter('kernel.root_dir'));
-        $form = $this->createForm('media', $model);
+            $this->get('session')->getFlashBag()->add('success', 'L\'aire de jeux a bien été créé.');
 
-        if ($this->getRequest()->isMethod('POST')) {
-            $form->submit($this->getRequest()->request->get($form->getName()));
-
-            if ($form->isValid()) {
-                $mediaManager->save($model->getUpdatedMedia());
-
-                $this->get('session')->getFlashBag()->add('success', 'Le média a bien été créé.');
-
-                return $this->redirect($this->generateUrl('backend_new'));
-            }
+            return $this->redirect($this->generateUrl('index'));
         }
 
-        return $this->render('LexikTopOrFlopBundle:Backend:new.html.twig', array(
-            'form' => $form->createView(),
+
+        return $this->render('ApplisunAireJeuxBundle:Aire:new.html.twig', array(
+                    'form' => $form->createView(),
         ));
     }
-}
 
+}
