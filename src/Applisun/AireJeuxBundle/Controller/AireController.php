@@ -31,5 +31,28 @@ class AireController extends Controller {
                     'form' => $form->createView(),
         ));
     }
+    
+    /**
+     * @Route("/aire/edit/{id}", name="aire_edit")
+     *
+     * Ici le traitement est le même que dans newAction sauf que l'on utilise un "form hanlder" afin de
+     * déporter la logique de traitement du formulaire dans un service.
+     */
+    public function editAction($id)
+    {
+        $aire = $this->get('applisun_aire_jeux.aire_manager')->getAire($id);
+
+        $handler = $this->get('applisun_aire_jeux.form.handler.aire');
+        $form = $handler->createForm($aire);
+
+        if ($handler->process($form, $this->getRequest())) {
+            return $this->redirect($this->generateUrl('aire_edit', array('id' => $aire->getId())));
+        }
+
+        return $this->render('ApplisunAireJeuxBundle:Aire:edit.html.twig', array(
+            'form'  => $form->createView(),
+            'aire' => $aire,
+        ));
+    }
 
 }

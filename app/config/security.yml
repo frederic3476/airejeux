@@ -34,4 +34,5 @@ security:
        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
        - { path: ^/aire/new, role: ROLE_USER }
+       - { path: ^/aire/edit, role: ROLE_USER }
        - { path: ^/admin/, role: ROLE_ADMIN }

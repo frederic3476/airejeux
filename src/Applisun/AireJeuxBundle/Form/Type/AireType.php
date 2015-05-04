@@ -47,7 +47,8 @@ class AireType extends AbstractType
             'choices' => array_combine(range(5, 18), range(5, 18)),
             ))
             ->add('image', 'file', array(
-                'required' => false
+                'required' => false,
+                'image_path' => 'webPath'
             ));                        
     }
     

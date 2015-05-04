@@ -55,5 +55,19 @@ class AireManager
         $this->em->flush();
     }
     
+    /**
+     * Get a aire object from an id
+     *
+     * @param integer $id
+     * @return Aire
+     */
+    public function getAire($id)
+    {
+        $aireRepository = $this->em->getRepository('Applisun\AireJeuxBundle\Entity\Aire');
+        $aire = $aireRepository->find($id);
+
+        return $aire instanceof Aire ? $aire : null;
+    }
+    
 }
 
