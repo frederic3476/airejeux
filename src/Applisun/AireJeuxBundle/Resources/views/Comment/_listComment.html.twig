@@ -1,0 +1,11 @@
+ <ul>
+    {% for comment in comments %}
+        <li>
+            Par {{ comment.user.username }} {% if comment.updatedat|date('d-m-Y') %} modifié le {{ comment.updatedat|date('d-m-Y') }} {% else %} ajouter le {{ comment.createdat|date('d-m-Y') }} {% endif %} <br>
+            <p>{{ comment.texte }}</p>
+            {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_COMMENT_MODIFY', comment)) %}
+                <a href="{{ path('index') }}">Modifier</a> <a href="{{ path('index') }}">Supprimer</a> 
+            {% endif %}    
+        </li>
+    {% endfor %}    
+</ul> 

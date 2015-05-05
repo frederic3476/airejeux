@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Applisun\AireJeuxBundle\Entity\Aire;
+use Applisun\AireJeuxBundle\Entity\Vote;
+use Applisun\AireJeuxBundle\Entity\Comment;
 
 class AireController extends Controller {
 
@@ -52,6 +54,38 @@ class AireController extends Controller {
         return $this->render('ApplisunAireJeuxBundle:Aire:edit.html.twig', array(
             'form'  => $form->createView(),
             'aire' => $aire,
+        ));
+    }
+    
+    /**
+     * @Route("/aire/show/{id}", name="aire_show")
+     */
+    public function showAction($id) {
+        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $aire = $aireManager->getAire($id);
+        
+        if (!$aire instanceof Aire) {
+            throw $this->createNotFoundException('Aucune aire trouvée !');
+        }
+        
+        $vote = $aireManager->getNewVote($aire);        
+
+        if ($vote instanceof Vote) {
+            $form_vote = $this->createForm('vote_aire', $vote);
+        }
+        
+        $comment = $aireManager->getNewComment($aire);
+        
+        if ($comment instanceof Comment) {
+            $form_comment = $this->createForm('comment_aire', $comment);
+        }
+        
+
+        return $this->render('ApplisunAireJeuxBundle:Aire:show.html.twig', array(
+            'aire' => $aire,
+            'formVote'  => isset($form_vote) ? $form_vote->createView() : null,
+            'formComment'  => isset($form_comment) ? $form_comment->createView() : null,
+            'comments' => $aire->getComments(),
         ));
     }
 

@@ -1,0 +1,79 @@
+<?php
+
+namespace Applisun\AireJeuxBundle\Security;
+
+use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+class UserCommentModifyVoter implements VoterInterface
+{
+    /**
+     * Checks if the voter supports the given attribute.
+     *
+     * @param string $attribute An attribute
+     *
+     * @return Boolean true if this Voter supports the attribute, false otherwise
+     */
+    public function supportsAttribute($attribute)
+    {
+        return 'USER_CAN_COMMENT_MODIFY' == $attribute;
+    }
+
+    /**
+     * Checks if the voter supports the given class.
+     *
+     * @param string $class A class name
+     *
+     * @return Boolean true if this Voter can process the class
+    */
+    public function supportsClass($class)
+    {
+        return 'Applisun\AireJeuxBundle\Entity\Comment' == $class;
+    }
+
+    /**
+     * Returns the vote for the given parameters.
+     *
+     * This method must return one of the following constants:
+     * ACCESS_GRANTED, ACCESS_DENIED, or ACCESS_ABSTAIN.
+     *
+     * @param TokenInterface $token      A TokenInterface instance
+     * @param object         $object     The object to secure
+     * @param array          $attributes An array of attributes associated with the method being invoked
+     *
+     * @return integer either ACCESS_GRANTED, ACCESS_ABSTAIN, or ACCESS_DENIED
+    */
+    public function vote(TokenInterface $token, $object, array $attributes)
+    {
+        $user = $token->getUser();
+
+        // si pas d'utilisateur on s'abstient
+        if ( ! $user instanceof UserInterface) {
+            return self::ACCESS_ABSTAIN;
+        }
+
+        // si object n'est pas un media on s'abstient
+        if ( ! $this->supportsClass(get_class($object) )) {
+            return self::ACCESS_ABSTAIN;
+        }
+
+        // on cherche si un attribut est supporté
+        $i = 0;
+        $supported = false;
+
+        while ($i<count($attributes) && !$supported) {
+            $supported = $this->supportsAttribute($attributes[$i]);
+            $i++;
+        }
+
+        // pas d'attribut supporter on s'abstient
+        if (!$supported) {
+            return self::ACCESS_ABSTAIN;
+        }
+
+        // attribut supporté et object supporté, donc on vérifie si l'utilisateur peut modifier l'aire        
+        return $object->getUser()->getId() == $user->getId() ? self::ACCESS_GRANTED : self::ACCESS_DENIED;
+    }
+}
+

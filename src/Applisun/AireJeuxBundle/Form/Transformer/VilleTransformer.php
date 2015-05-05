@@ -68,7 +68,7 @@ class VilleTransformer implements DataTransformerInterface
 
         if (null === $ville) {
             throw new TransformationFailedException(sprintf(
-                'Le ville ne peut pas être trouvée!',
+                'La ville ne peut pas être trouvée!',
                 $str
             ));
         }

@@ -1,0 +1,12 @@
+{% block form_title %}
+    <b>Votez !</b>
+{% endblock %}
+
+{% block form_content %}
+    <form action="{{ path('vote_aire', {'id': aire.id}) }}" method="POST" class="form-horizontal">
+        {{ form_widget(form.score) }}
+        {{ form_rest(form) }}
+
+        <input type="submit" value="Voter" class="btn btn-primary" />
+    </form>
+{% endblock %}

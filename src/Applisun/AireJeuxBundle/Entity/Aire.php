@@ -432,7 +432,7 @@ class Aire
     }
 
     /**
-     * Whether the user has already voted for this media or not
+     * Whether the user has already voted for this aire or not
      *
      * @param User $user
      * @return boolean
@@ -449,6 +449,23 @@ class Aire
     }
     
     /**
+     * Whether the user has already commented for this aire or not
+     *
+     * @param User $user
+     * @return boolean
+     */
+    public function hasUserAlreadyCommented(User $user)
+    {
+        foreach ($this->comments as $comment) {
+            if ($comment->getUser() == $user) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    /**
      * Add Comment
      *
      * @param Comment $comment
@@ -456,7 +473,7 @@ class Aire
     public function addComment(Comment $comment)
     {
         if ( ! $this->comments->contains($comment) ) {
-	        $vote->setAire($this);
+	        $comment->setAire($this);
 	        $this->comments->add($comment);
         }
     }

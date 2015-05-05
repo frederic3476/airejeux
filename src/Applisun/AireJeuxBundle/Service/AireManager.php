@@ -7,6 +7,8 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 use Applisun\AireJeuxBundle\Entity\User;
 use Applisun\AireJeuxBundle\Entity\Aire;
+use Applisun\AireJeuxBundle\Entity\Vote;
+use Applisun\AireJeuxBundle\Entity\Comment;
 
 /**
  * Description of AireManager
@@ -67,6 +69,74 @@ class AireManager
         $aire = $aireRepository->find($id);
 
         return $aire instanceof Aire ? $aire : null;
+    }
+    
+    /**
+     * Get a new vote object for current user and given aire
+     *
+     * @param Aire $aire
+     * @return Vote
+     */
+    public function getNewVote(Aire $aire)
+    {
+        $user = $this->context->getToken()->getUser();
+
+        if (!$user instanceof User) {
+            return null;
+        }
+
+        $vote = new Vote();
+        $vote->setUser($user);
+        $vote->setAire($aire);
+
+        return $vote;
+    }
+    
+     /**
+     * Get a new comment object for current user and given aire
+     *
+     * @param Aire $aire
+     * @return Comment
+     */
+    public function getNewComment(Aire $aire)
+    {
+        $user = $this->context->getToken()->getUser();
+
+        if (!$user instanceof User) {
+            return null;
+        }
+
+        $comment = new Comment();
+        $comment->setUser($user);
+        $comment->setAire($aire);
+
+        return $comment;
+    }
+    
+    /**
+     * Save a vote and update the average score
+     *
+     * @param Vote $vote
+     */
+    public function saveVote(Vote $vote)
+    {
+        $aire = $vote->getAire();
+        $aire->addVote($vote);
+
+        $this->em->flush();
+    }
+    
+    /**
+     * Save a vote and update the average score
+     *
+     * @param Comment $comment
+     */
+    public function saveComment(Comment $comment)
+    {
+        $aire = $comment->getAire();
+        $aire->addComment($comment);
+
+        $this->em->flush();
     }
     
 }

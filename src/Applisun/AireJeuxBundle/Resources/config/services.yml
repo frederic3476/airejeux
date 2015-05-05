@@ -4,6 +4,11 @@ parameters:
     applisun_aire_jeux.form.image.type.extension.class: Applisun\AireJeuxBundle\Form\Extension\ImageTypeExtension
     applisun_aire_jeux.form.handler.aire.class: Applisun\AireJeuxBundle\Form\Handler\AireFormHandler
     applisun_aire_jeux.voter.user_aire_modify.class: Applisun\AireJeuxBundle\Security\UserAireModifyVoter
+    applisun_aire_jeux.form.type.vote_aire.class: Applisun\AireJeuxBundle\Form\Type\VoteType
+    applisun_aire_jeux.form.type.comment_aire.class: Applisun\AireJeuxBundle\Form\Type\CommentType
+    applisun_aire_jeux.voter.user_aire_vote.class: Applisun\AireJeuxBundle\Security\UserAireVoter
+    applisun_aire_jeux.voter.user_aire_comment.class: Applisun\AireJeuxBundle\Security\UserAireCommentVoter
+    applisun_aire_jeux.voter.user_comment_modify.class: Applisun\AireJeuxBundle\Security\UserCommentModifyVoter
     
 services:
     # Manager
@@ -14,10 +19,21 @@ services:
             - "@security.context"
     
     # Form types
-    applisun_aire_jeux.form.type.media:
+    applisun_aire_jeux.form.type.aire:
         class: %applisun_aire_jeux.form.type.aire.class%
         tags:
             - { name: form.type, alias: applisun_aire_form }
+            
+    applisun_aire_jeux.form.type.vote_aire:
+        class: %applisun_aire_jeux.form.type.vote_aire.class%
+        tags:
+            - { name: form.type, alias: vote_aire }
+            
+    applisun_aire_jeux.form.type.comment_aire:
+        class: %applisun_aire_jeux.form.type.comment_aire.class%
+        tags:
+            - { name: form.type, alias: comment_aire }
+            
             
     #Form Extension
     applisun_aire_jeux.image_type_extension:
@@ -31,8 +47,23 @@ services:
         arguments: [@doctrine.orm.entity_manager, @applisun_aire_jeux.aire_manager, @form.factory]
         
     # Security voter
-    applisun_aire_jeux.voter.user_media:
+    applisun_aire_jeux.voter.user_modify_aire:
         class: %applisun_aire_jeux.voter.user_aire_modify.class%
+        tags:
+            - { name: security.voter }
+            
+    applisun_aire_jeux.voter.user_aire:
+        class: %applisun_aire_jeux.voter.user_aire_vote.class%
+        tags:
+            - { name: security.voter }
+            
+    applisun_aire_jeux.voter.user_aire_comment:
+        class: %applisun_aire_jeux.voter.user_aire_comment.class%
+        tags:
+            - { name: security.voter }
+            
+    applisun_aire_jeux.voter.user_comment_modify:
+        class: %applisun_aire_jeux.voter.user_comment_modify.class%
         tags:
             - { name: security.voter }
 
