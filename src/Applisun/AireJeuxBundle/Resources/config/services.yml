@@ -1,5 +1,6 @@
 parameters:
     applisun_aire_jeux.aire_manager.class: Applisun\AireJeuxBundle\Service\AireManager
+    applisun_aire_jeux.comment_manager.class: Applisun\AireJeuxBundle\Service\CommentManager
     applisun_aire_jeux.form.type.aire.class: Applisun\AireJeuxBundle\Form\Type\AireType
     applisun_aire_jeux.form.image.type.extension.class: Applisun\AireJeuxBundle\Form\Extension\ImageTypeExtension
     applisun_aire_jeux.form.handler.aire.class: Applisun\AireJeuxBundle\Form\Handler\AireFormHandler
@@ -9,11 +10,19 @@ parameters:
     applisun_aire_jeux.voter.user_aire_vote.class: Applisun\AireJeuxBundle\Security\UserAireVoter
     applisun_aire_jeux.voter.user_aire_comment.class: Applisun\AireJeuxBundle\Security\UserAireCommentVoter
     applisun_aire_jeux.voter.user_comment_modify.class: Applisun\AireJeuxBundle\Security\UserCommentModifyVoter
+    applisun_aire_jeux.twigextension.breadcrumb_extension.class: Applisun\AireJeuxBundle\Twig\BreadCrumbExtension
+    maxperpage: 20
     
 services:
     # Manager
     applisun_aire_jeux.aire_manager:
         class:     %applisun_aire_jeux.aire_manager.class%
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.context"
+            
+    applisun_aire_jeux.comment_manager:
+        class:     %applisun_aire_jeux.comment_manager.class%
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@security.context"
@@ -66,5 +75,11 @@ services:
         class: %applisun_aire_jeux.voter.user_comment_modify.class%
         tags:
             - { name: security.voter }
+            
+    #Twig Extension
+    applisun_aire_jeux.twig.breadcrumb_extension:
+        class: %applisun_aire_jeux.twigextension.breadcrumb_extension.class%
+        tags:
+            - { name: twig.extension }
 
 

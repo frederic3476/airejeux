@@ -1,0 +1,14 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
+
+{% block content %}
+    {{ breadcrumb(ville) }}
+    <ul>
+        {% for aire in aires %}
+            <li>
+                <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a> {{ aire.displayedAverage }}/5 
+            </li>
+        {% endfor %}    
+    </ul>
+        
+    {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+{% endblock %}

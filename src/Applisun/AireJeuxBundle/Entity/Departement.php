@@ -5,14 +5,14 @@ namespace Applisun\AireJeuxBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Applisun\AireJeuxBundle\Entity\BreadCrumbInterface;
 /**
  * departement
  *
  * @ORM\Table(name="departement")
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\DepartementRepository")
  */
-class Departement
+class Departement implements BreadCrumbInterface
 {
     /**
      * @var integer
@@ -244,6 +244,13 @@ class Departement
     public function getVilles()
     {
         return $this->villes;
+    }
+    
+    public function getDataForBreadCrumb()
+    {
+        return array("data" => array(
+                    array('url' => 'departement_show', 'name' => $this->getNom(), 'slug' => $this->getSlug(), 'id' => $this->getId())
+                ));
     }
 }
 

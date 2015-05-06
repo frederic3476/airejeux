@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Applisun\AireJeuxBundle\Entity\BreadCrumbInterface;
 use Applisun\AireJeuxBundle\Entity\Ville;
 
 /**
@@ -18,7 +18,7 @@ use Applisun\AireJeuxBundle\Entity\Ville;
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\AireRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Aire
+class Aire implements BreadCrumbInterface
 {
     /**
      * @var integer
@@ -723,6 +723,22 @@ class Aire
         if ($image = $this->getAbsolutePath()) {
             unlink($image);
           }
+    }
+    
+    public function getDataForBreadCrumb()
+    {
+        return array("data" => array(
+                        array('url' => 'departement_show', 
+                              'name' => $this->getVille()->getDepartement()->getNom(), 
+                              'slug' => $this->getVille()->getDepartement()->getSlug(), 
+                              'id' => $this->getVille()->getDepartement()->getId()),
+                        array('url' => 'ville_show', 
+                              'name' => $this->getVille()->getNom(), 
+                              'slug' => $this->getVille()->getSlug(), 
+                              'id' => $this->getVille()->getId()),
+                        array('name' => $this->getNom())
+                        )
+                    );
     }
 }
 

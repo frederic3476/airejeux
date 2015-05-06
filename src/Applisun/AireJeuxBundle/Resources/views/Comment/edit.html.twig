@@ -1,0 +1,18 @@
+{% extends 'ApplisunAireJeuxBundle::layout.html.twig' %}
+{% block navbar %}
+{% endblock %}  
+{% block content %}
+    <form action="{{ path('comment_edit', {'id': comment.id}) }}" method="post">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.texte) }}
+
+        {{ form_rest(form) }}
+        <input type="submit" value="Modifier" />
+    </form>
+{% endblock %}
+{% block footer %}
+{% endblock %}   
+{% block modal %}
+{% endblock %}
+

@@ -6,14 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Applisun\AireJeuxBundle\Entity\Departement;
-
+use Applisun\AireJeuxBundle\Entity\BreadCrumbInterface;
 /**
  * ville
  *
  * @ORM\Table(name="ville")
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\VilleRepository")
  */
-class Ville
+class Ville implements BreadCrumbInterface
 {
     /**
      * @var integer
@@ -350,6 +350,18 @@ class Ville
     public function getDepartement()
     {
         return $this->departement;
+    }
+    
+    public function getDataForBreadCrumb()
+    {
+        return array("data" => array(
+                        array('url' => 'departement_show', 
+                              'name' => $this->getDepartement()->getNom(), 
+                              'slug' => $this->getDepartement()->getSlug(), 
+                              'id' => $this->getDepartement()->getId()),
+                        array('name' => $this->getNom())
+                        )
+                    );
     }
 }
 

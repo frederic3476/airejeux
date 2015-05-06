@@ -2,6 +2,9 @@
 
 namespace Applisun\AireJeuxBundle\Repository;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * AireRepository
  *
@@ -10,4 +13,26 @@ namespace Applisun\AireJeuxBundle\Repository;
  */
 class AireRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function getAireByVille(ContainerInterface $container, $villeId, $page)
+    {
+        $maxperpage = $container->getParameter('maxperpage');
+        
+        $query = $this->getEntityManager()
+		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a WHERE a.ville = :id')
+		              ->setParameter('id', $villeId)
+                              ->setFirstResult(($page-1) * $maxperpage)
+                              ->setMaxResults($maxperpage);
+ 
+        return new Paginator($query);
+    }
+    
+    public function getCountAireByVille($villeId)
+    {
+        $query = $this->getEntityManager()
+		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a WHERE a.ville = :id')
+		              ->setParameter('id', $villeId);
+        
+        return count($query->getResult());
+    }
 }

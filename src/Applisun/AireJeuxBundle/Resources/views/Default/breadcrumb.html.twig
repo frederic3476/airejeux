@@ -1,0 +1,10 @@
+<ul class="breadcrumb">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        {% for key, link in data %}
+            {% if loop.last %}
+                <li class="active">{{ link.name }}</li> 
+            {% else %}
+                <li><a href="{{ path(link.url, {'slug': link.slug, 'id': link.id, 'page': 1}) }}">{{ link.name }}</a></li>        
+            {% endif %}
+        {% endfor %}
+</ul>

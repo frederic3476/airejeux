@@ -1,6 +1,7 @@
 {% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
 
 {% block content %}
+    {{ breadcrumb(aire) }}
     <h2>{{ aire.nom }}</h2>
     <p>
         <img class="img-responsive img-small" src="{{ asset('uploads/aires/'~aire.filename) }}"/>
