@@ -1,0 +1,11 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
+
+{% block content %}
+    <ul>
+        {% for ville in villes %}
+            <li>
+                <a href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a> {{ ville.aires|length}} aires 
+            </li>
+        {% endfor %}    
+    </ul>        
+{% endblock %}

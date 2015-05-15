@@ -11,6 +11,8 @@ parameters:
     applisun_aire_jeux.voter.user_aire_comment.class: Applisun\AireJeuxBundle\Security\UserAireCommentVoter
     applisun_aire_jeux.voter.user_comment_modify.class: Applisun\AireJeuxBundle\Security\UserCommentModifyVoter
     applisun_aire_jeux.twigextension.breadcrumb_extension.class: Applisun\AireJeuxBundle\Twig\BreadCrumbExtension
+    applisun_aire_jeux.security.authentication_provider.class: Applisun\AireJeuxBundle\Security\Authentication\Provider\WsseProvider
+    applisun_aire_jeux.security.firewall_listener.class: Applisun\AireJeuxBundle\Security\Firewall\WsseListener
     maxperpage: 20
     
 services:
@@ -81,5 +83,14 @@ services:
         class: %applisun_aire_jeux.twigextension.breadcrumb_extension.class%
         tags:
             - { name: twig.extension }
+            
+    #Security
+    wsse.security.authentication.provider:
+        class:  %applisun_aire_jeux.security.authentication_provider.class%
+        arguments: ['', %kernel.cache_dir%/security/nonces]
+
+    wsse.security.authentication.listener:
+        class:  %applisun_aire_jeux.security.firewall_listener.class%
+        arguments: [@security.context, @security.authentication.manager]
 
 

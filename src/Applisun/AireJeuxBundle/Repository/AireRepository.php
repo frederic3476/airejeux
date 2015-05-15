@@ -35,4 +35,11 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
         
         return count($query->getResult());
     }
+    
+    public function getAllAireByVille($villeId)
+    {
+        return $this->getEntityManager()
+		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a WHERE a.ville = :id')
+		              ->setParameter('id', $villeId)->getResult();
+    }
 }

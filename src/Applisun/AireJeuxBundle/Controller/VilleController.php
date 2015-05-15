@@ -73,10 +73,33 @@ class VilleController extends Controller
             return $this->render('ApplisunAireJeuxBundle:Ville:list.json.twig', array('villes' => $villes));
         }
         else{     
-            return $this->render('ApplisunAireJeuxBundle:Ville:list.json.twig', array('villes' => $villes));
-            //return $this->redirect('index');
+            return new \Symfony\Component\Security\Core\Exception\AccessDeniedException("accés refusé");
         }
         
+    }
+    
+    /**
+     * @Route("/ville/search/", name="ville_search")
+     */
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $this->getRequest()->get('query');
+ 
+        if(!$query) {
+            return $this->redirect($this->generateUrl('index'));
+        }
+        
+        $tab = explode('|', $query);
+        if (count($tab) == 2)
+        {
+            $ville = $em->getRepository('ApplisunAireJeuxBundle:Ville')->findOneBy(array('nom' => $tab[0],'code' => $tab[1]));
+            return $this->redirect($this->generateUrl('ville_show', array('slug' => $ville->getSlug(), 'id' => $ville->getId(), 'page' => 1)));
+        }
+        else{
+            $villes = $em->getRepository('ApplisunAireJeuxBundle:Ville')->getVilleByCompletion(strtolower($query));
+            return $this->render('ApplisunAireJeuxBundle:Ville:search.html.twig', array('villes' => $villes));
+        }
     }
 }
 

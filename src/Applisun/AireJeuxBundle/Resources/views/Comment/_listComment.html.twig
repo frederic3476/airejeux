@@ -1,16 +1,26 @@
- <ul>
-    {% for comment in comments %}
-        <li>
-            Par {{ comment.user.username }} {% if comment.updatedat|date('d-m-Y') %} modifié le {{ comment.updatedat|date('d-m-Y') }} {% else %} ajouter le {{ comment.createdat|date('d-m-Y') }} {% endif %} <br>
-            <p>{{ comment.texte }}</p>
+{% for comment in comments %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Par {{ comment.user.username }} 
+            {% if comment.updatedat|date('d-m-Y') is null %} 
+                modifié le {{ comment.createdat|date('d-m-Y') }} 
+            {% else %} 
+                ajouter le {{ comment.updatedat|date('d-m-Y') }} 
+            {% endif %}
             {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_COMMENT_MODIFY', comment)) %}
-                <div class="btn-toolbar">
-                        <div class="btn-group">
-                            <a data-toggle="modal" data-target="#myModal" data-tooltip="Editer" data-placement="bottom" class="btn btn-xs btn-warning" href="{{ path('comment_edit', { 'id': comment.id }) }}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>
-                            <a data-tooltip="Supprimer" data-placement="bottom" class="btn btn-xs btn-danger" href="{{ path('comment_delete', { 'id': comment.id }) }}" onclick="if(!confirm('Etes-voius sûr ?')) { return false; }"><span class="glyphicon glyphicon-remove"></span>&nbsp;</a>                            
-                        </div>
-                    </div>  
-            {% endif %}    
-        </li>
-    {% endfor %}    
-</ul> 
+                <div class="btn-toolbar fright">
+                    <div class="btn-group">
+                        <a data-toggle="modal" data-target="#myModal" data-tooltip="Editer" data-placement="bottom" class="btn btn-xs btn-warning" href="{{ path('comment_edit', { 'id': comment.id }) }}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>
+                        <a data-tooltip="Supprimer" data-placement="bottom" class="btn btn-xs btn-danger" href="{{ path('comment_delete', { 'id': comment.id }) }}" onclick="if (!confirm('Etes-voius sûr ?')) {
+                                    return false;
+                                }"><span class="glyphicon glyphicon-remove"></span>&nbsp;</a>                            
+                    </div>
+                </div>  
+            {% endif %}
+        </div>
+        <div class="panel-body">
+            <p>{{ comment.texte }}</p>           
+        </div>   
+    </div>
+{% endfor %}    
+

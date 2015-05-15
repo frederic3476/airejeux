@@ -5,6 +5,7 @@ namespace Applisun\AireJeuxBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 use Applisun\AireJeuxBundle\Entity\Aire;
 use Applisun\AireJeuxBundle\Entity\User;
@@ -82,6 +83,7 @@ class Comment
      *     referencedColumnName="id",
      *     onDelete="CASCADE"
      * )
+     * @Serializer\Exclude()
      */
     private $aire;
 

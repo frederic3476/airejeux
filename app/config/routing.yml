@@ -8,4 +8,14 @@ user_bundle:
    
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    
+rest : 
+  type : rest 
+  resource : Applisun\AireJeuxBundle\Controller\ApiController
+  prefix : /api
+  type:     annotation
+  
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
 

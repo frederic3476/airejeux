@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
+use Hateoas\Configuration\Annotation as Hateoas;
 use Applisun\AireJeuxBundle\Entity\BreadCrumbInterface;
 use Applisun\AireJeuxBundle\Entity\Ville;
 
@@ -17,6 +19,9 @@ use Applisun\AireJeuxBundle\Entity\Ville;
  * @ORM\Table(name="aire")
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\AireRepository")
  * @ORM\HasLifecycleCallbacks()
+ * 
+ * @Hateoas\Relation("self", href = "expr('/api/aire/' ~ object.getId())")
+ * @Hateoas\Relation("comments", href = "expr('/api/comments/' ~ object.getId())")
  */
 class Aire implements BreadCrumbInterface
 {
@@ -130,6 +135,7 @@ class Aire implements BreadCrumbInterface
      * )
      *
      * @Assert\Valid()
+     * @Serializer\Exclude()
      */
     private $votes;
     
@@ -144,6 +150,7 @@ class Aire implements BreadCrumbInterface
      * )
      *
      * @Assert\Valid()
+     * @Serializer\Exclude()
      */
     private $comments;
     
@@ -159,6 +166,7 @@ class Aire implements BreadCrumbInterface
      *     referencedColumnName="id",
      *     onDelete="CASCADE"
      * )
+     * @Serializer\Exclude()
      */
     private $ville;
     
@@ -173,6 +181,7 @@ class Aire implements BreadCrumbInterface
      *     name="user_id",
      *     referencedColumnName="id"
      * )
+     * @Serializer\Exclude()
      */
     private $user;
 
@@ -670,7 +679,7 @@ class Aire implements BreadCrumbInterface
         return 'uploads/aires';
     }
 
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }

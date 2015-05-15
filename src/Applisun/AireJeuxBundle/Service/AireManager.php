@@ -72,6 +72,18 @@ class AireManager
     }
     
     /**
+     * Returns an empty aire instance
+     *
+     * @return Aire
+     */
+    public function createAire()
+    {        
+        $aire = new Aire();
+
+        return $aire;
+    }
+    
+    /**
      * Get a new vote object for current user and given aire
      *
      * @param Aire $aire

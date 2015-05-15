@@ -5,12 +5,17 @@ namespace Applisun\AireJeuxBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as FOSUser;
 use Doctrine\Common\Collections\ArrayCollection;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\UserRepository")
+ * @ExclusionPolicy("all") 
  */
 class User extends FOSUser
 {
@@ -20,6 +25,7 @@ class User extends FOSUser
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
@@ -31,6 +37,7 @@ class User extends FOSUser
      *     mappedBy="user",
      *     fetch="EXTRA_LAZY"
      * )
+     * @Serializer\Exclude()
      */
     protected $votes;
     
@@ -42,6 +49,7 @@ class User extends FOSUser
      *     mappedBy="user",
      *     fetch="EXTRA_LAZY"
      * )
+     * @Serializer\Exclude()
      */
     protected $aires;
     
@@ -53,6 +61,7 @@ class User extends FOSUser
      *     mappedBy="user",
      *     fetch="EXTRA_LAZY"
      * )
+     * @Serializer\Exclude()
      */
     protected $comments;
 
@@ -71,7 +80,7 @@ class User extends FOSUser
     /**
      * Get id
      *
-     * @return integer
+     * @return integer     
      */
     public function getId()
     {
@@ -137,5 +146,15 @@ class User extends FOSUser
     {
         return $this->aires;
     }
+    
+    /**
+     * Get the formatted name to display (NAME Firstname or username)
+     * 
+     * @return String
+     * @VirtualProperty 
+     */
+    public function getUsedName(){
+            return $this->getUsername();        
+    }   
 }
 

@@ -51,6 +51,18 @@ class CommentManager
     }
     
     /**
+     * Returns an empty comment instance
+     *
+     * @return Comment
+     */
+    public function createComment()
+    {        
+        $comment = new Comment();
+
+        return $comment;
+    }
+    
+    /**
      * Remove a comment object from an id
      *
      * @param Comment $comment
