@@ -3,7 +3,7 @@
         <ul class="pagination pagination-xs">
             {% if pagination.page>1 %}
                 <li><a href="{{ path(pagination.route, 
-    pagination.route_params|merge({'page': 1, 'slug': slug})) }}"><<</a></li>
+    pagination.route_params|merge({'page': 1, 'id': pagination.id, 'slug': pagination.slug})) }}"><<</a></li>
                 <li><a href="{{ path(pagination.route, 
     pagination.route_params|merge({'page': pagination.page-1, 'id': pagination.id, 'slug': pagination.slug})) }}"><</a></li>
                 {% endif %}

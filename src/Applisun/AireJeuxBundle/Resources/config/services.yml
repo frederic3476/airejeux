@@ -13,7 +13,7 @@ parameters:
     applisun_aire_jeux.twigextension.breadcrumb_extension.class: Applisun\AireJeuxBundle\Twig\BreadCrumbExtension
     applisun_aire_jeux.security.authentication_provider.class: Applisun\AireJeuxBundle\Security\Authentication\Provider\WsseProvider
     applisun_aire_jeux.security.firewall_listener.class: Applisun\AireJeuxBundle\Security\Firewall\WsseListener
-    maxperpage: 20
+    maxperpage: 10
     
 services:
     # Manager
