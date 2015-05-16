@@ -1,5 +1,10 @@
 <?php
 
+namespace Applisun\AireJeuxBundle\Repository;
+
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
