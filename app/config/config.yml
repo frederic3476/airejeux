@@ -85,7 +85,6 @@ fos_user:
    
 # FOSRest Configuration
 fos_rest:
-    param_fetcher_listener: true
     body_listener: true
     format_listener: true
     view:
@@ -103,3 +102,9 @@ fos_rest:
         default_format: json
         
 nelmio_api_doc: ~
+
+avalanche_imagine:
+    filters:
+        mini:
+            type:    thumbnail
+            options: { size: [120, 90], mode: outbound }

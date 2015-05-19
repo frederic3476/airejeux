@@ -11,9 +11,12 @@ parameters:
     applisun_aire_jeux.voter.user_aire_comment.class: Applisun\AireJeuxBundle\Security\UserAireCommentVoter
     applisun_aire_jeux.voter.user_comment_modify.class: Applisun\AireJeuxBundle\Security\UserCommentModifyVoter
     applisun_aire_jeux.twigextension.breadcrumb_extension.class: Applisun\AireJeuxBundle\Twig\BreadCrumbExtension
+    applisun_aire_jeux.twigextension.googlemaps_extension.class: Applisun\AireJeuxBundle\Twig\GoogleMapsExtension
     applisun_aire_jeux.security.authentication_provider.class: Applisun\AireJeuxBundle\Security\Authentication\Provider\WsseProvider
     applisun_aire_jeux.security.firewall_listener.class: Applisun\AireJeuxBundle\Security\Firewall\WsseListener
     maxperpage: 10
+    maxcommentperpage: 5
+    limit: 5
     
 services:
     # Manager
@@ -81,6 +84,11 @@ services:
     #Twig Extension
     applisun_aire_jeux.twig.breadcrumb_extension:
         class: %applisun_aire_jeux.twigextension.breadcrumb_extension.class%
+        tags:
+            - { name: twig.extension }
+            
+    applisun_aire_jeux.twig.googlemaps_extension:
+        class: %applisun_aire_jeux.twigextension.googlemaps_extension.class%
         tags:
             - { name: twig.extension }
             

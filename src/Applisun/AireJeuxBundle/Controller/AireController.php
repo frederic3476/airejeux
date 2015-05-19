@@ -88,5 +88,32 @@ class AireController extends Controller {
             'comments' => $aire->getComments(),
         ));
     }
+    
+    /**
+     * @Route("/aire/morecommented", name="aire_morecommented")
+     */
+    public function moreCommentedAction() {
+         $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getMoreCommentedAires($this->container->getParameter('limit'));
+         
+         return $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
+    }
+    
+    /**
+     * @Route("/aire/newest", name="aire_newest")
+     */
+    public function newestAction() {
+         $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getNewAires($this->container->getParameter('limit'));
+         
+         return $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
+    }
+    
+    /**
+     * @Route("/aire/newest", name="aire_newest")
+     */
+    public function topAction() {
+         $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getTopAires($this->container->getParameter('limit'));
+         
+         return $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
+    }
 
 }

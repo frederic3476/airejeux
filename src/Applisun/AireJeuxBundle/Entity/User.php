@@ -13,9 +13,12 @@ use JMS\Serializer\Annotation\Expose;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="user",uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="nom", columns={"username"}),
+ *     @ORM\UniqueConstraint(name="mail", columns={"email"})})
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\UserRepository")
  * @ExclusionPolicy("all") 
+ * 
  */
 class User extends FOSUser
 {
@@ -28,6 +31,19 @@ class User extends FOSUser
      * @Expose
      */
     protected $id;
+    
+    
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    //protected $username;
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    //protected $email;
+    
 
     /**
      * @var ArrayCollection

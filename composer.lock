@@ -4,8 +4,58 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6ce48f8a811b4dab35055cf60892057d",
+    "hash": "08e99020fbbcd168881c6ae2c30128c1",
     "packages": [
+        {
+            "name": "avalanche123/imagine-bundle",
+            "version": "dev-master",
+            "target-dir": "Avalanche/Bundle/ImagineBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avalanche123/AvalancheImagineBundle.git",
+                "reference": "889c6755046ea2c5448b137d337087cc31978b80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avalanche123/AvalancheImagineBundle/zipball/889c6755046ea2c5448b137d337087cc31978b80",
+                "reference": "889c6755046ea2c5448b137d337087cc31978b80",
+                "shasum": ""
+            },
+            "require": {
+                "imagine/imagine": "v0.4.1",
+                "symfony/framework-bundle": "2.*"
+            },
+            "require-dev": {
+                "makasim/temp-file": "dev-master"
+            },
+            "suggest": {
+                "symfony/twig-bundle": "2.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Avalanche\\Bundle\\ImagineBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image manipulation using Imagine and Twig Filters.",
+            "homepage": "https://github.com/avalanche123/AvalancheImagineBundle",
+            "keywords": [
+                "image manipulation",
+                "imagine"
+            ],
+            "time": "2013-08-29 02:05:49"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.4",
@@ -949,12 +999,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "f022311136ed425209a3783e72405047bb97019c"
+                "reference": "d20cbc4eb60dff93f33ef7b55db31fd96d8c5aee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/f022311136ed425209a3783e72405047bb97019c",
-                "reference": "f022311136ed425209a3783e72405047bb97019c",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/d20cbc4eb60dff93f33ef7b55db31fd96d8c5aee",
+                "reference": "d20cbc4eb60dff93f33ef7b55db31fd96d8c5aee",
                 "shasum": ""
             },
             "require": {
@@ -1024,7 +1074,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2015-05-11 12:18:16"
+            "time": "2015-05-14 14:40:44"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1092,6 +1142,53 @@
                 "User management"
             ],
             "time": "2015-05-05 15:08:24"
+        },
+        {
+            "name": "imagine/imagine",
+            "version": "v0.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avalanche123/Imagine.git",
+                "reference": "9d644b6940a7b30a4c9de1873b625e6a686533be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/9d644b6940a7b30a4c9de1873b625e6a686533be",
+                "reference": "9d644b6940a7b30a4c9de1873b625e6a686533be",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "sami/sami": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Imagine": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bulat Shakirzyanov",
+                    "email": "mallluhuct@gmail.com",
+                    "homepage": "http://avalanche123.com"
+                }
+            ],
+            "description": "Image processing for PHP 5.3",
+            "homepage": "http://imagine.readthedocs.org/",
+            "keywords": [
+                "drawing",
+                "graphics",
+                "image manipulation",
+                "image processing"
+            ],
+            "time": "2012-12-13 18:31:18"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1626,12 +1723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "f7611613af585ac4c6c2d04eb0d4db0f9d01fee0"
+                "reference": "1e33a8821cbef81ad346b56af4142a8cc668dfa2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/f7611613af585ac4c6c2d04eb0d4db0f9d01fee0",
-                "reference": "f7611613af585ac4c6c2d04eb0d4db0f9d01fee0",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/1e33a8821cbef81ad346b56af4142a8cc668dfa2",
+                "reference": "1e33a8821cbef81ad346b56af4142a8cc668dfa2",
                 "shasum": ""
             },
             "require": {
@@ -1695,7 +1792,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2015-04-30 07:56:37"
+            "time": "2015-05-16 10:48:11"
         },
         {
             "name": "ob/highcharts-bundle",
@@ -2812,7 +2909,8 @@
         "friendsofsymfony/rest-bundle": 20,
         "jms/serializer-bundle": 20,
         "willdurand/hateoas-bundle": 20,
-        "nelmio/api-doc-bundle": 20
+        "nelmio/api-doc-bundle": 20,
+        "avalanche123/imagine-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

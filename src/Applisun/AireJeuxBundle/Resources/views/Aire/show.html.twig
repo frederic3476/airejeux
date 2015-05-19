@@ -24,6 +24,7 @@
         <a href="{{ path('aire_edit', {'id': aire.id}) }}">Modifier</a>
     {% endif %}
     <hr />
+    {{ googlemaps(aire) }}
     <p>
         {% if is_granted('ROLE_USER') %}
             {% if is_granted('USER_CAN_VOTE', aire) %}
@@ -47,5 +48,34 @@
         {% endif %}
     </p>
 
-    {% include 'ApplisunAireJeuxBundle:Comment:_listComment.html.twig' with {'comments': comments} %}   
+    {{ render(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
+    
+    <button id="more_comment">
+        <span class="glyphicon glyphicon-plus-sign"></span> Plus de commentaire
+    </button> 
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+     <script>
+        var page_num = 2;    
+        jQuery(document).ready(function () {    
+            $('#more_comment').on('click', function(evt){
+                evt.preventDefault();
+            $.ajax({
+                        url: Routing.generate('comment_show', { aire_id: {{ aire.id }}, page: page_num }),
+                        dataType: "html",
+                        success: function (response, statut) {
+                            page_num++;
+                            $('#plus').append(response);
+                        },
+                        error: function (){
+                            $('#plus').append('erreur');
+                        }
+                    });
+                });
+        });
+    </script>
+{% endblock %}    

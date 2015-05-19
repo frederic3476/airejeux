@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Applisun\AireJeuxBundle\Entity\Comment;
+use Applisun\AireJeuxBundle\Entity\Aire;
 
 class CommentController extends Controller {
 
@@ -52,12 +53,14 @@ class CommentController extends Controller {
      *
      * @param integer $id
      */
-    public function commentEditAction($id) {
+    public function commentEditAction(Request $request, $id) {
         $comment = $this->get('applisun_aire_jeux.comment_manager')->getComment($id);
+        $em = $this->getDoctrine()->getEntityManager();
 
         $form_comment = $this->createForm('comment_aire', $comment);
-        $form_comment->submit($this->getRequest());
+        $form_comment->handleRequest($request);
         if ($form_comment->isValid()) {
+            $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a bien été modifié.');
             return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId())));            
         }
@@ -81,6 +84,24 @@ class CommentController extends Controller {
         }
         $this->get('session')->getFlashBag()->add('success', 'Commentaire supprimé avec succès.');
         return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId())));
+    }
+    
+    /**
+     * @Route("/comment/show/{aire_id}/{page}", name="comment_show", options={"expose"=true})
+     *
+     * @param integer $aire_id
+     * @param integer $page
+     */
+    public function showAction($aire_id, $page = 1) {
+        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $aire = $aireManager->getAire($aire_id);
+        if (!$aire instanceof Aire) {
+            throw $this->createNotFoundException('Aucune aire trouvée !');
+        }
+        
+        $comments = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Comment')->getCommentByAire($this->container, $aire_id, $page);
+         
+        return $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));
     }
 
 }

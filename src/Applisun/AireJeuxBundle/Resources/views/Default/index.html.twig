@@ -25,10 +25,16 @@
             <aside class="col-lg-4 visible-lg">
                 <div>
                     Les derniéres aires
+                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }}
                 </div>
                 <div>
                     Top 5
+                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:top')) }}
                 </div>
+                <div>
+                    Les plus commentées
+                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:moreCommented')) }}
+                </div>    
             </aside>
         </div>
     {% endblock %}

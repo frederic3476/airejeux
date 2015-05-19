@@ -10,10 +10,10 @@
             {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_COMMENT_MODIFY', comment)) %}
                 <div class="btn-toolbar fright">
                     <div class="btn-group">
-                        <a data-toggle="modal" data-target="#myModal" data-tooltip="Editer" data-placement="bottom" class="btn btn-xs btn-warning" href="{{ path('comment_edit', { 'id': comment.id }) }}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;</a>
-                        <a data-tooltip="Supprimer" data-placement="bottom" class="btn btn-xs btn-danger" href="{{ path('comment_delete', { 'id': comment.id }) }}" onclick="if (!confirm('Etes-voius sûr ?')) {
+                        <a data-toggle="modal" data-target="#myModal" data-tooltip="Editer" data-placement="bottom" class="btn btn-xs btn-warning" href="{{ path('comment_edit', { 'id': comment.id }) }}">Modifier</a>
+                        <a data-tooltip="Supprimer" data-placement="bottom" class="btn btn-xs btn-danger" href="{{ path('comment_delete', { 'id': comment.id }) }}" onclick="if (!confirm('Etes-vous sûr ?')) {
                                     return false;
-                                }"><span class="glyphicon glyphicon-remove"></span>&nbsp;</a>                            
+                                }">Supprimer</a>                            
                     </div>
                 </div>  
             {% endif %}
@@ -22,5 +22,9 @@
             <p>{{ comment.texte }}</p>           
         </div>   
     </div>
-{% endfor %}    
-
+{% else %}
+     Aucun commentaire
+{% endfor %}
+{% if comments|length >5 %}
+<div id="plus" class="moreComment"></div>
+{% endif %}   

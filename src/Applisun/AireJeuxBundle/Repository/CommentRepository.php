@@ -2,6 +2,9 @@
 
 namespace Applisun\AireJeuxBundle\Repository;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * CommentRepository
  *
@@ -10,4 +13,17 @@ namespace Applisun\AireJeuxBundle\Repository;
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getCommentByAire(ContainerInterface $container, $aire_id, $page = 1)
+    {
+        $maxcommentperpage = $container->getParameter('maxcommentperpage');
+        
+        $query = $this->getEntityManager()
+		              ->createQuery('SELECT c FROM ApplisunAireJeuxBundle:Comment c WHERE c.aire = :id ORDER BY c.createdAt DESC')
+		              ->setParameter('id', $aire_id)
+                              ->setFirstResult(($page-1) * $maxcommentperpage)
+                              ->setMaxResults($maxcommentperpage);
+ 
+        return new Paginator($query);
+    }
+    
 }

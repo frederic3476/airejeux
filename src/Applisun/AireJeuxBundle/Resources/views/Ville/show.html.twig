@@ -5,7 +5,7 @@
     <ul>
         {% for aire in aires %}
             <li>
-                <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a> {{ aire.displayedAverage }}/5 
+               <img src="{{ (asset('uploads/aires/') ~ aire.filename) | apply_filter('mini') }}" /> <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a> {{ aire.displayedAverage }}/5 
             </li>
         {% endfor %}    
     </ul>
