@@ -1,7 +1,8 @@
 <ul>
         {% for aire in aires %}
             <li>
-               <img src="{{ (asset('uploads/aires/') ~ aire.filename) | apply_filter('mini') }}" /> <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }} à {{ aire.ville.nom }}</a> {{ aire.displayedAverage }}/5 
+               <img src="{{ (asset('uploads/aires/') ~ aire.filename) | apply_filter('mini') }}" />
+               <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }} à {{ aire.ville.nom }}</a> {{ aire.displayedAverage }}/5 
                <i>({{ aire.comments | length }} commentaires)</i>
             </li>
         {% endfor %}    

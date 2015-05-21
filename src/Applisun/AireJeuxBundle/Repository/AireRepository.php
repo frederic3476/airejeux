@@ -4,6 +4,7 @@ namespace Applisun\AireJeuxBundle\Repository;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * AireRepository
@@ -92,12 +93,18 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
      */
     public function getMoreCommentedAires($limit = 5)
     {
-    	$query =  $this->getEntityManager()
-            ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a INNER JOIN a.comments c GROUP BY a.id ORDER BY c.id DESC')
-            ->setFirstResult(0)
-            ->setMaxResults($limit);
         
-        return new Paginator($query, true);
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('a','count(a.id) as nbr');
+        $qb->join('a.comments', 'c');
+        $qb->groupBy('a.id');
+        $qb->orderBy('nbr', 'DESC');
+        $results = $qb->getQuery()->getResult();
+        $aires = array();
+        foreach ($results as $result){
+            $aires[] = $result[0];
+        }        
+        return $aires;
     }
     
 }

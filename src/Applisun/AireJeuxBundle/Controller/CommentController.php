@@ -99,7 +99,7 @@ class CommentController extends Controller {
             throw $this->createNotFoundException('Aucune aire trouvée !');
         }
         
-        $comments = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Comment')->getCommentByAire($this->container, $aire_id, $page);
+        $comments = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Comment')->getCommentByAire($this->container, $aire_id, $page);        
          
         return $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));
     }
