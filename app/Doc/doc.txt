@@ -6,8 +6,5 @@ php app/console doctrine:schema:update --force
 
 3/Injection  des données
     * Exécuter departement.sql dans phpmyadmin
-    * Importer france.csv en mode csv for load data (séparation , ) dans phpmyadmin
-    * éxécuter la requête : UPDATE ville SET nom = CONVERT(CAST(CONVERT(nome USING latin1) AS BINARY) USING utf8);
+    * Importer ville.sql dans phpmyadmin
 
-4/ Champs slug de la table ville
-Exécuter la commande php app/console slug (attention mettre à 512Mo pour memory-limit dans php.ini)
