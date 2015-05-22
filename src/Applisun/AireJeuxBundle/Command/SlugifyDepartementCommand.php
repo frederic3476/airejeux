@@ -13,12 +13,12 @@ use Applisun\AireJeuxBundle\Utils\TransformString;
  * Class SlugifyCommand
  * @package Applisun\AireJeuxpBundle\Command
  */
-class SlugifyVilleCommand extends ContainerAwareCommand
+class SlugifyDepartementCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('slugVille')
+            ->setName('slugDepart')
             ->setDescription('Slugify field');
     }
     
@@ -26,14 +26,13 @@ class SlugifyVilleCommand extends ContainerAwareCommand
     {                
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
             
-        $entities = $em->getRepository('ApplisunAireJeuxBundle:Ville')->findAll();
+        $entities = $em->getRepository('ApplisunAireJeuxBundle:Departement')->findAll();
         foreach ($entities as $entitie)
         {
             $entitie->setSlug(TransformString::slugify($entitie->getNom()));            
         }
         $em->flush();
         
-        $output->writeln('Ville slugified');
+        $output->writeln('Departement slugified');
     }
 }
-

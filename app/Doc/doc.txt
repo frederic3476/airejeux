@@ -1,10 +1,27 @@
-1/ création de la base
+1/php composer.phar update
+
+2/ création de la base
 php app/console doctrine:database:create
 
-2/ Création des tables
+Attention enlever la ligne * @ORM\postUpdate dans l'entitée Aire.php sur la méthode upload
+
+3/ Création des tables
 php app/console doctrine:schema:update --force
+
+Attention remettre la ligne * @ORM\postUpdate dans l'entitée Aire.php sur la méthode upload
 
 3/Injection  des données
     * Exécuter departement.sql dans phpmyadmin
     * Importer ville.sql dans phpmyadmin
+    * éxécuter la requête : UPDATE departement SET nom = CONVERT(CAST(CONVERT(nom USING latin1) AS BINARY) USING utf8);
+
+4/ Créer les repertoires web/uploads et web/uploads/aires et donner les droits d'écriture lecture
+    * mkdir web/uploads
+    * mkdir web/uploads/aires
+    * chmod -R 777  web/uploads
+
+5/ Pour le firewall de l'API, créer les repertoires app/cache/security et app/cache/security/nonces  et donner les droits d'écriture lecture
+    * mkdir app/cache/security
+    * mkdir app/cache/security/nonces
+    * chmod -R 777  app/cache/security
 
