@@ -151,5 +151,22 @@ class AireManager
         $this->em->flush();
     }
     
+    /**
+     * Remove a aire object from an id
+     *
+     * @param Aire $aire
+     * @return boolean
+     */
+    public function removeAire(Aire $aire)
+    {
+        if ($aire)
+        {
+            $this->em->remove($aire);
+            $this->em->flush();                    
+            return true;
+        }
+        return false;
+    }
+    
 }
 

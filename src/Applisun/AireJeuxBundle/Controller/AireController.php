@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Applisun\AireJeuxBundle\Entity\Aire;
 use Applisun\AireJeuxBundle\Entity\Vote;
 use Applisun\AireJeuxBundle\Entity\Comment;
+use Applisun\AireJeuxBundle\Position\AirePosition;
 
 class AireController extends Controller {
 
@@ -80,13 +81,37 @@ class AireController extends Controller {
             $form_comment = $this->createForm('comment_aire', $comment);
         }
         
-
+        $aP = new AirePosition();
+        $aP->setIcon('https://maps.google.com/mapfiles/kml/shapes/schools_maps.png');
+        $aP->setClassName('map');
+        $aP->setElementId('map-canvas');
+        $aP->setCenter(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude()));
+        $aP->setZoom('17');
+        $aP->addMarker(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude(), 'name' => $aire->getNom()));        
+        
         return $this->render('ApplisunAireJeuxBundle:Aire:show.html.twig', array(
+            'pos' => $aP,
             'aire' => $aire,
             'formVote'  => isset($form_vote) ? $form_vote->createView() : null,
             'formComment'  => isset($form_comment) ? $form_comment->createView() : null,
             'comments' => $aire->getComments(),
         ));
+    }
+    
+    /**
+     * @Route("/aire/delete/{id}", name="aire_delete")
+     *
+     * @param integer $id
+     */
+    public function aireDeleteAction($id) {
+        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $aire = $aireManager->getAire($id);
+        
+        if (!$aireManager->removeAire($aire)) {
+            throw $this->createNotFoundException('Impossible de trouver l\'aire de jeux.');
+        }
+        $this->get('session')->getFlashBag()->add('success', 'Aire supprimée avec succès.');
+        return $this->redirect($this->generateUrl('index'));
     }
     
     /**

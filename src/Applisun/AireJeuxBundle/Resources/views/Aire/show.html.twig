@@ -8,6 +8,7 @@
             <p>
                 <img class="img-responsive img-small" src="{{ asset('uploads/aires/'~aire.filename) }}"/>
                 <b>Score:</b> {{ aire.displayedAverage }}/5  <i>({{ aire.votes | length }} votes)</i>
+                {{ aire.comments|length }} commentaires
             </p>
         </div>    
         <div class="col-sm-3">    
@@ -15,7 +16,7 @@
                 Ville: {{ aire.ville.nom }}
             </p>    
             <p>
-                Surface: {{ aire.surface }}
+                Surface: {{ aire.displayedSurface }}
             </p>
             <p>
                 Age minimum: {{ aire.ageMin }}
@@ -26,10 +27,11 @@
             <hr />
             {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_AIRE_MODIFY', aire)) %}
                 <a class="btn btn-xs btn-warning" href="{{ path('aire_edit', {'id': aire.id}) }}">Modifier</a>
+                <a class="btn btn-xs btn-danger" href="{{ path('aire_delete', {'id': aire.id}) }}">Supprimer</a>
             {% endif %}
         </div>
-        <div class="col-sm-5">
-            {{ googlemaps(aire) }}
+        <div id="map-canvas" class="col-sm-5" style="min-height:400px;height:100%;  margin: 0; padding: 0;">
+            
         </div>
     </div>
     <p>
@@ -68,6 +70,7 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoXa4riPRXieeMKppky4cIsOyDrcZZ788"></script>
      <script>
         var page_num = 2;
         var nb_comment = {{ aire.comments|length }}; 
@@ -91,6 +94,9 @@
                         }
                     });
                 });
+            
         });
+        
+        {{ googlemaps(pos) }}
     </script>
 {% endblock %}    

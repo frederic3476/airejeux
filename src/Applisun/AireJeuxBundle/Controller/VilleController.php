@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Applisun\AireJeuxBundle\Position\AirePosition;
 
 use Applisun\AireJeuxBundle\Entity\Ville;
 
@@ -40,7 +41,18 @@ class VilleController extends Controller
             'route_params' => array()
         );   
         
+        $aP = new AirePosition();
+        $aP->setIcon('https://maps.google.com/mapfiles/kml/shapes/schools_maps.png');
+        $aP->setClassName('map');
+        $aP->setElementId('map-canvas');
+        $aP->setCenter(array('lat' => $ville->getLongitude(), 'lng' => $ville->getLatitude()));
+        $aP->setZoom('11');
+        foreach ($aires as $aire){
+            $aP->addMarker(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude(), 'name' => $aire->getNom()));        
+        }
+        
         return $this->render('ApplisunAireJeuxBundle:Ville:show.html.twig', array(
+            'pos' => $aP,
             'ville' => $ville,
             'aires' => $aires,
             'pagination' => $pagination

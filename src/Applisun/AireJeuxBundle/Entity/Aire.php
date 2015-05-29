@@ -52,7 +52,6 @@ class Aire implements BreadCrumbInterface
      * @var string
      *
      * @ORM\Column(name="surface", type="string", length=255)
-     * @Assert\NotBlank()
      * @Assert\Choice(callback = "getSurfaces")
      */
     private $surface;
@@ -438,6 +437,16 @@ class Aire implements BreadCrumbInterface
     public function getDisplayedAverage()
     {
         return (null === $this->average) ? '-' : sprintf('%.1f', $this->average);
+    }
+    
+    /**
+     *  Surface formatted for display
+     *
+     * @return string
+     */
+    public function getDisplayedSurface()
+    {
+        return (null === $this->surface) ? 'NC' : sprintf('%.1f', $this->surface);
     }
 
     /**
