@@ -9,10 +9,14 @@
                     <li>
                        <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a> {{ aire.displayedAverage }}/5 
                     </li>
-                {% endfor %}    
+                {% else %}
+                    <p>Aucune aire référencée</p>
+                {% endfor %}
+                <a class="btn btn-default" href="{{path ('aire_new') }}">Ajouter une aire</a>
             </ul>
-
-            {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+            {% if aires|length > 0 %}
+                {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+            {% endif %}    
         </div>
     <div id="map-canvas" class="col-sm-6" style="min-height:400px;height:100%;  margin: 0; padding: 0;"></div>
 {% endblock %}

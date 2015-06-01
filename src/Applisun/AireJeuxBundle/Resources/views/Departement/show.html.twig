@@ -7,8 +7,11 @@
             <li>
                 <a href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a> {{ ville.aires|length}} aires 
             </li>
+        {% else %}
+            <h4>Aucune aire référencée dans ce département</h4>
         {% endfor %}    
     </ul>
-        
-    {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+    {% if villes|length > 0 %}    
+        {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+    {% endif %}    
 {% endblock %}
