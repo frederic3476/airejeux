@@ -31,6 +31,8 @@ twig:
     form:
         resources:
             - ApplisunAireJeuxBundle:Form:fields.html.twig
+    globals:
+        googlemapkey: AIzaSyAoXa4riPRXieeMKppky4cIsOyDrcZZ788
 
 # Assetic Configuration
 assetic:

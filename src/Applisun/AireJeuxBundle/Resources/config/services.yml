@@ -16,7 +16,7 @@ parameters:
     applisun_aire_jeux.security.firewall_listener.class: Applisun\AireJeuxBundle\Security\Firewall\WsseListener
     maxperpage: 10
     maxcommentperpage: 5
-    limit: 5
+    limit: 5    
     
 services:
     # Manager
