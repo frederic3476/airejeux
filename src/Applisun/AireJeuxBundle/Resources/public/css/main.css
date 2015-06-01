@@ -16,3 +16,19 @@
 #map-canvas img{
     padding: auto;
 }
+
+.inner-addon {
+  position: relative;
+  display: inline-block;
+}
+
+.right-addon .glyphicon {
+  right: 0px;
+}
+
+.inner-addon .glyphicon {
+  position: absolute;
+  padding-right: 96px;
+  pointer-events: none;
+  padding-top: 7px;
+}
