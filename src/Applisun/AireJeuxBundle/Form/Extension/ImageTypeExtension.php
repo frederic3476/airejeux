@@ -7,8 +7,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\AbstractTypeExtension;
 
-class ImageTypeExtension implements FormTypeExtensionInterface
+class ImageTypeExtension extends AbstractTypeExtension
 {
     /**
      * Retourne le nom du type de champ qui est étendu
