@@ -25,24 +25,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ googlemapkey }}"></script>
     <script>
         {{ googlemaps(pos) }}
-        
-    {#function initialize() {
-                var mapOptions = {
-                  center: { lat: {{ ville.longitude }}, lng: {{ ville.latitude }} },
-                  zoom: 11
-                };
-                var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
-                
-                 {% for aire in aires %}   
-                    new google.maps.Marker({
-                        position: new google.maps.LatLng({{ aire.latitude }}, {{ aire.longitude }}),
-                        map: map,
-                        title: '{{ aire.nom }}',
-                        icon: 'https://maps.google.com/mapfiles/kml/shapes/schools_maps.png'
-                      });
-                  {% endfor %}
-              }
-              google.maps.event.addDomListener(window, 'load', initialize);#}
     </script>
 {% endblock %}    

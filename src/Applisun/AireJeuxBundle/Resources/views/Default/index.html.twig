@@ -10,7 +10,6 @@
 
         <div class="row">
             <section class="col-xs-12 col-lg-8">
-                <h4>Rechercher une ville : </h4>
                 <form action={{ path('ville_search') }} method="get" class="navbar-form navbar-right inline-form">
                       <div class="form-group">
                           <div class="inner-addon right-addon">
@@ -19,8 +18,8 @@
                               <input type="submit" value="rechercher" />
                           </div>    
                       </div>
-                </form>
-                          <p>CARTE DE FRANCE</p>
+                </form>                            
+                <div id="map" style="min-width: 600px; height: 600px;"><img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" /> </div>
             </section>
             <aside class="col-lg-4 visible-lg">
                 <div>
@@ -47,4 +46,7 @@
     <script src="http://code.highcharts.com/maps/highmaps.js"></script>
     <script src="http://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="http://code.highcharts.com/mapdata/countries/fr/fr-all-all.js"></script>
+    <script type="text/javascript">
+                          {{ chart(carte) }}
+                          </script>  
 {% endblock %}

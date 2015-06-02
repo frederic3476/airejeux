@@ -14,7 +14,7 @@ use Applisun\AireJeuxBundle\Entity\Ville;
 class DepartementController extends Controller
 {
     /**
-     * @Route("/departement/{slug}/{id}/{page}", name="departement_show")
+     * @Route("/departement/{slug}/{id}/{page}", name="departement_show", options={"expose"=true})
      */
     public function showAction(Request $request, $slug, $id, $page) {
         

@@ -53,6 +53,20 @@ class Highmap extends AbstractChart implements ChartInterface
     }
     
     /**
+     * @return string
+     */
+    protected function renderPlotOptions()
+    {
+        if (gettype($this->plotOptions) === 'array') {            
+            return $this->renderWithJavascriptCallback($this->plotOptions, "plotOptions");
+        } elseif (gettype($this->plotOptions) === 'object') {            
+            return $this->renderWithJavascriptCallback($this->plotOptions->plotOptions, "plotOptions");
+        }
+
+        return "";
+    }
+    
+    /**
      * @param string $engine
      *
      * @return string
@@ -62,10 +76,10 @@ class Highmap extends AbstractChart implements ChartInterface
         $chartJS = "";
         $chartJS .= $this->renderEngine($engine);
         $chartJS .= $this->renderOptions();
-        $chartJS .= "\n    var " . (isset($this->chart->renderTo) ? $this->chart->renderTo : 'chart') . " = new Highcharts.Chart({\n";
+        $chartJS .= "\n    $('#" . (isset($this->chart->renderTo) ? $this->chart->renderTo : 'map') . "').highcharts('Map',{\n";
 
         // Chart
-        $chartJS .= $this->renderWithJavascriptCallback($this->chart->chart, "chart");
+        //$chartJS .= $this->renderWithJavascriptCallback($this->chart->chart, "chart");
 
         // Colors
         $chartJS .= $this->renderColors();
@@ -90,13 +104,14 @@ class Highmap extends AbstractChart implements ChartInterface
         $chartJS .= $this->renderMapNavigation();
         
         // Loading
+        // PlotOptions
+        $chartJS .= $this->renderPlotOptions();
+        
+        // Loading
         // Navigation
         $chartJS .= $this->renderNavigation();
         // Pane
         $chartJS .= $this->renderPane();
-
-        // PlotOptions
-        $chartJS .= $this->renderWithJavascriptCallback($this->plotOptions->plotOptions, "plotOptions");
 
         // Series
         $chartJS .= $this->renderWithJavascriptCallback($this->series, "series");
@@ -157,4 +172,6 @@ class Highmap extends AbstractChart implements ChartInterface
 
         return "";
     }
+    
+    
 }

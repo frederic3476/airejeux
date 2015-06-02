@@ -13,6 +13,20 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class DepartementRepository extends \Doctrine\ORM\EntityRepository
 {
-    
+    public function getAllAires(){
+        $qb = $this->createQueryBuilder('d');
+        $qb->select('d','count(a.id) as nbr');
+        $qb->join('d.villes', 'v');
+        $qb->leftJoin('v.aires', 'a');
+        $qb->groupBy('d.id');
+        $qb->orderBy('nbr', 'DESC');
+        $results = $qb->getQuery()->getResult();
+        $aires = array();
+        foreach ($results as $result){
+            $aires[] = array('value'=> $result['nbr'], "hc-key" => $result[0]->getHcKey(), "id" => $result[0]->getId(), "slug" => $result[0]->getSlug());
+        }                
+        
+        return $aires;
+    }
 }
 
