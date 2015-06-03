@@ -79,7 +79,7 @@ class Highmap extends AbstractChart implements ChartInterface
         $chartJS .= "\n    $('#" . (isset($this->chart->renderTo) ? $this->chart->renderTo : 'map') . "').highcharts('Map',{\n";
 
         // Chart
-        //$chartJS .= $this->renderWithJavascriptCallback($this->chart->chart, "chart");
+        $chartJS .= $this->renderWithJavascriptCallback($this->chart->chart, "chart");
 
         // Colors
         $chartJS .= $this->renderColors();

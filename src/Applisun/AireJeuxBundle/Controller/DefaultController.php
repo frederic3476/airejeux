@@ -22,8 +22,7 @@ class DefaultController extends Controller
         $ob->chart->renderTo('map');  
         $ob->title->text('');
         $ob->navigation(array("buttonOptions" => array("enabled" => false)));
-        $ob->mapNavigation(array("enabled" => false, "enableDoubleClickZoomTo" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
-        //$ob->colorAxis(array('min'=>0));
+        $ob->mapNavigation(array("enabled" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
         
         $ob->plotOptions(array("series" => array(
                                     "point" => array(
