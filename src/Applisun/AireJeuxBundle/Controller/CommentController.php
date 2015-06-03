@@ -60,6 +60,7 @@ class CommentController extends Controller {
         $form_comment = $this->createForm('comment_aire', $comment);
         $form_comment->handleRequest($request);
         if ($form_comment->isValid()) {
+            $comment->setUpdatedAt(new \DateTime('now'));
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a bien été modifié.');
             return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId())));            

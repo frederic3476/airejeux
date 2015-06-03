@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-xs-12 text-center">
         <ul class="pagination pagination-xs">
@@ -6,13 +7,15 @@
     pagination.route_params|merge({'page': 1, 'id': pagination.id, 'slug': pagination.slug})) }}"><<</a></li>
                 <li><a href="{{ path(pagination.route, 
     pagination.route_params|merge({'page': pagination.page-1, 'id': pagination.id, 'slug': pagination.slug})) }}"><</a></li>
-                {% endif %}
+            {% endif %}
                 {#display p numbers only from p-4 to p+4 but don't go <1 or >pages_count#}
                 {% for p in range(max(pagination.page-4, 1), 
     min(pagination.page+4, pagination.pages_count)) %}
+                
             <li><a{% if p == pagination.page %} class="current-page"{% endif %} 
                                                 href="{{ path(pagination.route, 
     pagination.route_params|merge({'page': p, 'id': pagination.id, 'slug': pagination.slug})) }}">{{ p }}</a></li>
+                
                 {% endfor %}
                     {% if pagination.page<pagination.pages_count %}
                     <li><a href="{{ path(pagination.route, 

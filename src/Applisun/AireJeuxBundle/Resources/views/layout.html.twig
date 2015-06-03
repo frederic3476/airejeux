@@ -40,7 +40,13 @@
                               <li><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>  Mes notes</a></li>
                               <li><a href="{{path ('aire_new') }}"><span class="glyphicon glyphicon-plus"></span>  Ajouter une aire</a></li>
                               <li class="divider"></li>
-                              <li><a href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span>  Déconnexion</a></li>
+                              <li>
+                                  {% if is_granted('ROLE_USER') %}
+                                    <a href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span>  Déconnexion</a>
+                                  {% else %}
+                                    <a href="{{path ('fos_user_security_login') }}">Connexion</a>  
+                                  {% endif %}    
+                              </li>
                             </ul>
                           </div>
                 </div><!-- /.navbar-collapse -->

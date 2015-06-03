@@ -62,6 +62,7 @@ class AireFormHandler {
         if ($form->isValid()) {
             $aire = $form->getData();
             $this->manager->save($aire);
+            $aire->upload();
 
             $request->getSession()->getFlashBag()->add('success', 'L\'aire de jeux a bien été modifiée.');
 

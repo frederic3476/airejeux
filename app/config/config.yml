@@ -33,6 +33,7 @@ twig:
             - ApplisunAireJeuxBundle:Form:fields.html.twig
     globals:
         googlemapkey: AIzaSyAoXa4riPRXieeMKppky4cIsOyDrcZZ788
+        maxperpage: 10
 
 # Assetic Configuration
 assetic:

@@ -2,10 +2,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             Par {{ comment.user.username }} 
-            {% if comment.updatedat|date('d-m-Y') is null %} 
-                modifié le {{ comment.createdat|date('d-m-Y') }} 
+            {% if comment.updatedat is null %} 
+                ajouté le {{ comment.createdat|date('d-m-Y') }} 
             {% else %} 
-                ajouter le {{ comment.updatedat|date('d-m-Y') }} 
+                modifié le {{ comment.updatedat|date('d-m-Y') }} 
             {% endif %}
             {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_COMMENT_MODIFY', comment)) %}
                 <div class="btn-toolbar fright">

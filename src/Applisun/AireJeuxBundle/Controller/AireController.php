@@ -49,7 +49,7 @@ class AireController extends Controller {
         $form = $handler->createForm($aire);
 
         if ($handler->process($form, $this->getRequest())) {
-            return $this->redirect($this->generateUrl('aire_edit', array('id' => $aire->getId())));
+            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId())));
         }
 
         return $this->render('ApplisunAireJeuxBundle:Aire:edit.html.twig', array(

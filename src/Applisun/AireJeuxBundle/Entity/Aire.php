@@ -717,7 +717,6 @@ class Aire implements BreadCrumbInterface
 
     /**
      * @ORM\PostPersist
-     * @ORM\postUpdate
      */
     public function upload()
     {

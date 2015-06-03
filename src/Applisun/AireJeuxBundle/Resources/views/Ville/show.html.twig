@@ -11,12 +11,12 @@
                     </li>
                 {% else %}
                     <p>Aucune aire référencée</p>
-                {% endfor %}
-                <a class="btn btn-default" href="{{path ('aire_new') }}">Ajouter une aire</a>
+                {% endfor %}                
             </ul>
-            {% if aires|length > 0 %}
+            {% if aires|length > maxperpage %}
                 {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
-            {% endif %}    
+            {% endif %}
+            <a href="{{path ('aire_new') }}" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une aire sur {{ ville.nom }}</a>
         </div>
     <div id="map-canvas" class="col-sm-6" style="min-height:400px;height:100%;  margin: 0; padding: 0;"></div>
 {% endblock %}
