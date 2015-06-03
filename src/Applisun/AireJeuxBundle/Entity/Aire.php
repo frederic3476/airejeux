@@ -446,7 +446,7 @@ class Aire implements BreadCrumbInterface
      */
     public function getDisplayedSurface()
     {
-        return (null === $this->surface) ? 'NC' : sprintf('%.1f', $this->surface);
+        return (null === $this->surface) ? 'NC' : $this->surface;
     }
 
     /**
