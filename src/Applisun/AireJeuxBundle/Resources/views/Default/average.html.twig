@@ -1,0 +1,15 @@
+{% for i in range(0, 5, 1) %}
+    {% if i<5 %}
+        {% if i < average %}
+            <span class="casquette full left big"></span>
+            {% if i+0.5 >= average%}
+                <span class="casquette empty right big"></span>
+            {%else %}    
+                <span class="casquette full right big"></span>
+            {% endif %}    
+        {% else %}    
+            <span class="casquette empty left big"></span>
+            <span class="casquette empty right big"></span>
+        {% endif %} 
+    {% endif %}
+{% endfor %}

@@ -7,8 +7,11 @@
             <h2>{{ aire.nom }}</h2>
             <p>
                 <img class="img-responsive img-small" src="{{ asset('uploads/aires/'~aire.filename) }}"/>
-                <b>Score:</b> {{ aire.displayedAverage }}/5  <i>({{ aire.votes | length }} votes)</i>
-                {{ aire.comments|length }} commentaires
+                <span class="score orange displayOnly">
+                    {{ displayAverage(aire.average) }}
+                    
+                    <i>({{ aire.votes | length }} votes) {{ aire.comments|length }} commentaires</i>
+                </span>
             </p>
         </div>    
         <div class="col-sm-3">    
@@ -39,31 +42,31 @@
             {% if is_granted('USER_CAN_VOTE', aire) %}
                 {% include 'ApplisunAireJeuxBundle:Form:_voteForm.html.twig' with {'form': formVote} %}               
             {% else %}
-                <div class="alert alert-block">Vous avez déjà voté.</div>
-            {% endif %}
-        {% else %}
-            <div class="alert alert-block">Vous devez être connecté pour voter.</div>
+            <div class="alert alert-block">Vous avez déjà voté.</div>
         {% endif %}
-    </p>
-     <p>
-        {% if is_granted('ROLE_USER') %}
-            {% if is_granted('USER_CAN_COMMENT', aire) %}
-                {% include 'ApplisunAireJeuxBundle:Form:_commentForm.html.twig' with {'form': formComment} %}               
-            {% else %}
-                <div class="alert alert-block">Vous avez déjà commenté sur cette aire.</div>
-            {% endif %}
+    {% else %}
+        <div class="alert alert-block">Vous devez être connecté pour voter.</div>
+    {% endif %}
+</p>
+<p>
+    {% if is_granted('ROLE_USER') %}
+        {% if is_granted('USER_CAN_COMMENT', aire) %}
+            {% include 'ApplisunAireJeuxBundle:Form:_commentForm.html.twig' with {'form': formComment} %}               
         {% else %}
-            <div class="alert alert-block">Vous devez être connecté pour commenter.</div>
-        {% endif %}
-    </p>
-    <h2>Vos commentaires</h2>
-    {{ render(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
-    
-    {% if aire.comments|length != 0 %}
-        <button id="more_comment"class="btn btn-block btn-success">
-            <span class="glyphicon glyphicon-plus-sign"></span> Plus de commentaire
-        </button> 
-    {% endif %}    
+        <div class="alert alert-block">Vous avez déjà commenté sur cette aire.</div>
+    {% endif %}
+{% else %}
+    <div class="alert alert-block">Vous devez être connecté pour commenter.</div>
+{% endif %}
+</p>
+<h2>Vos commentaires</h2>
+{{ render(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
+
+{% if aire.comments|length != 0 %}
+    <button id="more_comment"class="btn btn-block btn-success">
+        <span class="glyphicon glyphicon-plus-sign"></span> Plus de commentaire
+    </button> 
+{% endif %}    
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -71,32 +74,31 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ googlemapkey }}"></script>
-     <script>
-        var page_num = 2;
-        var nb_comment = {{ aire.comments|length }}; 
-        jQuery(document).ready(function () {    
-            $('#more_comment').on('click', function(evt){
-                evt.preventDefault();
+    <script>
+                var page_num = 2;
+                var nb_comment = {{ aire.comments|length }};
+                jQuery(document).ready(function () {
+        $('#more_comment').on('click', function(evt){
+        evt.preventDefault();
                 $('#more_comment').html('<img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" />');
-            $.ajax({
-                        url: Routing.generate('comment_show', { aire_id: {{ aire.id }}, page: page_num }),
+                $.ajax({
+                url: Routing.generate('comment_show', { aire_id:{{ aire.id }}, page: page_num }),
                         dataType: "html",
                         success: function (response, statut) {
-                            page_num++;
-                            $('#more_comment').html('<span class="glyphicon glyphicon-plus-sign"></span> Plus de commentaire');
-                            if ((nb_comment/page_num)<5){
-                                $('#more_comment').addClass('hide');
-                            }
-                            $('#plus').append(response);
+                        page_num++;
+                                $('#more_comment').html('<span class="glyphicon glyphicon-plus-sign"></span> Plus de commentaire');
+                                if ((nb_comment / page_num) < 5){
+                        $('#more_comment').addClass('hide');
+                        }
+                        $('#plus').append(response);
                         },
                         error: function (){
-                            $('#plus').append('erreur');
+                        $('#plus').append('erreur');
                         }
-                    });
                 });
-            
         });
-        
+        });
+
         {{ googlemaps(pos) }}
     </script>
 {% endblock %}    

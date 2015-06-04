@@ -411,7 +411,7 @@ class Aire implements BreadCrumbInterface
     }
 
     /**
-     * Calculate the average score of the media
+     * Calculate the average score of the aire
      */
     public function computeAverageScore()
     {

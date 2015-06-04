@@ -38,3 +38,61 @@
   top: 50%;
   left: 50%;
 }
+
+span.score {
+  display: inline-block;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.score {
+  vertical-align: middle;
+}
+
+.score .casquette.full.left.big {
+  width: 13px;
+  background: url(../images/casquetteblanche_icon_full_left_big.png) no-repeat 0 0;
+  margin-right: -4px;
+}
+.score .casquette.full.left {
+  width: 8px;
+  background: url(../images/casquetteblanche_icon_full_left.png) no-repeat 0 0;
+}
+
+.score .casquette.full.right.big {
+  width: 13px;
+  background: url(../images/casquetteblanche_icon_full_right_big.png) no-repeat 0 0;
+}
+.score .casquette.full.right {
+  width: 7px;
+  background: url(../images/casquetteblanche_icon_full_right.png) no-repeat 0 0;
+}
+
+.score .casquette.empty.left.big {
+  width: 13px;
+  background: url(../images/casquetteblanche_icon_left_big.png) no-repeat 0 0;
+  margin-right: -4px;
+}
+.score .casquette.empty.left {
+  width: 8px;
+  background: url(../images/casquetteblanche_icon_left.png) no-repeat 0 0;
+}
+
+.score .casquette.empty.right.big {
+  width: 13px;
+  background: url(../images/casquetteblanche_icon_right_big.png) no-repeat 0 0;
+}
+.score .casquette.empty.right {
+  width: 7px;
+  background: url(../images/casquetteblanche_icon_right.png) no-repeat 0 0;
+  margin-right: 2px;
+}
+
+.score .casquette {
+  color: #d1d1d1;
+  font-size: 20px;
+  position: relative;
+  display: inline-block;
+  line-height: 20px;
+  height: 20px;
+}
