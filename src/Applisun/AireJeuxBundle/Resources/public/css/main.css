@@ -109,3 +109,9 @@ span.score {
 #form_score{
     display: none;
 }
+
+@media screen and (max-width:768px) {
+    #map-canvas{
+        margin: 25px;
+    }
+}
