@@ -21,6 +21,7 @@ class DefaultController extends Controller
         $ob = new HighMap();
         $ob->chart->renderTo('map');  
         $ob->title->text('');
+        $ob->credits->enabled(false);
         $ob->navigation(array("buttonOptions" => array("enabled" => false)));
         $ob->mapNavigation(array("enabled" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
         
