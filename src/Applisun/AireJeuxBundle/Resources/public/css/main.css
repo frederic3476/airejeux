@@ -85,7 +85,7 @@ span.score {
 .score .casquette.empty.right {
   width: 7px;
   background: url(../images/casquetteblanche_icon_right.png) no-repeat 0 0;
-  margin-right: 2px;
+  
 }
 
 .score .casquette {
@@ -95,4 +95,8 @@ span.score {
   display: inline-block;
   line-height: 20px;
   height: 20px;
+}
+
+#form_score{
+    display: none;
 }

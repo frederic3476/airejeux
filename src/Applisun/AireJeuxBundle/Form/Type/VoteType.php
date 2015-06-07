@@ -14,9 +14,7 @@ class VoteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('score', 'choice', array(
-            'choices' => array_combine(range(1, 5), range(1, 5)),
-        ));
+        $builder->add('score', 'number');
 
         if (true === $options['show_user']) {
             $builder->add('user', 'entity', array(

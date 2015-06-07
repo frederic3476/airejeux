@@ -7,7 +7,7 @@
             <h2>{{ aire.nom }}</h2>
             <p>
                 <img class="img-responsive img-small" src="{{ asset('uploads/aires/'~aire.filename) }}"/>
-                <span class="score orange displayOnly">
+                <span class="score">
                     {{ displayAverage(aire.average) }}
                     
                     <i>({{ aire.votes | length }} votes) {{ aire.comments|length }} commentaires</i>
