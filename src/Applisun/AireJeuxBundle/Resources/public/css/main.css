@@ -28,9 +28,14 @@
 
 .inner-addon .glyphicon {
   position: absolute;
-  padding-right: 96px;
+  padding-right: 9px;
   pointer-events: none;
-  padding-top: 7px;
+  padding-top: 9px;
+}
+
+#map{
+    height: 600px;
+    min-width: 320px;
 }
 
 #map img{
@@ -47,6 +52,10 @@ span.score {
 
 .score {
   vertical-align: middle;
+}
+
+.casquette:hover{
+    cursor: pointer;
 }
 
 .score .casquette.full.left.big {

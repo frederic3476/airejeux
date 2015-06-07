@@ -14,12 +14,12 @@
                       <div class="form-group">
                           <div class="inner-addon right-addon">
                               <i class="glyphicon glyphicon-search"></i>
-                              <input type="search" class="input-sm form-control" placeholder="Rechercher une ville" name="query" value='{{ app.request.get('query') }}' id="applisun_aire_form_ville" />
-                              <input type="submit" value="rechercher" />
+                              <input type="search" class="input-md form-control" placeholder="Rechercher une ville" name="query" value='{{ app.request.get('query') }}' id="applisun_aire_form_ville" />
+                              <!--<input class="input-md" type="submit" value="rechercher" />-->
                           </div>    
                       </div>
                 </form>                            
-                <div id="map" style="min-width: 600px; height: 600px;"><img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" /> </div>
+                <div id="map"><img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" /> </div>
             </section>
             <aside class="col-lg-4 visible-lg">
                 <div>
