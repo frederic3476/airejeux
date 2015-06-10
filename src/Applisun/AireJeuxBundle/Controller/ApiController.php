@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Validator\ConstraintViolationList;
@@ -257,6 +258,7 @@ class ApiController extends Controller {
         $view->setData($entity)->setStatusCode(200);
         return $view;
     }
+            
     
     /**
      * Create a Token from the submitted data.<br/>
@@ -389,6 +391,33 @@ class ApiController extends Controller {
         
         
         
+    }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get list of near a position",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @QueryParam(name="latitude", nullable=false, strict=true, description="latitude")
+     * @QueryParam(name="longitude", nullable=false, strict=true, description="longitude")
+     * @QueryParam(name="perimeter", nullable=false, strict=true, description="perimeter")
+     */
+    
+    public function getNearAction(ParamFetcher $paramFetcher)
+    {
+        $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getNearAires($paramFetcher->get('latitude'), 
+                                                                                                    $paramFetcher->get('longitude'),
+                                                                                                     $paramFetcher->get('perimeter'));
+                
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($aires, "json");
+        
+        return new response($data, 200);
     }
     
 }

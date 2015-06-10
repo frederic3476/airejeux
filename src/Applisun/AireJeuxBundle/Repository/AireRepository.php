@@ -107,4 +107,20 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
         return $aires;
     }
     
+    /**
+     * Get aire near a position
+     *
+     * @return array
+     */
+    public function getNearAires($latitude, $longitude, $perimeter)
+    {
+        $query = $this->getEntityManager()
+		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a WHERE a.latitude between :lat-:perim and :lat+:perim and a.longitude between :lon-:perim and :lon+:perim')
+		              ->setParameter('lat', $latitude)
+                              ->setParameter('lon', $longitude)
+                              ->setParameter('perim', $perimeter);
+        
+        return $query->getResult();
+    }
+    
 }

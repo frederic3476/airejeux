@@ -32,6 +32,15 @@ class User extends FOSUser
      */
     protected $id;
     
+    /**
+     * Encrypted password. Must be persisted.
+     *
+     * @var string
+     * 
+     * @Serializer\Exclude()
+     */
+    protected $password;
+    
     
     /**
      * @ORM\Column(type="string", length=255, unique=true)
