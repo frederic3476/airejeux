@@ -293,7 +293,8 @@ class ApiController extends Controller {
         $encoder = $factory->getEncoder($user);
         $password = $encoder->encodePassword($paramFetcher->get('password'), $paramFetcher->get('salt'));
         $header = $this->generateToken($paramFetcher->get('username'), $password);
-        $data = array('X-WSSE' => $header);
+        //XWSSE instead of X-WSSE
+        $data = array('XWSSE' => $header);
         $view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
         $view->setHeader("X-WSSE", $header);
         $view->setStatusCode(200)->setData($data);
