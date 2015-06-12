@@ -298,11 +298,18 @@ class ApiController extends Controller {
         $data = array('digest' => $header['digest'], 'nonce' => $header['nonce'], 'created' => $header['created']);
         //$view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
         //$view->setHeader("X-WSSE", $header['token']);
-        $serializer = $this->get('jms_serializer');
-        $data = json_encode($data);
-        return new Response($data, 200);
-        //$view->setStatusCode(200)->setData($data);
-        //return $view;
+        //$serializer = $this->get('jms_serializer');
+        //$data = json_encode($data);
+        //return new Response($data, 200);
+        $token = sprintf(
+            "UsernameToken Username=\"%s\", PasswordDigest=\"%s\", Nonce=\"%s\", Created=\"%s\"",
+            $paramFetcher->get('username'),
+            $header['digest'],
+            $header['nonce'],
+            $header['created']
+        );
+        $view->setStatusCode(200)->setData($token);
+        return $view;
     }
     /**
      * Generate token for username given
