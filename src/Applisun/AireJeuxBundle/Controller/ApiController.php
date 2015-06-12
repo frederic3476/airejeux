@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -299,7 +300,7 @@ class ApiController extends Controller {
         //$view->setHeader("X-WSSE", $header['token']);
         $serializer = $this->get('jms_serializer');
         $data = $serializer->serialize($data, "json");
-        return new response($data, 200);
+        return new JsonResponse($data, 200);
         //$view->setStatusCode(200)->setData($data);
         //return $view;
     }
