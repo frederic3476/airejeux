@@ -294,9 +294,9 @@ class ApiController extends Controller {
         $password = $encoder->encodePassword($paramFetcher->get('password'), $paramFetcher->get('salt'));
         $header = $this->generateToken($paramFetcher->get('username'), $password);
         //XWSSE instead of X-WSSE
-        $data = array('XWSSE' => $header);
+        $data = array('digest' => $header['digest'], 'nonce' => $header['nonce'], 'created' => $header['created']);
         $view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
-        $view->setHeader("X-WSSE", $header);
+        $view->setHeader("X-WSSE", $header['token']);
         $view->setStatusCode(200)->setData($data);
         return $view;
     }
@@ -320,7 +320,7 @@ class ApiController extends Controller {
             $nonceSixtyFour,
             $created
         );
-        return $token;
+        return array('token' => $token, 'digest' => $passwordDigest, 'nonce' => $nonceSixtyFour, 'created' => $created);
     }
     
     /**
