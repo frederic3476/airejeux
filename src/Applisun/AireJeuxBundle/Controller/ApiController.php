@@ -301,13 +301,7 @@ class ApiController extends Controller {
         //$serializer = $this->get('jms_serializer');
         //$data = json_encode($data);
         //return new Response($data, 200);
-        $token = sprintf(
-            "UsernameToken Username=\"%s\", PasswordDigest=\"%s\", Nonce=\"%s\", Created=\"%s\"",
-            $paramFetcher->get('username'),
-            $header['digest'],
-            $header['nonce'],
-            $header['created']
-        );
+        $token = $header['digest'].'||'.$header['nonce'].'||'.$header['created'];
         $view->setStatusCode(200)->setData($token);
         return $view;
     }
