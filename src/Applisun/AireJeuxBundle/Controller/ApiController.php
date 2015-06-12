@@ -299,8 +299,8 @@ class ApiController extends Controller {
         //$view->setHeader("Authorization", 'WSSE profile="UsernameToken"');
         //$view->setHeader("X-WSSE", $header['token']);
         $serializer = $this->get('jms_serializer');
-        $data = $serializer->serialize($data, "json");
-        return new JsonResponse($data, 200);
+        $data = json_encode($data);
+        return new Response($data, 200);
         //$view->setStatusCode(200)->setData($data);
         //return $view;
     }
