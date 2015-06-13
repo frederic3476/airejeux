@@ -42,7 +42,7 @@ class VilleController extends Controller
         );   
         
         $aP = new AirePosition();
-        $aP->setIcon('https://maps.google.com/mapfiles/kml/shapes/schools_maps.png');
+        $aP->setIcon('http:\/\/'.$_SERVER['SERVER_NAME'].'/bundles/applisunairejeux/images/playground.png');
         $aP->setClassName('map');
         $aP->setElementId('map-canvas');
         $aP->setCenter(array('lat' => $ville->getLatitude(), 'lng' => $ville->getLongitude()));
