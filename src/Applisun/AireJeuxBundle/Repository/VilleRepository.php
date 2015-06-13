@@ -59,9 +59,9 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
     public function getNearCity($lat, $lng)
     {
         $query = $this->getEntityManager()
-		              ->createQuery('SELECT v FROM ApplisunAireJeuxBundle:Ville v WHERE v.latitude between :lat-0.05 and :lat+0.05 and v.longitude between :lon-0.05 and :lon+0.05')
-		              ->setParameter('lat', $latitude)
-                              ->setParameter('lon', $longitude);
+		              ->createQuery('SELECT v FROM ApplisunAireJeuxBundle:Ville v WHERE v.latitude between :lat-0.03 and :lat+0.03 and v.longitude between :lon-0.03 and :lon+0.03')
+		              ->setParameter('lat', $lat)
+                              ->setParameter('lon', $lng);
         
         return $query->getResult();
     }
