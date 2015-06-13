@@ -82,7 +82,7 @@ class AireController extends Controller {
         }
         
         $aP = new AirePosition();
-        $aP->setIcon('https://maps.google.com/mapfiles/kml/shapes/schools_maps.png');
+        $aP->setIcon('/bundles/applisunairejeux/images/');
         $aP->setClassName('map');
         $aP->setElementId('map-canvas');
         $aP->setCenter(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude()));

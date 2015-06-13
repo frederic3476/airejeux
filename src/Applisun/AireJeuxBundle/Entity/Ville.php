@@ -5,6 +5,7 @@ namespace Applisun\AireJeuxBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 use Applisun\AireJeuxBundle\Entity\Departement;
 use Applisun\AireJeuxBundle\Entity\BreadCrumbInterface;
 /**
@@ -88,6 +89,7 @@ class Ville implements BreadCrumbInterface
      * )
      *
      * @Assert\Valid()
+     * @Serializer\Exclude()
      */
     private $aires;
     
@@ -103,6 +105,7 @@ class Ville implements BreadCrumbInterface
      *     referencedColumnName="id",
      *     onDelete="CASCADE"
      * )
+     * @Serializer\Exclude()
      */
     private $departement;
 

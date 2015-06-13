@@ -45,7 +45,7 @@ class VilleController extends Controller
         $aP->setIcon('https://maps.google.com/mapfiles/kml/shapes/schools_maps.png');
         $aP->setClassName('map');
         $aP->setElementId('map-canvas');
-        $aP->setCenter(array('lat' => $ville->getLongitude(), 'lng' => $ville->getLatitude()));
+        $aP->setCenter(array('lat' => $ville->getLatitude(), 'lng' => $ville->getLongitude()));
         $aP->setZoom('11');
         foreach ($aires as $aire){
             $aP->addMarker(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude(), 'name' => $aire->getNom()));        

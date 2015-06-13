@@ -20,7 +20,7 @@ use Applisun\AireJeuxBundle\Entity\Ville;
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\AireRepository")
  * @ORM\HasLifecycleCallbacks()
  * 
- * @Hateoas\Relation("self", href = "expr('/api/aire/' ~ object.getId())")
+ * @Hateoas\Relation("self", href = "expr('/api/playgrounds/' ~ object.getId())")
  * @Hateoas\Relation("comments", href = "expr('/api/comments/' ~ object.getId())")
  */
 class Aire implements BreadCrumbInterface

@@ -426,5 +426,82 @@ class ApiController extends Controller {
         return new response($data, 200);
     }
     
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Return Aire by id",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the aire is not found"
+     *   }
+     * )
+     */
+    
+    public function getPlaygroundAction($id, $_format="json")
+    {
+        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $aire = $aireManager->getAire($id);
+        
+        if (!$aire instanceof Aire) {
+            throw $this->createNotFoundException('Aucune aire trouvée !');
+        }
+        
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($aire, $_format);
+        
+        return new response($data, 200);
+    }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Return the overall Aire List by ville",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the ville is not found"
+     *   }
+     * )
+     */
+    
+    public function getCityAction($ville_id, $_format="json")
+    {
+        $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getAllAireByVille($ville_id);
+        
+        //$user = $this->getUser();
+        //echo 'toto'; 
+        //var_dump($user); exit;
+        
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($aires, $_format);
+        
+        return new response($data, 200);
+    }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get list of near a position",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @QueryParam(name="latitude", nullable=false, strict=true, description="latitude")
+     * @QueryParam(name="longitude", nullable=false, strict=true, description="longitude")
+     */
+    
+    public function getCloseCityAction(ParamFetcher $paramFetcher)
+    {
+        $villes = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Ville')->getNearCity($paramFetcher->get('latitude'),$paramFetcher->get('longitude'));
+                
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($villes, "json");
+        
+        return new response($data, 200);
+    }
+    
+    
+    
 }
 
