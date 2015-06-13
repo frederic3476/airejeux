@@ -83,7 +83,6 @@ class AireController extends Controller {
         
         $aP = new AirePosition();
         $aP->setIcon($_SERVER['SERVER_NAME'].'/bundles/applisunairejeux/images/playground.png');
-        var_dump($_SERVER['SERVER_NAME']); exit;
         $aP->setClassName('map');
         $aP->setElementId('map-canvas');
         $aP->setCenter(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude()));
