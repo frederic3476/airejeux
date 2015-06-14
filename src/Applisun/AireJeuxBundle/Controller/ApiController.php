@@ -293,6 +293,12 @@ class ApiController extends Controller {
         $factory = $this->get('security.encoder_factory');
         $encoder = $factory->getEncoder($user);
         $password = $encoder->encodePassword($paramFetcher->get('password'), $paramFetcher->get('salt'));
+        
+        if ($user->getPassword() != $password){
+            $view->setStatusCode(404)->setData("Erreur d'identification");
+            return $view;
+        }
+        
         $header = $this->generateToken($paramFetcher->get('username'), $password);
         //XWSSE instead of X-WSSE
         $data = array('digest' => $header['digest'], 'nonce' => $header['nonce'], 'created' => $header['created']);
