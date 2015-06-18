@@ -148,8 +148,7 @@ class Aire implements BreadCrumbInterface
      *     orphanRemoval=true
      * )
      *
-     * @Assert\Valid()
-     * @Serializer\Exclude()
+     * @Assert\Valid()     
      */
     private $comments;
     

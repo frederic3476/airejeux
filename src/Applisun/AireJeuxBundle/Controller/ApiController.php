@@ -83,7 +83,7 @@ class ApiController extends Controller {
      * )
      */
     
-    public function getCommentsAction($aire_id, $_format="json")
+    public function getCommentaireAction($aire_id, $_format="json")
     {
         $aireManager = $this->get('applisun_aire_jeux.aire_manager');
         $aire = $aireManager->getAire($aire_id);
@@ -311,6 +311,8 @@ class ApiController extends Controller {
         $view->setStatusCode(200)->setData($token);
         return $view;
     }
+            
+    
     /**
      * Generate token for username given
      *
