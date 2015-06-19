@@ -10,7 +10,7 @@ var score = {
     },
     
     bindEvents: function() {
-        var scoreItem = $("span[data-selector='.item_score'");
+        var scoreItem = $("span[data-selector='.item_score']");
         scoreItem.on({
             click: score.onClickEvent,
             mouseenter: score.onMouseEnterEvent,
