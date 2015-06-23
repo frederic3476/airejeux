@@ -36,13 +36,13 @@ class WsseProvider implements AuthenticationProviderInterface
     
      protected function validateDigest($digest, $nonce, $created, $secret)
     {
-        // Expire le timestamp après 5 minutes
-        if (time() - strtotime($created) > 3000) {
+        // Expire le timestamp après 24h
+        if (time() - strtotime($created) > 86400) {
             return false;
         }
         
         // Valide que le nonce est unique dans les 5 minutes
-        if (file_exists($this->cacheDir.'/'.$nonce) && file_get_contents($this->cacheDir.'/'.$nonce) + 3000 > time()) {
+        if (file_exists($this->cacheDir.'/'.$nonce) && file_get_contents($this->cacheDir.'/'.$nonce) + 86400 > time()) {
             //echo ('exist'); exit;
             throw new NonceExpiredException('Previously used nonce detected');
         }
