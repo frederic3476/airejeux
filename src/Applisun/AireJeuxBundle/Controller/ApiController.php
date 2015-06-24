@@ -391,6 +391,7 @@ class ApiController extends Controller {
         
         $vote->setScore($paramFetcher->get('score'));
         $vote->setUser($user);
+        
         $aireManager->saveVote($vote);
         $errors = $this->get('validator')->validate($vote);
         
@@ -402,9 +403,6 @@ class ApiController extends Controller {
             $view = $this->getErrorsView($errors);
             return $view;
         }
-        
-        
-        
     }
     
     /**
