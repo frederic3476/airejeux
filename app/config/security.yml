@@ -20,6 +20,10 @@ security:
             pattern:   ^/api/comments
             wsse:      true
             stateless:    true
+        wsse_secured_vote:
+            pattern:   ^/api/votes
+            wsse:      true
+            stateless:    true    
         main:
            pattern: ^/
            form_login:
