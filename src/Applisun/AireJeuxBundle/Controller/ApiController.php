@@ -258,8 +258,7 @@ class ApiController extends Controller {
         $view = View::create();
         $view->setData($entity)->setStatusCode(200);
         return $view;
-    }
-            
+    }            
     
     /**
      * Create a Token from the submitted data.<br/>
