@@ -212,7 +212,7 @@ class ApiController extends Controller {
         $comment->setUser($user);
         if ($aire->hasUserAlreadyCommented($user))
         {
-            $view->setData(UTF8_encode('Vous avez déjà commenté sur cette aire !'));
+            $view->setData('Vous avez deja commente sur cette aire !');
             $view->setStatusCode(400);
             return $view;
         }
@@ -383,7 +383,7 @@ class ApiController extends Controller {
         $user = $this->getUser();
         if ($aire->hasUserAlreadyVoted($user))
         {
-            $view->setData(UTF8_encode('Vous avez déjà voté sur cette aire !'));
+            $view->setData('Vous avez deja vote sur cette aire !');
             $view->setStatusCode(400);
             return $view;
         }
