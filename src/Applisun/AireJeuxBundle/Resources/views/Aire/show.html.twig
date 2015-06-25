@@ -6,7 +6,12 @@
         <div class="col-sm-4">
             <h2>{{ aire.nom }}</h2>
             <p>
-                <img class="img-responsive img-small" src="{{ asset('uploads/aires/'~aire.filename) }}"/>
+                <img class="img-responsive img-small" 
+                     src="{% if aire.filename %} 
+                            {{ asset('uploads/aires/'~aire.filename) }} 
+                          {% else %} 
+                            {{ asset('bundles/applisunairejeux/images/imagedefaut.png') }} 
+                          {% endif %}"/>
                 <span class="score">
                     {{ displayAverage(aire.average) }}
                     
