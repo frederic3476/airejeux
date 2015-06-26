@@ -23,7 +23,7 @@ class DepartementRepository extends \Doctrine\ORM\EntityRepository
         $results = $qb->getQuery()->getResult();
         $aires = array();
         foreach ($results as $result){
-            $aires[] = array('value'=> $result['nbr'], "hc-key" => $result[0]->getHcKey(), "id" => $result[0]->getId(), "slug" => $result[0]->getSlug());
+            $aires[] = array('value'=> $result['nbr'], "hc-key" => $result[0]->getHcKey(), "id" => $result[0]->getId(), "nom" => $result[0]->getNom(), "slug" => $result[0]->getSlug());
         }                
         
         return $aires;

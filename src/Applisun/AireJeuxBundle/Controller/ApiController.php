@@ -506,6 +506,52 @@ class ApiController extends Controller {
         return new response($data, 200);
     }
     
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get list of departement with number of playground",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     */
+     
+    public function getDepartementListAction()
+    {
+        $departements = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Departement')->getAllAires();
+        
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($departements, "json");
+        
+        return new response($data, 200);
+    }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get list of favoris's departement with number of playground",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * 
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @QueryParam(name="favoris", nullable=false, strict=true, description="favoris")
+     * @QueryParam(name="date", nullable=false, strict=true, description="date")
+     */
+    
+    public function getFavorisListAction(ParamFetcher $paramFetcher)
+    {
+        $departements = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getFavorisByDate($paramFetcher->get('favoris'), $paramFetcher->get('date'));
+        
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($departements, "json");
+        
+        return new response($data, 200);
+    }
+    
     
     
 }
