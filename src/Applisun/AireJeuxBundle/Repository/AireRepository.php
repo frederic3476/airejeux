@@ -123,4 +123,40 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
     
+    
+    /**
+     * Get favoris aires
+     *
+     * @return array
+     */
+    public function getFavorisByDate($favoris, $date = null)
+    {
+        //SELECT a.* FROM `aire` a INNER JOIN ville v on v.id = a.ville_id INNER JOIN departement d on d.id = v.departement_id WHERE d.id IN (34,38,39)
+        /*$query = $this->getEntityManager()
+		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a '
+                                      . 'INNER JOIN ApplisunAireJeuxBundle:Ville v '
+                                      . 'INNER JOIN ApplisunAireJeuxBundle:Departement d '
+                                      . 'WHERE d.id IN (:favoris) AND a.createdAt > :date ')
+		              ->setParameter('favoris', $favoris)
+                              ->setParameter('date', $date);
+        
+        return $query->getResult();*/
+        
+        $qb = $this->createQueryBuilder('a');
+
+        $query = $qb
+            ->select('a')
+            ->join('a.ville', 'v')
+            ->join('v.departement', 'd')    
+            ->where('d.id IN (:favoris)');
+        if ($date)
+        {
+           $qb->andWhere('a.createdAt > :date')            
+              ->setParameter('date', $date); 
+        }            
+        $qb->setParameter('favoris', $favoris);
+        
+        return $qb->getQuery()->getResult();
+    }        
+    
 }

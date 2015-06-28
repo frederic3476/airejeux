@@ -47,6 +47,21 @@ class Aire implements BreadCrumbInterface
      * )
      */
     private $nom;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     * @Assert\Length(
+     *      min = "2",
+     *      max = "500",
+     *      minMessage = "Votre description doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre description ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    private $description;
+    
 
     /**
      * @var string
@@ -88,6 +103,15 @@ class Aire implements BreadCrumbInterface
      * )
      */
     private $ageMax;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbr_jeux", type="integer")
+     * )
+     */
+    private $nbrJeux;
+    
 
     /**
      * @var string
@@ -226,6 +250,30 @@ class Aire implements BreadCrumbInterface
     {
         return $this->nom;
     }
+    
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Aire
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
     /**
      * Set surface
@@ -345,6 +393,30 @@ class Aire implements BreadCrumbInterface
     public function getAgeMax()
     {
         return $this->ageMax;
+    }
+    
+    /**
+     * Set nbrJeux
+     *
+     * @param int $nbrJeux
+     *
+     * @return Aire
+     */
+    public function setNbrJeux($nbrJeux)
+    {
+        $this->nbrJeux = $nbrJeux;
+
+        return $this;
+    }
+
+    /**
+     * Get nbrJeux
+     *
+     * @return integer
+     */
+    public function getNbrJeux()
+    {
+        return $this->nbrJeux;
     }
     
     /**

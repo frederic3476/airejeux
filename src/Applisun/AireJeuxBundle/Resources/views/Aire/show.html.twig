@@ -22,7 +22,7 @@
         <div class="col-sm-3">    
             <p>
                 Ville: {{ aire.ville.nom }}
-            </p>    
+            </p>
             <p>
                 Surface: {{ aire.displayedSurface }}
             </p>
@@ -31,7 +31,10 @@
             </p>  
             <p>
                 Age maximum: {{ aire.ageMax }}
-            </p>  
+            </p> 
+            <p>
+                Nombre de jeux: {{ aire.nbrJeux }}
+            </p> 
             <hr />
             {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_AIRE_MODIFY', aire)) %}
                 <a class="btn btn-xs btn-warning" href="{{ path('aire_edit', {'id': aire.id}) }}">Modifier</a>
@@ -40,7 +43,14 @@
         </div>
         <div id="map-canvas" class="col-sm-5">
             <img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" />            
-        </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-sm-12"> 
+            <p>
+                {{ aire.description }}
+            </p> 
+        </div>    
     </div>
     <p>
         {% if is_granted('ROLE_USER') %}

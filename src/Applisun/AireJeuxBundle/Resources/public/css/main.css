@@ -7,9 +7,9 @@
 }
 
 #map-canvas{
-    min-height:400px;
+    min-height:300px;
     height:100%;  
-    margin: 0; 
+    margin: 20px 0 0 0;
     padding: 0;
 }
 

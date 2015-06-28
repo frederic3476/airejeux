@@ -131,12 +131,14 @@ class ApiController extends Controller {
      * )
      * @param ParamFetcher $paramFetcher Paramfetcher
      * @RequestParam(name="nom", nullable=false, strict=true, description="name")
+     * @RequestParam(name="description", nullable=true, strict=true, description="description")
      * @RequestParam(name="ville_str", nullable=false, strict=true, description="ville name and code")
      * @RequestParam(name="surface", nullable=true, strict=true, description="Surface")
      * @RequestParam(name="longitude", nullable=false, strict=true, description="Longitude")
      * @RequestParam(name="latitude", nullable=false, strict=true, description="Latitude")
      * @RequestParam(name="age_min", nullable=true, strict=true, description="Age minimum")
      * @RequestParam(name="age_max", nullable=true, strict=true, description="Age maximum")
+     * @RequestParam(name="nbr_jeux", nullable=true, strict=true, description="Nombre de jeux")
      * @RequestParam(name="img64", nullable=true, strict=true, description="Image en base 64")
      */
     
@@ -148,11 +150,13 @@ class ApiController extends Controller {
         $view = View::create();        
         
         $aire->setNom($paramFetcher->get('nom'));
+        $aire->setDescription($paramFetcher->get('description'));
         $aire->setSurface($paramFetcher->get('surface'));
         $aire->setLongitude($paramFetcher->get('longitude'));
         $aire->setLatitude($paramFetcher->get('latitude'));
         $aire->setAgeMin($paramFetcher->get('age_min'));
         $aire->setAgeMax($paramFetcher->get('age_max'));
+        $aire->setNbrJeux($paramFetcher->get('nbr_jeux'));
         
         //get code
         $tab = explode('|', $paramFetcher->get('ville_str'));
@@ -539,7 +543,7 @@ class ApiController extends Controller {
      * 
      * @param ParamFetcher $paramFetcher Paramfetcher
      * @QueryParam(name="favoris", nullable=false, strict=true, description="favoris")
-     * @QueryParam(name="date", nullable=false, strict=true, description="date")
+     * @QueryParam(name="date", nullable=true, strict=true, description="date")
      */
     
     public function getFavorisListAction(ParamFetcher $paramFetcher)
@@ -551,6 +555,50 @@ class ApiController extends Controller {
         
         return new response($data, 200);
     }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Upload a picture from the submitted data.",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @RequestParam(name="aire_id", nullable=false, strict=true, description="id aire")
+     * @RequestParam(name="img64", nullable=true, strict=true, description="Image en base 64")
+     */
+    
+    public function postUploadPictureAction(ParamFetcher $paramFetcher)
+    {
+        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $aire = $aireManager->getAire($paramFetcher->get('aire_id'));
+        $view = View::create();  
+        
+        if (!$aire instanceof Aire) {
+            throw $this->createNotFoundException('Aucune aire trouvée !');
+        }
+        
+        if ($paramFetcher->get('img64') && $paramFetcher->get('img64') !== ''){
+            $image = imagecreatefromstring(base64_decode($paramFetcher->get('img64')));
+            $file_name = uniqid().'.png';
+            imagepng($image, $aire->getUploadRootDir()."/".$file_name);
+            $aire->setFileName($file_name);
+        }
+        
+        $errors = $this->get('validator')->validate($aire);
+        
+        if (count($errors) == 0) {    
+            $this->getDoctrine()->getEntityManager()->persist($aire);
+            $this->getDoctrine()->getEntityManager()->flush();
+            $view->setData($aire)->setStatusCode(200);
+            return $view;
+        } else {
+            $view = $this->getErrorsView($errors);
+            return $view;
+        }
+    }        
     
     
     
