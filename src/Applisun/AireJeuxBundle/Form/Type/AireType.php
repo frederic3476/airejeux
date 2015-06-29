@@ -29,7 +29,8 @@ class AireType extends AbstractType
                 $builder->create('ville', 'text')
                 ->addModelTransformer(new VilleTransformer($entityManager)));
             $builder->add('surface','choice',array(
-                        'choices'   => array('synthétique' => 'synthétique',
+                        'choices'   => array('NC' => 'NC',
+                                                'synthétique' => 'synthétique',
                                                 'sable' => 'sable',
                                                 'stabilisé' => 'stabilisé',
                                                 'béton' => 'béton',

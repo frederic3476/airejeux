@@ -732,7 +732,7 @@ class Aire implements BreadCrumbInterface
     
     public static function getSurfaces()
     {
-        return array('synthétique', 'sable', 'stabilisé', 'béton', 'pelouse', 'gravier');
+        return array('NC', 'synthétique', 'sable', 'stabilisé', 'béton', 'pelouse', 'gravier');
     }
     
     /**
