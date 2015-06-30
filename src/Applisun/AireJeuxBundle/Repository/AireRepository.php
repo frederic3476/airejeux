@@ -142,6 +142,8 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
         
         return $query->getResult();*/
         
+        $favoris = explode('|', $favoris);
+        
         $qb = $this->createQueryBuilder('a');
 
         $query = $qb
