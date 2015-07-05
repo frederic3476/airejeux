@@ -1,0 +1,27 @@
+@media screen and (max-width:768px) {
+ 
+    .navbar-toggle {
+        display: none;
+      }
+      
+    .navbar-header{
+          background: #286090;
+    }
+    
+    input[type="submit"]{
+        line-height: 1em;
+        text-align: center;
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+        font-weight: 400;
+        color: #fff;
+        font-size: 20px;
+        width: 100%;
+    }
+    
+    input[type="submit"]:hover{
+        background-color: #5cb85c;
+        border-color: #4cae4c;
+    }
+}
+

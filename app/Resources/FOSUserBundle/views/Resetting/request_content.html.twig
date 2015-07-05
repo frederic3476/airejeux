@@ -1,5 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+
 <form class="form-horizontal" action="{{ path('fos_user_resetting_send_email') }}" method="POST">
     <div class="form-group">
         {% if invalid_username is defined %}

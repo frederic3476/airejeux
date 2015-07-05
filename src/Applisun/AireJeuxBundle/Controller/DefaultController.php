@@ -47,7 +47,7 @@ class DefaultController extends Controller
                 "cursor" => "pointer",
                 "states" => array(
                     "hover" => array(
-                        "color" => "#CCC"                       
+                        "color" => "#5cb85c"                       
                     )
                 ),
                 "dataLabels" => array(
