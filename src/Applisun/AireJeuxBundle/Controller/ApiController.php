@@ -183,12 +183,11 @@ class ApiController extends Controller {
         if (count($errors) == 0) {    
             $this->getDoctrine()->getEntityManager()->persist($aire);
             $this->getDoctrine()->getEntityManager()->flush();
-            $view->setData($aire)->setStatusCode(200);
-            return $view;
+            $view->setStatusCode(200)->setData($aire->getId());
         } else {
             $view = $this->getErrorsView($errors);
-            return $view;
         }
+        return $view;
     }
     
     /**
