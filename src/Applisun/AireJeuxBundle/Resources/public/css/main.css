@@ -115,6 +115,15 @@ span.score {
         margin: 25px;
     }
     
+    .navbar {
+        margin: 0;
+    }
+    
+    .navbar-form {
+        margin-bottom: 0;
+        padding: 10px 15px 0 15px;
+    }
+    
     .form-control {
         height: 40px;
         border-left: 0;
