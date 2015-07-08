@@ -28,9 +28,9 @@
 
 .inner-addon .glyphicon {
   position: absolute;
-  padding-right: 9px;
+  padding-right: 21px;
   pointer-events: none;
-  padding-top: 9px;
+  padding-top: 32px;
 }
 
 #map{
@@ -121,7 +121,7 @@ span.score {
         border-right: 0;
         border-top: 0;
         border-bottom: 1px solid #000;
-        width: 80%;
+        width: 90%;
         font-size: 20px;
         
     }
