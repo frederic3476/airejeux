@@ -66,4 +66,24 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
     
+    public function getAllAiresByDepartement($idDepart){
+        $qb = $this->createQueryBuilder('v');
+        $qb->select('v','count(a.id) as nbr');
+        $qb->join('v.aires', 'a');
+        $qb->where('v.departement= :id');
+        $qb->groupBy('v.id');
+        $qb->orderBy('v.nom', 'ASC');        
+        $qb->setParameter('id', $idDepart);
+        $results = $qb->getQuery()->getResult();
+        $cities = array();
+        foreach ($results as $result){
+            $cities[] = array('value'=> $result['nbr'], 
+                            "id" => $result[0]->getId(), 
+                            "nom" => $result[0]->getNom(), 
+                            "code" => $result[0]->getCode());
+        }                
+        
+        return $cities;
+    }
+    
 }
