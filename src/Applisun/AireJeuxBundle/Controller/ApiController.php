@@ -46,6 +46,8 @@ class ApiController extends Controller {
         return new response($data, 200);
     }
     
+    
+    
     /**
      * @ApiDoc(
      *   resource = true,
@@ -71,6 +73,9 @@ class ApiController extends Controller {
         
         return new response($data, 200);
     }
+    
+    
+    
     
     /**
      * @ApiDoc(
@@ -119,6 +124,8 @@ class ApiController extends Controller {
         
         return $this->render('ApplisunAireJeuxBundle:Ville:list.json.twig', array('villes' => $villes));                
     }
+    
+    
     
     /**
      * @ApiDoc(
@@ -526,6 +533,30 @@ class ApiController extends Controller {
         
         $serializer = $this->get('jms_serializer');
         $data = $serializer->serialize($departements, "json");
+        
+        return new response($data, 200);
+    }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get list of city with number of playground",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * 
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @QueryParam(name="departId", nullable=false, strict=true, description="id departement")
+     */
+     
+    public function getTownListAction(ParamFetcher $paramFetcher)
+    {
+        $cities = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Ville')->getAllAiresByDepartement($paramFetcher->get('departId'));
+        
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($cities, "json");
         
         return new response($data, 200);
     }
