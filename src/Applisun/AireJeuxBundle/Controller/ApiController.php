@@ -114,15 +114,15 @@ class ApiController extends Controller {
      * )
      */
     
-    public function getVilleAction($query, $_format="json")
+    public function getVilleAction($query, $render=1, $_format="json")
     {
         $villes = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Ville')->getVilleByCompletion($query);
         
-        if (count($villes) == 0) {
-            return new response('no result', 404);
-        }
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($villes, $_format);
         
-        return $this->render('ApplisunAireJeuxBundle:Ville:list.json.twig', array('villes' => $villes));                
+        return new response($data, 200);
+        
     }
     
     

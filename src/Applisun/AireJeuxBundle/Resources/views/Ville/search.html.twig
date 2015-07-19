@@ -4,7 +4,7 @@
     <ul>
         {% for ville in villes %}
             <li>
-                <a href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a> {{ ville.aires|length}} aires 
+                <a href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a> {{ ville.value}} aires 
             </li>
         {% endfor %}    
     </ul>        
