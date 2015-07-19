@@ -22,7 +22,7 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
     public function getVilleByCompletion($queryString)
     {        
         $qb = $this->getEntityManager()
-                ->createQuery('select v, count(a.id) as nbr from ApplisunAireJeuxBundle:Ville v JOIN v.aires a WHERE LOWER(v.nom) LIKE :query GROUP BY v.id ORDER BY v.nom ASC')
+                ->createQuery('select v, count(a.id) as nbr from ApplisunAireJeuxBundle:Ville v LEFT JOIN v.aires a WHERE LOWER(v.nom) LIKE :query GROUP BY v.id ORDER BY v.nom ASC')
                 ->setParameter('query', strtolower($queryString).'%');
         
         $results = $qb->getResult();
