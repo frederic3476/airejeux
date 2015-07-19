@@ -20,12 +20,23 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class VilleRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getVilleByCompletion($queryString)
-    {
-        return $this->getEntityManager()
-                ->createQuery('select v from ApplisunAireJeuxBundle:Ville v WHERE LOWER(v.nom) LIKE :query')
-                ->setParameter('query', strtolower($queryString).'%')
-                ->getResult();        
-}
+    {        
+        $qb = $this->getEntityManager()
+                ->createQuery('select v, count(a.id) as nbr from ApplisunAireJeuxBundle:Ville v JOIN v.aires a WHERE LOWER(v.nom) LIKE :query GROUP BY v.id ORDER BY v.nom ASC')
+                ->setParameter('query', strtolower($queryString).'%');
+        
+        $results = $qb->getResult();
+        $cities = array();
+        foreach ($results as $result){
+            $cities[] = array('value'=> $result['nbr'], 
+                            "id" => $result[0]->getId(), 
+                            "nom" => $result[0]->getNom(),
+                            "slug" => $result[0]->getSlug(),
+                            "code" => $result[0]->getCode());
+        }                
+        
+        return $cities;
+    }
     
     public function getVilleActiveByDepartement(ContainerInterface $container, $idDepart,$page=1)
     {
