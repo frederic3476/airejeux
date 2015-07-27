@@ -17,7 +17,7 @@ class DepartementRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('d');
         $qb->select('d','count(a.id) as nbr');
         $qb->join('d.villes', 'v');
-        $qb->leftJoin('v.aires', 'a');
+        $qb->join('v.aires', 'a');
         $qb->groupBy('d.id');
         $qb->orderBy('d.nom', 'ASC');
         $results = $qb->getQuery()->getResult();
