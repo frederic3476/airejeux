@@ -18,7 +18,9 @@
             {% endif %}
             <a href="{{path ('aire_new') }}" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une aire sur {{ ville.nom }}</a>
         </div>
-    <div id="map-canvas" class="col-sm-6"></div>
+            <div id="map-canvas" class="col-sm-6">
+                <img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" />  
+            </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
