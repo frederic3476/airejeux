@@ -30,12 +30,12 @@ class ImageManager {
                 $ny = floor($oy * ($size['w'] / $ox));
 
                 $nm = imagecreatetruecolor($nx, $ny);
-
-                imagecopyresized($nm, $im, 0, 0, 0, 0, $nx, $ny, $ox, $oy);
                 
                 if ($ny > $size['h']){
-                    $nm = imagecrop($nm, array('x' =>0 , 'y' => 0, 'width' => $nx, 'height'=> $size['h']));
+                    $ny = $size['h'];
                 }
+                
+                imagecopyresized($nm, $im, 0, 0, 0, 0, $nx, $ny, $ox, $oy);
                 
                 imagejpeg($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename);
             }
