@@ -106,9 +106,3 @@ fos_rest:
         default_format: json
         
 nelmio_api_doc: ~
-
-avalanche_imagine:
-    filters:
-        mini:
-            type:    thumbnail
-            options: { size: [120, 90], mode: outbound }

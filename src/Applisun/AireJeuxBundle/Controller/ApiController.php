@@ -183,6 +183,9 @@ class ApiController extends Controller {
             $file_name = uniqid().'.png';
             imagepng($image, $aire->getUploadRootDir()."/".$file_name);
             $aire->setFileName($file_name);
+            
+            //TODO create thumbnail
+            $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($file_name, array('thumb'=> array('w'=> 100, 'h' => 56 ))); 
         }
         
         $errors = $this->get('validator')->validate($aire);
@@ -615,6 +618,9 @@ class ApiController extends Controller {
             $file_name = uniqid().'.png';
             imagepng($image, $aire->getUploadRootDir()."/".$file_name);
             $aire->setFileName($file_name);
+            
+            //TODO create thumbnail
+            $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($file_name, array('thumb'=> array('w'=> 100, 'h' => 56 )));            
         }
         
         $errors = $this->get('validator')->validate($aire);

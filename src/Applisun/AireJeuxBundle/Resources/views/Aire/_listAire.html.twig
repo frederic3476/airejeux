@@ -1,6 +1,11 @@
 <ul>
         {% for aire in aires %}
             <li>
+               <img src="{% if aire.filename %} 
+                            {{ asset('uploads/aires/100-'~aire.filename) }} 
+                          {% else %} 
+                            {{ asset('bundles/applisunairejeux/images/thumbnail_defaut.png') }} 
+                          {% endif %}" />
                <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }} à {{ aire.ville.nom }}</a> {{ aire.displayedAverage }}/5 
                <i>({{ aire.comments | length }} commentaires)</i>
             </li>

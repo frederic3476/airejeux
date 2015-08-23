@@ -1,6 +1,7 @@
 parameters:
     applisun_aire_jeux.aire_manager.class: Applisun\AireJeuxBundle\Service\AireManager
     applisun_aire_jeux.comment_manager.class: Applisun\AireJeuxBundle\Service\CommentManager
+    applisun_aire_jeux.image_manager.class: Applisun\AireJeuxBundle\Service\ImageManager
     applisun_aire_jeux.form.type.aire.class: Applisun\AireJeuxBundle\Form\Type\AireType
     applisun_aire_jeux.form.image.type.extension.class: Applisun\AireJeuxBundle\Form\Extension\ImageTypeExtension
     applisun_aire_jeux.form.handler.aire.class: Applisun\AireJeuxBundle\Form\Handler\AireFormHandler
@@ -17,7 +18,10 @@ parameters:
     applisun_aire_jeux.security.firewall_listener.class: Applisun\AireJeuxBundle\Security\Firewall\WsseListener
     maxperpage: 10
     maxcommentperpage: 5
-    limit: 5    
+    limit: 5
+    sizeimage:
+        normal: 500x280
+        thumbnail: 100x56
     
 services:
     # Manager
@@ -33,6 +37,9 @@ services:
             - "@doctrine.orm.entity_manager"
             - "@security.context"
     
+    applisun_aire_jeux.image_manager:
+        class:     %applisun_aire_jeux.image_manager.class%
+        
     # Form types
     applisun_aire_jeux.form.type.aire:
         class: %applisun_aire_jeux.form.type.aire.class%
@@ -59,7 +66,7 @@ services:
     #Form handler        
     applisun_aire_jeux.form.handler.aire:
         class: %applisun_aire_jeux.form.handler.aire.class%
-        arguments: [@doctrine.orm.entity_manager, @applisun_aire_jeux.aire_manager, @form.factory]
+        arguments: [@doctrine.orm.entity_manager, @applisun_aire_jeux.aire_manager, @applisun_aire_jeux.image_manager, @form.factory]
         
     # Security voter
     applisun_aire_jeux.voter.user_modify_aire:

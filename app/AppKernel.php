@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
             new Applisun\AireJeuxBundle\ApplisunAireJeuxBundle(),
         );
 

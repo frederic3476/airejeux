@@ -4,6 +4,7 @@ namespace Applisun\AireJeuxBundle\Form\Handler;
 
 use Applisun\AireJeuxBundle\Entity\Aire;
 use Applisun\AireJeuxBundle\Service\AireManager;
+use Applisun\AireJeuxBundle\Service\ImageManager;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +22,14 @@ class AireFormHandler {
     private $om;
 
     /**
-     * @var \Applisun\AireJeuxBundle\Service\MediaManager
+     * @var \Applisun\AireJeuxBundle\Service\AireManager
      */
     private $manager;
+    
+    /**
+     * @var \Applisun\AireJeuxBundle\Service\ImageManager
+     */
+    private $imanager;
 
     /**
      * @var \Symfony\Component\Form\FormFactory
@@ -36,9 +42,10 @@ class AireFormHandler {
      * @param FormFactory  $factory
      * @param string       $rootDir
      */
-    public function __construct(ObjectManager $om, AireManager $manager, FormFactory $factory) {
+    public function __construct(ObjectManager $om, AireManager $manager, ImageManager $imanager, FormFactory $factory) {
         $this->om = $om;
         $this->manager = $manager;
+        $this->imanager = $imanager;
         $this->formFactory = $factory;
     }
 
@@ -63,13 +70,18 @@ class AireFormHandler {
             $aire = $form->getData();
             $this->manager->save($aire);
             $aire->upload();
+            
+            //create thumbnail
+            $this->imanager->createImageFromOriginal($aire->getFileName(), array('normal' => 
+                                                                                        array('w'=> 500, 'h' => 280), 
+                                                                                    'thumb'=> 
+                                                                                        array('w'=> 100, 'h' => 56 )));
 
             $request->getSession()->getFlashBag()->add('success', 'L\'aire de jeux a bien été modifiée.');
 
             $valid = true;
         }
-
-
+        
         return $valid;
     }
 
