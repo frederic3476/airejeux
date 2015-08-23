@@ -4,20 +4,20 @@ namespace Applisun\AireJeuxBundle\Service;
 
 class ImageManager {
 
-    private $pathImage = __DIR__.'/../../../../web/uploads/aires/';
+    private $pathImage = '/../../../../web/uploads/aires/';
 
     public function createImageFromOriginal($filename, $arrayWidth) {
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
         switch ($extension) {
             case 'jpg':
             case 'jpeg':
-                $im = imagecreatefromjpeg($this->pathImage . $filename);
+                $im = imagecreatefromjpeg(__DIR__.$this->pathImage . $filename);
                 break;
             case 'gif':
-                $im = imagecreatefromgif($this->pathImage . $filename);
+                $im = imagecreatefromgif(__DIR__.$this->pathImage . $filename);
                 break;
             case 'png':
-                $im = imagecreatefrompng($this->pathImage . $filename);
+                $im = imagecreatefrompng(__DIR__.$this->pathImage . $filename);
                 break;
         }
 
@@ -37,7 +37,7 @@ class ImageManager {
                     $nm = imagecrop($nm, array('x' =>0 , 'y' => 0, 'width' => $nx, 'height'=> $size['h']));
                 }
                 
-                imagejpeg($nm, $this->pathImage . $size['w'] . '-' . $filename);
+                imagejpeg($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename);
             }
         }
     }
