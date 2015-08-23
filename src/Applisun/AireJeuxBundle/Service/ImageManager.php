@@ -4,7 +4,7 @@ namespace Applisun\AireJeuxBundle\Service;
 
 class ImageManager {
 
-    private $pathImage = __DIR__ . '/../../../../web/uploads/aires/';
+    private $pathImage = __DIR__.'/../../../../web/uploads/aires/';
 
     public function createImageFromOriginal($filename, $arrayWidth) {
         $extension = pathinfo($filename, PATHINFO_EXTENSION);
