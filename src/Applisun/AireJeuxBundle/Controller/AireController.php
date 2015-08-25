@@ -25,11 +25,12 @@ class AireController extends Controller {
             $aireManager->save($entity);
             
             //create thumbnail
-            $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($entity->getFileName(), array('normal' => 
+            if ($entity->getFileName()){
+                $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($entity->getFileName(), array('normal' => 
                                                                                                                         array('w'=> 500, 'h' => 280), 
                                                                                                                    'thumb'=> 
                                                                                                                         array('w'=> 100, 'h' => 56 )));
-            
+            }
             $this->get('session')->getFlashBag()->add('success', 'L\'aire de jeux a bien été créé.');
 
             return $this->redirect($this->generateUrl('index'));

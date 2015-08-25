@@ -20,24 +20,22 @@ class ImageManager {
                 $im = imagecreatefrompng(__DIR__.$this->pathImage . $filename);
                 break;
         }
+        
+        if (isset($im)){
+            $ox = imagesx($im);
+            $oy = imagesy($im);
 
-        $ox = imagesx($im);
-        $oy = imagesy($im);
+            foreach ($arrayWidth as $size) {
+                    $nx = $size['w'];
+                    $ny = floor($oy * ($size['w'] / $ox));
 
-        foreach ($arrayWidth as $size) {
-            if ($ox > $size['w']) {
-                $nx = $size['w'];
-                $ny = floor($oy * ($size['w'] / $ox));
+                    if ($ny > $size['h']){
+                        $ny = $size['h'];
+                    }
 
-                $nm = imagecreatetruecolor($nx, $ny);
-                
-                if ($ny > $size['h']){
-                    $ny = $size['h'];
-                }
-                
-                imagecopyresized($nm, $im, 0, 0, 0, 0, $nx, $ny, $ox, $oy);
-                
-                imagejpeg($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename);
+                    $nm = imagecreatetruecolor($nx, $ny);
+                    imagecopyresized($nm, $im, 0, 0, 0, 0, $nx, $ny, $ox, $oy);
+                    imagejpeg($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename);                
             }
         }
     }
