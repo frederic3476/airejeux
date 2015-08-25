@@ -110,6 +110,10 @@ span.score {
     display: none;
 }
 
+.bottom-10{
+          padding-bottom: 10px;
+      }  
+
 @media screen and (max-width:768px) {
     #map-canvas{
         margin: 25px;
@@ -161,6 +165,8 @@ span.score {
         font-size: 18px;
         
       }
+      
+      
     
     
 }
