@@ -1,5 +1,21 @@
+body{
+    background-color: #f3f3f3;
+}
+
 .ui-autocomplete-loading {
     background: white url("../images/ui-anim_basic_16x16.gif") right center no-repeat;
+}
+
+aside{
+    padding-top: 50px;
+}
+
+.container{
+    background-color: white;
+}
+
+.navbar .container{
+    border-color: #e7e7e7;
 }
 
 .fright{
@@ -9,7 +25,7 @@
 #map-canvas{
     min-height:300px;
     height:100%;  
-    margin: 20px 0 0 0;
+    margin: 60px 0 0 0;
     padding: 0;
 }
 
@@ -110,9 +126,24 @@ span.score {
     display: none;
 }
 
+#comment_aire_texte{
+    width: 100%;
+}
+
 .bottom-10{
-          padding-bottom: 10px;
+              padding-top: 12px;
+    background: #f3f3f3;
+    border-top: 2px solid #e3e4e8;
+    border-bottom: 2px solid #e3e4e8;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    
       }  
+      
+      .no-margin{
+         margin-left: 0;
+    margin-right: 0; 
+      }      
 
 @media screen and (max-width:768px) {
     #map-canvas{
