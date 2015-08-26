@@ -35,7 +35,19 @@ class ImageManager {
 
                     $nm = imagecreatetruecolor($nx, $ny);
                     imagecopyresized($nm, $im, 0, 0, 0, 0, $nx, $ny, $ox, $oy);
-                    imagejpeg($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename);                
+                    
+                    switch ($extension) {
+                        case 'jpg':
+                        case 'jpeg':
+                            imagejpeg($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename); 
+                            break;
+                        case 'gif':
+                            imagegif($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename); 
+                            break;
+                        case 'png':
+                            imagepng($nm, __DIR__.$this->pathImage . $size['w'] . '-' . $filename); 
+                            break;
+                    }          
             }
         }
     }
