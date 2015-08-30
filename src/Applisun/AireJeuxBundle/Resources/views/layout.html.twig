@@ -30,28 +30,18 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                    
-                        <div class="btn-group navbar-right">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <span class="glyphicon glyphicon-user"></span> Mon espace personnel <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="{{path ('fos_user_profile_show') }}"><span class="glyphicon glyphicon-home"></span>  Mon compte</a></li>
-                              <li class="divider"></li>
-                              <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Mes aires</a></li>
-                              <li><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span>  Mes notes</a></li>
-                              <li><a href="{{path ('aire_new') }}"><span class="glyphicon glyphicon-plus"></span>  Ajouter une aire</a></li>
-                              <li class="divider"></li>
-                              <li>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{path ('aire_new') }}" >Ajouter une aire de jeux</a></li>
+                        <li><a href="" >Les contributeurs</a></li>
+                        <li><a href="{{path ('fos_user_profile_show') }}">Mon compte</a></li>
+                        <li>
                                   {% if is_granted('ROLE_USER') %}
                                     <a href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span>  Déconnexion</a>
                                   {% else %}
                                     <a href="{{path ('fos_user_security_login') }}">Connexion</a>  
                                   {% endif %}    
-                              </li>
-                            </ul>
-                          </div>
+                        </li>
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>        
@@ -66,11 +56,30 @@
                         </div>
                     {% endfor %}
                 {% endfor %}
-
-            {% block content %}
-            {% endblock %}
-        </div>
+            <div class="row">
+                <section id="contenu" class="col-xs-12 col-lg-8">        
+                    {% block content %}
+                    {% endblock %}
+                </section>
+            {% block aside %}    
+            <aside class="col-lg-4 visible-lg">
+                <div class="playground-list">
+                    <div class="vignette">NOUVEAUTES</div>
+                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }} 
+                </div>  
+                <div class="playground-list">
+                <div class="vignette">TOP 5</div>
+                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:top')) }}
+                </div>
+                <div class="playground-list">
+                <div class="vignette">+ COMMENTEES</div>
+                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:moreCommented')) }}
+                </div>    
+            </aside> 
+            {% endblock %}    
+            </div>
     </div>
+        </div>        
     <hr />
 
     {% include 'ApplisunAireJeuxBundle::footer.html.twig' %}

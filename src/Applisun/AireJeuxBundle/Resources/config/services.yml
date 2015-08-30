@@ -113,5 +113,11 @@ services:
     wsse.security.authentication.listener:
         class:  %applisun_aire_jeux.security.firewall_listener.class%
         arguments: [@security.context, @security.authentication.manager]
+     
+    #Utility 
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }    
 
 

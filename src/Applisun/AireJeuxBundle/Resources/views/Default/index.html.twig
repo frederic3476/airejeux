@@ -7,35 +7,20 @@
 {% endblock %} 
 
     {% block content %}
-
         <div class="row">
-            <section class="col-xs-12 col-lg-8">
-                <form action={{ path('ville_search') }} method="get" class="navbar-form navbar-right inline-form">
-                      <div class="form-group">
+                <form id="form-city" class="col-lg-12" action={{ path('ville_search') }} method="get" class="navbar-form navbar-right inline-form">
+                      <div class="form-group nomargin">
                           <div class="inner-addon right-addon">
                               <i class="glyphicon glyphicon-search"></i>
                               <input type="search" class="input-md form-control" placeholder="Rechercher une ville" name="query" value='{{ app.request.get('query') }}' id="applisun_aire_form_ville" />
                               <!--<input class="input-md" type="submit" value="rechercher" />-->
                           </div>    
                       </div>
-                </form>                            
-                <div id="map"><img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" /> </div>
-            </section>
-            <aside class="col-lg-4 visible-lg">
-                <div>
-                    <h2>Les derniéres aires</h2>
-                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }}
-                </div>
-                <div>
-                    <h2>Top 5</h2>
-                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:top')) }}
-                </div>
-                <div>
-                    <h2>Les plus commentées</h2>
-                    {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:moreCommented')) }}
-                </div>    
-            </aside>
-        </div>
+                </form>
+        </div>                      
+        <div class="row">                      
+                <div class="col-lg-12" id="map"><img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" /> </div>
+        </div>  
     {% endblock %}
     {% block javascripts %}
     {{ parent() }}

@@ -1,6 +1,6 @@
 <div class="row no-margin">        
     {% for aire in aires %}
-        <div class="row bottom-10 no-margin">
+        <div class="row bottom-10 {% if not loop.last %}p-bottom {% endif %} no-margin">
             <div class="col-lg-3">
                 <img src="{% if aire.filename %} 
                      {{ asset('uploads/aires/100-'~aire.filename) }} 
@@ -9,19 +9,21 @@
                     {% endif %}" />
                 </div> 
                 <div class="col-lg-9">
-                    <div class="row no-margin">
+                    <div class="row playground-body">
                         <div class="col-lg-12">
-                            <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a>
+                            <a class="playground-link" href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom | truncate(16, true, '...') }}</a>
                         </div>
-                        <div class="col-lg-12">
-                            <a href="{{ path('ville_show', {'slug': aire.ville.slug, 'id': aire.ville.id, 'page': 1 }) }}" >{{ aire.ville.nom }}</a> {{ aire.displayedAverage }}/5 
+                    </div>    
+                    <div class="row">    
+                        <div class="col-lg-9">
+                            <a class="city-link" href="{{ path('ville_show', {'slug': aire.ville.slug, 'id': aire.ville.id, 'page': 1 }) }}" >{{ aire.ville.nom | truncate(2, true, '...') }}</a> 
                         </div>
-                        <div class="col-lg-12">
-                            <i>({{ aire.comments | length }} commentaires)</i>
+                        <div class="col-lg-3"> 
+                            <div class="average">{{ aire.displayedAverage }}</div> 
                         </div>
-                    </div>
+                    </div>    
                 </div>
-            </div>
+            </div>       
     {% endfor %}
 </div>            
 
