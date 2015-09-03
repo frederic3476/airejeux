@@ -52,12 +52,12 @@ class Aire implements BreadCrumbInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      * @Assert\Length(
      *      min = "2",
      *      max = "500",
-     *      minMessage = "Votre description doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "Votre description ne peut pas être plus long que {{ limit }} caractères"
+     *      minMessage = "Vos informations doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Vos informations ne peut pas être plus long que {{ limit }} caractères"
      * )
      */
     private $description;
@@ -111,6 +111,30 @@ class Aire implements BreadCrumbInterface
      * )
      */
     private $nbrJeux;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_picnic", type="boolean")
+     * )
+     */
+    private $is_picnic;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_sport", type="boolean")
+     * )
+     */
+    private $is_sport;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_shadow", type="boolean")
+     * )
+     */
+    private $is_shadow;
     
 
     /**
@@ -418,6 +442,74 @@ class Aire implements BreadCrumbInterface
     {
         return $this->nbrJeux;
     }
+    
+    
+    /**
+     * Set is_picnic
+     *
+     * @param boolean $isPublic
+     * @return Aire
+     */
+    public function setIsPicnic($isPicnic)
+    {
+        $this->is_picnic = $isPicnic;
+    
+        return $this;
+    }
+    /**
+     * Get is_picnic
+     *
+     * @return boolean 
+     */
+    public function getIsPicnic()
+    {
+        return $this->is_picnic;
+    }
+    
+    /**
+     * Set is_sport
+     *
+     * @param boolean $isSport
+     * @return Aire
+     */
+    public function setIsSport($isSport)
+    {
+        $this->is_sport = $isSport;
+    
+        return $this;
+    }
+    /**
+     * Get is_sport
+     *
+     * @return boolean 
+     */
+    public function getIsSport()
+    {
+        return $this->is_sport;
+    }
+    
+    /**
+     * Set is_shadow
+     *
+     * @param boolean $isShadow
+     * @return Aire
+     */
+    public function setIsShadow($isShadow)
+    {
+        $this->is_shadow = $isShadow;
+    
+        return $this;
+    }
+    /**
+     * Get is_shadow
+     *
+     * @return boolean 
+     */
+    public function getIsShadow()
+    {
+        return $this->is_shadow;
+    }
+    
     
     /**
      * Set average

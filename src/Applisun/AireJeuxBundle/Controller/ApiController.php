@@ -146,6 +146,9 @@ class ApiController extends Controller {
      * @RequestParam(name="age_min", nullable=true, strict=true, description="Age minimum")
      * @RequestParam(name="age_max", nullable=true, strict=true, description="Age maximum")
      * @RequestParam(name="nbr_jeux", nullable=true, strict=true, description="Nombre de jeux")
+     * @RequestParam(name="is_picnic", nullable=true, strict=true, description="Présence d'une aire de pique nique")
+     * @RequestParam(name="is_sport", nullable=true, strict=true, description="Présence d'appareil de sport")
+     * @RequestParam(name="is_shadow", nullable=true, strict=true, description="Présence d'ombre")
      * @RequestParam(name="img64", nullable=true, strict=true, description="Image en base 64")
      */
     
@@ -164,6 +167,9 @@ class ApiController extends Controller {
         $aire->setAgeMin($paramFetcher->get('age_min'));
         $aire->setAgeMax($paramFetcher->get('age_max'));
         $aire->setNbrJeux($paramFetcher->get('nbr_jeux'));
+        $aire->setIsPicnic($paramFetcher->get('is_picnic'));
+        $aire->setIsSport($paramFetcher->get('is_sport'));
+        $aire->setIsShadow($paramFetcher->get('is_shadow'));
         
         //get code
         $tab = explode('|', $paramFetcher->get('ville_str'));

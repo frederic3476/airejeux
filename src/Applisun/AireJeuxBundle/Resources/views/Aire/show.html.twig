@@ -3,8 +3,8 @@
 {% block content %}
     {{ breadcrumb(aire) }}
     <div class="row">
-        <div class="col-lg-10 col-lg-push-2">
-            <h2>{{ aire.nom }}</h2>
+        <div class="col-md-10 col-md-push-1">
+            <h2 class="nomargin">{{ aire.nom }}</h2>
             <p>
                 <img class="img-responsive img-small" 
                      src="{% if aire.filename %} 
@@ -21,8 +21,8 @@
         </div>                 
     </div>
     <div class="row">
-        <div id="caract" class="col-sm-6">    
-            <h3>Caractéristiques:</h3>
+        <div id="caract" class="col-sm-10 col-sm-push-1">    
+            <h3>Informations générales:</h3>
             <p>
                 Ville: {{ aire.ville.nom }}
             </p>
@@ -38,21 +38,14 @@
             <p>
                 Nombre de jeux: {{ aire.nbrJeux }}
             </p> 
-            <hr />
             {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_AIRE_MODIFY', aire)) %}
                 <a class="btn btn-xs btn-warning" href="{{ path('aire_edit', {'id': aire.id}) }}">Modifier</a>
                 <a class="btn btn-xs btn-danger" href="{{ path('aire_delete', {'id': aire.id}) }}">Supprimer</a>
             {% endif %}
         </div>
-        <div class="col-sm-6"> 
-            <h3>Description:</h3>
-            <p>
-                {{ aire.description }}
-            </p> 
-        </div>
     </div>
     <div class="row">        
-        <div id="map-canvas" class="col-sm-12 visible-sm visible-md visible-lg">
+        <div id="map-canvas" class="col-sm-10 col-sm-push-1 visible-sm visible-md visible-lg">
             <img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" />            
         </div>       
     </div>
@@ -70,8 +63,14 @@
         {% endif %}
     {% endif %}
 </p>
-<h2>Vos commentaires</h2>
-{{ render(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
+<div class="row">
+    <div class="col-xs-12">
+        <h2 class="nomargin">Commentaires</h2>
+    </div>
+    <div class="col-xs-12">
+        {{ render(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
+    </div>
+</div>
 
 {% if aire.comments|length > 5 %}
     <button id="more_comment"class="btn btn-block btn-success">

@@ -15,7 +15,7 @@
         {% endblock%}
     </head>
     <body>
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top orange">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -32,6 +32,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{path ('aire_new') }}" >Ajouter une aire de jeux</a></li>
+                        <li><a href="" >Rechercher</a></li>
                         <li><a href="" >Les contributeurs</a></li>
                         <li><a href="{{path ('fos_user_profile_show') }}">Mon compte</a></li>
                         <li>
@@ -56,13 +57,33 @@
                         </div>
                     {% endfor %}
                 {% endfor %}
-            <div class="row">
-                <section id="contenu" class="col-xs-12 col-lg-8">        
+            <div class="row contain">
+                <section id="contenu" class="col-xs-12 col-md-8">        
                     {% block content %}
                     {% endblock %}
                 </section>
             {% block aside %}    
-            <aside class="col-lg-4 visible-lg">
+            <aside class="col-md-4 visible-lg visible-md">
+                <div id="ad_mobile" class="row nomargin">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Télécharger bientôt notre application mobile pour smartphone et tablette !!!</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ asset('bundles/applisunairejeux/images/android.png') }}" />
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ asset('bundles/applisunairejeux/images/android.png') }}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('bundles/applisunairejeux/images/appli-airejeux.png') }} " />
+                    </div>
+                </div>
                 <div class="playground-list">
                     <div class="vignette">NOUVEAUTES</div>
                     {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }} 
@@ -79,8 +100,7 @@
             {% endblock %}    
             </div>
     </div>
-        </div>        
-    <hr />
+        </div>  
 
     {% include 'ApplisunAireJeuxBundle::footer.html.twig' %}
 

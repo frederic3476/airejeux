@@ -24,7 +24,7 @@ class AireType extends AbstractType
         
         $builder
             ->add('nom', 'text')
-            ->add('description', 'textarea');
+            ->add('description', 'textarea', array('required' => false));
             $builder->add(
                 $builder->create('ville', 'text')
                 ->addModelTransformer(new VilleTransformer($entityManager)));
@@ -46,7 +46,10 @@ class AireType extends AbstractType
             ->add('ageMax', 'choice', array(
             'choices' => array_combine(range(5, 18), range(5, 18)),
             ))
-            ->add('nbrJeux', 'text')            
+            ->add('nbrJeux', 'number')
+            ->add('is_picnic',  'checkbox', array( 'required' => false))
+            ->add('is_sport',  'checkbox', array( 'required' => false))
+            ->add('is_shadow',  'checkbox', array( 'required' => false))        
             ->add('image', 'file', array(
                 'required' => false,
                 'image_path' => 'webPath'

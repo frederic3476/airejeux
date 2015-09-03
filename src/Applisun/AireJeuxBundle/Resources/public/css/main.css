@@ -17,6 +17,20 @@ aside{
     margin-top: 50px;
 }
 
+.contain{
+    background-color: white;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    font-size: 19px;
+}
+
+.navbar-default.orange {
+    background-color: #AA352B;
+    border-color: #AA352B;
+}
+
 .breadcrumb.fil{
     background-color: transparent;
 }
@@ -44,7 +58,7 @@ aside{
 .playground-list .average {
     color: white;
     display: block;
-    background: #ee570c;
+    background: #AA352B;
     border-radius: 100%;
     width: 2em;
     line-height: 2em;
@@ -58,9 +72,9 @@ aside{
     line-height: 2em;
     height: 3em;
     font-size: 1.5em;
-    border-bottom: 1px solid #2E6DA4;
+    border-bottom: 2px solid #e3e4e8;
     border-left: 1px solid transparent;
-    border-top: 1px solid #2E6DA4;
+    border-top: 2px solid #e3e4e8;
     border-right: 1px solid transparent;
 }
 
@@ -88,13 +102,6 @@ aside{
     padding-top: 50px;
 }
 
-.container{
-    background-color: white;
-}
-
-.navbar .container{
-    border-color: #e7e7e7;
-}
 
 
 .fright{
@@ -102,11 +109,32 @@ aside{
 }
 
 .navbar-nav>li:hover {
-    border-bottom : 2px solid #ee570c;
+    border-bottom : 2px solid white;
 }
 
 #contenu{
     padding-top: 36px;
+}
+
+#caract{
+    border: 2px solid #e3e4e8;
+}
+
+#ad_mobile{
+    padding-bottom: 20px;
+    border: 2px solid black;
+    padding-top: 20px;
+    margin-bottom: 20px;
+    background: -webkit-linear-gradient(top, white , #e3e4e8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, white, #e3e4e8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(top, white, #e3e4e8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(top, white , #e3e4e8); /* Standard syntax */
+}
+
+#ad_mobile p{
+    padding-top: 5px;
+    font-weight: 600;
+    font-size: 1.2em;
 }
 
 #map-canvas{
@@ -230,7 +258,32 @@ span.score {
       .no-margin{
          margin-left: 0;
     margin-right: 0; 
-      }      
+      }   
+      
+      footer {
+          background: #24282a;
+          color: white;
+          
+      }
+      
+      #footer.container{
+          margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+      }
+      
+      #footer li{
+          display: inline-block;
+          padding-right: 10px;
+          padding-left: 8px;
+          border-right: 1px solid white;
+      }
+      
+      .panel-default>.panel-heading {
+    color: white;
+    background-color: #AA352B;
+    border-color: #ddd;
+      }
 
 @media screen and (max-width:768px) {
     #map-canvas{
