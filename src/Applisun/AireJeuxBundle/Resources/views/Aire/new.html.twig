@@ -8,27 +8,83 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 {% endblock %}    
 
-{% block content %}    
-    <form action="{{ path('aire_new') }}" method="post" enctype="multipart/form-data">
-        {{ form_errors(form) }}
+{% block content %}
+    <div class="row nomargin">
+    <form  id="form-playground" class="form-horizontal" action="{{ path('aire_new') }}" method="post" enctype="multipart/form-data">
+            <h3 class="p-bottom">Informations générales: </h3> 
+            <div class="nomargin">
+                {{ form_errors(form.nom) }}
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom, {'attr':{'placeholder':'Nom:', 'class':'form-control'}}) }}
+            </div>
+            <div class="nomargin">
+                {{ form_errors(form.ville) }}
+                {{ form_label(form.ville) }}
+                {{ form_widget(form.ville, {'attr':{'class':'form-control'}}) }}
+            </div>
+            <h3 class="p-bottom">Caractéristiques: </h3> 
+            <div class="row">
+                <div class="col-sm-4">
+                    {{ form_errors(form.surface) }}
+                    {{ form_label(form.surface) }}
+                    {{ form_widget(form.surface, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(form.latitude) }}
+                    {{ form_label(form.latitude) }}
+                    {{ form_widget(form.latitude, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(form.longitude) }}
+                    {{ form_label(form.longitude) }}
+                    {{ form_widget(form.longitude, {'attr':{'class':'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {{ form_errors(form.ageMin) }}
+                    {{ form_label(form.ageMin) }}
+                    {{ form_widget(form.ageMin, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(form.ageMax) }}
+                    {{ form_label(form.ageMax) }}
+                    {{ form_widget(form.ageMax, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(form.nbrJeux) }}
+                    {{ form_label(form.nbrJeux) }}
+                    {{ form_widget(form.nbrJeux, {'attr':{'class':'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {{ form_errors(form.is_picnic) }}
+                    {{ form_label(form.is_picnic) }}
+                    {{ form_widget(form.is_picnic, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(form.is_sport) }}
+                    {{ form_label(form.is_sport) }}
+                    {{ form_widget(form.is_sport, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-4">
+                    {{ form_errors(form.is_shadow) }}
+                    {{ form_label(form.is_shadow) }}
+                    {{ form_widget(form.is_shadow, {'attr':{'class':'form-control'}}) }}
+                </div>
+            </div>
+            <h3 class="p-bottom">Informations complémentaires: </h3>     
+            {{ form_widget(form.description) }}
+            <h3 class="p-bottom">Image: </h3>
+            <div class="row nomargin text-center">
+                {{ form_widget(form.image) }}
+            </div>    
 
-        {{ form_row(form.nom) }}
-        {{ form_row(form.ville) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.surface) }}
-        {{ form_row(form.longitude) }}
-        {{ form_row(form.latitude) }}
-        {{ form_row(form.ageMax) }}
-        {{ form_row(form.ageMin) }}
-        {{ form_row(form.nbrJeux) }}
-        {{ form_row(form.is_picnic) }}
-        {{ form_row(form.is_sport) }}
-        {{ form_row(form.is_shadow) }}
-        {{ form_row(form.image) }}
-
-        {{ form_rest(form) }}
-        <input type="submit" value="Valider" />
-    </form>
+            {{ form_rest(form) }}
+            <input class="btn btn-lg btn-primary center-block" type="submit" value="Ajouter" />
+            </form>
+        </div>    
 {% endblock %}
 
 {% block javascripts %}

@@ -47,9 +47,9 @@ class AireType extends AbstractType
             'choices' => array_combine(range(5, 18), range(5, 18)),
             ))
             ->add('nbrJeux', 'number')
-            ->add('is_picnic',  'checkbox', array( 'required' => false))
-            ->add('is_sport',  'checkbox', array( 'required' => false))
-            ->add('is_shadow',  'checkbox', array( 'required' => false))        
+            ->add('is_picnic',  'checkbox', array( 'label' => 'Aire de pique-nique', 'required' => false))
+            ->add('is_sport',  'checkbox', array( 'label' => 'Appareils de sport', 'required' => false))
+            ->add('is_shadow',  'checkbox', array( 'label' => 'Ombre', 'required' => false))        
             ->add('image', 'file', array(
                 'required' => false,
                 'image_path' => 'webPath'

@@ -35,11 +35,11 @@
                         <li><a href="" >Rechercher</a></li>
                         <li><a href="" >Les contributeurs</a></li>
                         <li><a href="{{path ('fos_user_profile_show') }}">Mon compte</a></li>
-                        <li>
+                        <li class="login">
                                   {% if is_granted('ROLE_USER') %}
-                                    <a href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span>  Déconnexion</a>
+                                    <a class="btn btn-link" href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span>  Déconnexion</a>
                                   {% else %}
-                                    <a href="{{path ('fos_user_security_login') }}">Connexion</a>  
+                                    <a class="btn btn-primary" href="{{path ('fos_user_security_login') }}"><span class="glyphicon glyphicon-user"></span> Connexion</a>  
                                   {% endif %}    
                         </li>
                     </ul>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{ asset('bundles/applisunairejeux/images/appli-airejeux.png') }} " />
+                        <img class="img-responsive" src="{{ asset('bundles/applisunairejeux/images/appli-airejeux.png') }} " />
                     </div>
                 </div>
                 <div class="playground-list">

@@ -14,7 +14,11 @@ body h2 {
 }
 
 aside{
-    margin-top: 50px;
+    margin-top: 36px;
+}
+
+.mw-100p{
+    max-width: 100%;
 }
 
 .contain{
@@ -23,12 +27,18 @@ aside{
 
 .navbar-default .navbar-nav>li>a {
     color: white;
-    font-size: 19px;
+    font-size: 15px;
+}
+
+.navbar-default .navbar-nav .login a:hover {
+    color: #333;
+    background-color: white;
 }
 
 .navbar-default.orange {
     background-color: #AA352B;
     border-color: #AA352B;
+    min-height: 55px;
 }
 
 .breadcrumb.fil{
@@ -78,6 +88,28 @@ aside{
     border-right: 1px solid transparent;
 }
 
+#form-playground textarea{
+    width: 100%;
+}
+
+#form-playground img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+    width: 750px;
+}
+
+#form-playground input[type=text]{
+    margin-bottom: 15px;
+}
+
+#form-playground input[type=checkbox]{
+    height: 18px;
+    width: 18px;
+    float: right;
+}
+
 .nomargin{
     margin: 0;
 }
@@ -112,19 +144,44 @@ aside{
     border-bottom : 2px solid white;
 }
 
+.navbar-default .navbar-nav .login{
+    font-size: 15px;
+    line-height: 1em;
+    margin-top: 9px;
+}
+
+.navbar-default .navbar-nav .login a{
+    padding: 5px;
+    display: block;
+}
+
+.navbar-nav .login:hover {
+   border-bottom : 0; 
+}
+
 #contenu{
     padding-top: 36px;
+}
+
+#contenu h1{
+    margin-left: 15px;
+    font-size: 2.2em;
 }
 
 #caract{
     border: 2px solid #e3e4e8;
 }
 
+#share_playground a{
+    margin-bottom: 15px;
+    width: 100%;
+}
+
 #ad_mobile{
     padding-bottom: 20px;
     border: 2px solid black;
     padding-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     background: -webkit-linear-gradient(top, white , #e3e4e8); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(top, white, #e3e4e8); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(top, white, #e3e4e8); /* For Firefox 3.6 to 15 */
@@ -179,6 +236,7 @@ span.score {
   display: inline-block;
   height: 20px;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .score {
