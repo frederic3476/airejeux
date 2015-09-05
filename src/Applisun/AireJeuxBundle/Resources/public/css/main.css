@@ -25,6 +25,20 @@ aside{
     background-color: white;
 }
 
+.navbar-logo {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 25px;
+    line-height: 20px;
+    color:white;
+}
+
+.navbar-logo:hover{
+    color:white;
+    text-decoration: none;
+}
+
 .navbar-default .navbar-nav>li>a {
     color: white;
     font-size: 15px;
@@ -140,6 +154,10 @@ aside{
     float: right;
 }
 
+.fleft{
+    float: left;
+}
+
 .navbar-nav>li:hover {
     border-bottom : 2px solid white;
 }
@@ -175,6 +193,25 @@ aside{
 #share_playground a{
     margin-bottom: 15px;
     width: 100%;
+}
+
+.vote{
+    color: #fff;
+    //background-color: #5cb85c;
+    border: 3px solid #4cae4c;
+    border-radius: 4px;
+        margin-bottom: 15px;
+}
+
+.vote .vote-text{
+    padding: 8px 6px 9px 6px;
+    background-color: #5cb85c;
+    margin-right: 6px;
+}
+
+.vote .vote-value{
+    margin-top: 6px;
+    margin-bottom: 6px;
 }
 
 #ad_mobile{

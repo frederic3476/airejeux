@@ -1,9 +1,10 @@
+<div class="row vote nomargin">
 {% block form_title %}
-    <span class="btn"><span class="glyphicon glyphicon-thumbs-up"></span> Noter </span>
+    <span class="vote-text"><span class="glyphicon glyphicon-thumbs-up"></span> Noter </span>
 {% endblock %}
 
 {% block form_content %}
-    <span class="score nomargin">
+    <span class="score vote-value">
             <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="0.5"></span>
             <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="1.0"></span>
             <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="1.5"></span>
@@ -22,3 +23,4 @@
         <input type="submit" value="Voter" class="btn btn-primary" />
     </form>
 {% endblock %}
+</div>
