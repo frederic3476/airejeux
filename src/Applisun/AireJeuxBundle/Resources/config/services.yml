@@ -19,7 +19,7 @@ parameters:
     maxperpage: 10
     searchmaxperpage: 24
     maxcommentperpage: 5
-    perimeter: 0.1
+    perimeter: 0.01
     limit: 5
     sizeimage:
         normal: 500x280
