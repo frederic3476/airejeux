@@ -34,6 +34,8 @@ twig:
     globals:
         googlemapkey: AIzaSyAoXa4riPRXieeMKppky4cIsOyDrcZZ788
         maxperpage: 10
+        searchmaxperpage: 24
+        perimeter: 0.1
 
 # Assetic Configuration
 assetic:

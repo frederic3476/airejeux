@@ -115,7 +115,7 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
     public function getNearAires($latitude, $longitude, $perimeter)
     {
         $query = $this->getEntityManager()
-		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a WHERE a.latitude between :lat-:perim and :lat+:perim and a.longitude between :lon-:perim and :lon+:perim')
+		              ->createQuery('SELECT a FROM ApplisunAireJeuxBundle:Aire a INNER JOIN a.ville v INNER JOIN v.departement d  WHERE a.latitude between :lat-:perim and :lat+:perim and a.longitude between :lon-:perim and :lon+:perim')
 		              ->setParameter('lat', $latitude)
                               ->setParameter('lon', $longitude)
                               ->setParameter('perim', $perimeter);
@@ -159,6 +159,78 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
         $qb->setParameter('favoris', $favoris);
         
         return $qb->getQuery()->getResult();
-    }        
+    }  
+    
+    /**
+     * find aire by paramaters
+     *
+     * @return array
+     */
+    
+    public function findAireByParametres(ContainerInterface $container, $data, $page)
+    {
+        $searchmaxperpage = $container->getParameter('searchmaxperpage');
+
+    $query = $this->createQueryBuilder('a');
+    $query->join('a.ville', 'v');
+    $query->join('v.departement', 'd');
+    $query->where('a.ageMin <= :ageMin')
+    ->andWhere('a.ageMax <= :ageMax')
+    ->andWhere('a.nbrJeux >= :nJeuxMin')
+           
+    ->setParameters(array(
+                    'ageMin' => $data['ageMin'],
+                    'ageMax' => $data['ageMax'],
+                    'nJeuxMin' => $data['nbrJeuxMin'],
+                    ));
+    
+    if($data['departement'] != '')
+    {
+        $query->andWhere('v.departement = :departement')
+              ->setParameter('departement', $data['departement']);  
+    }
+    
+    if($data['ville'] != '')
+    {
+        $tab = explode('|', $data['ville']);
+        if (count($tab) == 2)
+        {
+            $query->andWhere('v.nom = :ville_nom')
+                  ->andWhere('v.code = :ville_code')
+                  ->setParameter('ville_nom', $tab[0])
+                  ->setParameter('ville_code', $tab[1]); 
+        }
+        else{
+            $query->andWhere('v.nom = :ville_nom')
+                  ->setParameter('ville_nom', $data['ville']);  
+        }
+    }
+    
+    if ($data['noteMin'] != 0 )
+    {
+        $query->andWhere('a.average >= :noteMin')
+               ->setParameter('noteMin', $data['noteMin']);  
+    }
+
+    if(isset($data['is_icnic']) && $data['is_icnic'])
+    {
+        $query->andWhere('a.is_picnic != 0');
+    }
+
+    if(isset($data['is_sport']) && $data['is_sport'])
+    {
+        $query->andWhere('a.is_sport != 0');
+    }
+
+    if(isset($data['is_shadow']) && $data['is_shadow'])
+    {
+        $query->andWhere('a.is_shadow != 0');
+    }
+    
+    $query->setFirstResult(($page-1) * $searchmaxperpage)
+                              ->setMaxResults($searchmaxperpage);
+    
+    return new Paginator($query);
+    }
     
 }

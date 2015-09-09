@@ -1,0 +1,30 @@
+{% for aire in aires %}
+            <div class="col-xs-4">
+                <img class="img-responsive" src="{% if aire.filename %} 
+                     {{ asset('uploads/aires/500-'~aire.filename) }} 
+                {% else %} 
+                    {{ asset('bundles/applisunairejeux/images/thumbnail_defaut.png') }} 
+                    {% endif %}" />
+                <div class="row playground-body nomargin">
+                        <div class="col-xs-12 nopadding">
+                            <a class="city-link" href="{{ path('departement_show', {'slug': aire.ville.departement.slug, 'id': aire.ville.departement.id, 'page': 1 }) }}" >{{ aire.ville.departement.nom | truncate(15, true, '...') }}</a>
+                            <span class="separator_link"> > </span> 
+                            <a class="city-link" href="{{ path('ville_show', {'slug': aire.ville.slug, 'id': aire.ville.id, 'page': 1 }) }}" >{{ aire.ville.nom | truncate(15, true, '...') }}</a> 
+                            
+                        </div>
+                    </div>    
+                    <div class="row">    
+                        <div class="col-xs-12">
+                            <a class="playground-link" href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom | truncate(16, true, '...') }}</a>
+                        </div>
+                        <div class="col-xs-12"> 
+                            <span class="score">
+                                {{ displayAverage(aire.average) }}
+                            </span>
+                        </div>
+                </div>      
+            </div>
+{% endfor %}
+{% if aires|length > searchmaxperpage %}
+<div id="plus" class="moreResult"></div>
+{% endif %}       

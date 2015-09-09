@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-    $("#applisun_aire_form_ville").autocomplete({
+    $(".completion").autocomplete({
         source: function (request, response) {
             $.ajax({
                 url: Routing.generate('ville_completion', { query: request.term }),

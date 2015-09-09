@@ -3,14 +3,16 @@
 namespace Applisun\AireJeuxBundle\Form\Transformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Applisun\AireJeuxBundle\Entity\Ville;
 
+
 /**
- * Class UrlTransformer
- * @package Lexik\Bundle\TopOrFlopBundle\Form\Transformer
+ * Class VilleTransformer
+ * @package Applisun\AireJeuxBundle\Form\Transformer
  *
- * Data transformer utilisé dans Lexik\Bundle\TopOrFlopBundle\Form\Type\UrlType.
+ * Data transformer utilisé dans Applisun\AireJeuxBundle\Form\Type\AireType.
  */
 class VilleTransformer implements DataTransformerInterface
 {
@@ -59,6 +61,9 @@ class VilleTransformer implements DataTransformerInterface
         //get code
         $tab = explode('|', $str);
         $nom = $tab[0];
+        
+        if (isset($tab[1])){
+        
         $code = $tab[1];
 
         $ville = $this->om
@@ -66,13 +71,21 @@ class VilleTransformer implements DataTransformerInterface
             ->findOneBy(array('nom' => $nom,'code' => $code))
         ;
 
+        }
+        else {
+            $ville = $this->om
+            ->getRepository('ApplisunAireJeuxBundle:Ville')
+            ->findOneBy(array('nom' => $nom));
+        }
+        
+        
         if (null === $ville) {
             throw new TransformationFailedException(sprintf(
                 'La ville ne peut pas être trouvée!',
                 $str
             ));
         }
-
+        
         return $ville;
     }
 }

@@ -25,6 +25,10 @@ aside{
     background-color: white;
 }
 
+.nopadding{
+    padding: 0;
+}
+
 .navbar-logo {
     float: left;
     height: 50px;
@@ -59,6 +63,10 @@ aside{
     background-color: transparent;
 }
 
+#closest_playground{
+    padding-top: 20px;
+}
+
 .playground-list{
     border-left: 3px solid #2E6DA4;
     border-right: 3px solid #2E6DA4;
@@ -72,6 +80,13 @@ aside{
     color: #1f1f1f;
 }
 
+.playground-link{
+   font-size: 17px;
+    font-weight: 600;
+    color: #1f1f1f; 
+}
+
+
 .playground-list .city-link{
     font-size: 13px;
     color: #a2a2a2;
@@ -79,10 +94,32 @@ aside{
     vertical-align: -webkit-baseline-middle;
 }
 
+#search{
+    padding: 0;
+}
+
+#search .playground-body{
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+.separator_link{
+    color: #0097aa;
+}
+
+#search .playground-body .city-link{
+    font-size: 12px;
+    color: #a2a2a2;
+}
+
+#search .score{
+    margin-top: 0;
+}
+
 .playground-list .average {
     color: white;
     display: block;
-    background: #AA352B;
+    background: #0097aa;
     border-radius: 100%;
     width: 2em;
     line-height: 2em;
@@ -114,8 +151,8 @@ aside{
     width: 750px;
 }
 
-#form-playground input[type=text]{
-    margin-bottom: 15px;
+#form-playground input[type=text], #form-playground input[type=checkbox], #form-playground select, #form-playground h3{
+    margin-bottom: 20px;
 }
 
 #form-playground input[type=checkbox]{

@@ -1,0 +1,59 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
+
+{% block content %}
+<h3 class="p-bottom">{{ aires|length }} résultat(s): </h3>     
+<div id="search" class="row no-margin">  
+    <div class="row bottom-10 no-margin">
+    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': aires} %}
+        </div>  
+</div>
+{% if aires|length > searchmaxperpage %}
+    <button id="more_result"class="btn btn-block btn-success">
+        <span class="glyphicon glyphicon-plus-sign"></span> Plus de résultat
+    </button> 
+{% endif %} 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script>
+                var page_num = 2;
+                var nb_result = {{ aires|length }};
+                jQuery(document).ready(function () {
+        $('#more_result').on('click', function(evt){
+        evt.preventDefault();
+        
+                $('#more_result').html('<img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" />');
+                $.ajax({
+                url: Routing.generate('search', { page: page_num }),
+                type: "GET",
+                data: "departement={{ data.departement }}"+
+                      "&ville={{ data.ville }}"+
+                      "&surface={{ data.surface }}"+
+                      "&ageMin={{ data.ageMin }}"+
+                      "&ageMax={{ data.ageMax }}"+
+                      "&nbrJeuxMin={{ data.nbrJeuxMin }}"+
+                      "&noteMin={{ data.noteMin }}"+
+                      {% if data.is_picnic is defined %} "&is_picnic={{ data.is_picnic }}"+ {%endif %}
+                      {% if data.is_sport is defined %} "&is_sport={{ data.is_sport }}"+ {%endif %}
+                      {% if data.is_shadow is defined %} "&is_shadow={{ data.is_shadow }}"+ {%endif %}
+                      "&_token={{ data._token }}",
+                        dataType: "html",
+                        success: function (response, statut) {
+                        page_num++;
+                                $('#more_result').html('<span class="glyphicon glyphicon-plus-sign"></span> Plus de resultat');
+                                if ((nb_result / page_num) < {{ searchmaxperpage }}){
+                        $('#more_result').addClass('hide');
+                        }
+                        $('#plus').append(response);
+                        },
+                        error: function (){
+                        $('#plus').append('erreur');
+                        }
+                });
+        });
+        });
+    </script>
+{% endblock %}  

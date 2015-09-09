@@ -8,7 +8,7 @@
 
     {% block content %}
         <div class="row">
-                <form id="form-city" class="col-lg-12" action={{ path('ville_search') }} method="get" class="navbar-form navbar-right inline-form">
+                <form id="form-city" class="col-lg-12" action={{ path('ville_search') }} method="get" class="navbar-form navbar-right inline-form"  novalidate>
                       <div class="form-group nomargin">
                           <div class="inner-addon right-addon">
                               <i class="glyphicon glyphicon-search"></i>
@@ -20,7 +20,11 @@
         </div>                      
         <div class="row">                      
                 <div class="col-lg-12" id="map"><img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" /> </div>
-        </div>  
+        </div>
+        
+                    <div id="closest_playground" class="row text-center">
+                         <button id="closest_button" class="btn btn-lg btn-primary center-block">Voir les aires de jeux proches de votre position</button>
+                    </div>
     {% endblock %}
     {% block javascripts %}
     {{ parent() }}
@@ -33,5 +37,33 @@
     <script src="http://code.highcharts.com/mapdata/countries/fr/fr-all-all.js"></script>
     <script type="text/javascript">
         {{ chart(carte) }}
+            
+        $('#closest_button').on('click', function(){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(successPosition);
+        } else { 
+            $('#closest_playground').html("La géolocalisation n'est pas supporté par votre navigateur");
+        }
+    });
+    
+    function successPosition(position) {
+        $('#closest_playground').html('<img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" />');
+    $.ajax({
+                url: Routing.generate('closest'),
+                type: "GET",
+                data: "latitude="+position.coords.latitude+
+                      "&longitude="+position.coords.longitude+
+                      "&perimeter={{ perimeter }}",
+                        dataType: "html",
+                        success: function (response, statut) {
+                            $('#closest_playground').html(response);
+                            $('#closest_button').addClass('hide');
+                        },
+                        error: function (){
+                            $('#closest_playground').html('erreur');
+                            $('#closest_button').addClass('hide');
+                        }
+                });
+                }
                           </script>  
 {% endblock %}

@@ -17,7 +17,9 @@ parameters:
     applisun_aire_jeux.security.authentication_provider.class: Applisun\AireJeuxBundle\Security\Authentication\Provider\WsseProvider
     applisun_aire_jeux.security.firewall_listener.class: Applisun\AireJeuxBundle\Security\Firewall\WsseListener
     maxperpage: 10
+    searchmaxperpage: 24
     maxcommentperpage: 5
+    perimeter: 0.1
     limit: 5
     sizeimage:
         normal: 500x280
