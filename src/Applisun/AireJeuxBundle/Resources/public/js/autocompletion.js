@@ -1,5 +1,6 @@
 jQuery(document).ready(function () {
-    $(".completion").autocomplete({
+    $(".completion").each(function(index, value){
+        $(this).autocomplete({
         source: function (request, response) {
             $.ajax({
                 url: Routing.generate('ville_completion', { query: request.term }),
@@ -23,6 +24,7 @@ jQuery(document).ready(function () {
         close: function () {
             $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
         }
+    });
     });
 });
 

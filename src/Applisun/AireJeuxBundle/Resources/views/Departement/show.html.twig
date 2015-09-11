@@ -4,11 +4,11 @@
     {{ breadcrumb(departement) }}
         {% for ville in villes %}
             <div class="row nomargin p-bottom">
-                <div class="col-xs-6">
+                <div class="col-xs-10">
                     <a class="city" href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a>
                     <i class="code"> {{ ville.code }}</i>
                 </div>
-                <div class="col-xs-2 col-xs-push-4">
+                <div class="col-xs-2">
                     <span class="nbrAire"> {{ ville.aires|length}} aires </span>
                 </div>    
             </div>

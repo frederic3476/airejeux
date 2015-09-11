@@ -1,26 +1,25 @@
 <div class="row vote nomargin">
-{% block form_title %}
-    <span class="vote-text"><span class="glyphicon glyphicon-thumbs-up"></span> Noter </span>
-{% endblock %}
+    <div class="col-lg-4 vote-text text-center nopadding">
+        <span><span class="glyphicon glyphicon-thumbs-up"></span> Noter</span>
+    </div>
+    <div class="col-lg-8 text-center nopadding">
+        <span class="score vote-value">
+                <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="0.5"></span>
+                <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="1.0"></span>
+                <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="1.5"></span>
+                <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="2.0"></span>
+                <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="2.5"></span>
+                <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="3.0"></span>
+                <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="3.5"></span>
+                <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="4.0"></span>
+                <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="4.5"></span>
+                <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="5.0"></span>
+            </span>
+        <form id="form_score" action="{{ path('vote_aire', {'id': aire.id}) }}" method="POST" class="form-horizontal">
+            {{ form_widget(form.score) }}
+            {{ form_rest(form) }}
 
-{% block form_content %}
-    <span class="score vote-value">
-            <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="0.5"></span>
-            <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="1.0"></span>
-            <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="1.5"></span>
-            <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="2.0"></span>
-            <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="2.5"></span>
-            <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="3.0"></span>
-            <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="3.5"></span>
-            <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="4.0"></span>
-            <span id="score05" class="casquette empty left big" data-selector=".item_score" data-score="4.5"></span>
-            <span id="score05" class="casquette empty right big" data-selector=".item_score" data-score="5.0"></span>
-        </span>
-    <form id="form_score" action="{{ path('vote_aire', {'id': aire.id}) }}" method="POST" class="form-horizontal">
-        {{ form_widget(form.score) }}
-        {{ form_rest(form) }}
-
-        <input type="submit" value="Voter" class="btn btn-primary" />
-    </form>
-{% endblock %}
+            <input type="submit" value="Voter" class="btn btn-primary" />
+        </form>
+    </div>    
 </div>

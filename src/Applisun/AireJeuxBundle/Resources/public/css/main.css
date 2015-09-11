@@ -304,9 +304,9 @@ aside{
 }
 
 .vote .vote-text{
-    padding: 8px 6px 9px 6px;
+    padding: 8px 6px 6px 6px;
     background-color: #5cb85c;
-    margin-right: 6px;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .vote .vote-value{
@@ -523,11 +523,12 @@ span.score {
 @media screen and (max-width:768px) {
     
     #contenu {
-        padding-top: 0
+        padding-top: 0;
+        padding-left: 5px;
     }
     
     #map-canvas{
-        margin: 25px;
+        margin: 25px 5px 25px 5px;
     }
     
     .navbar {
