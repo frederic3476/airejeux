@@ -2,25 +2,32 @@
 
 {% block content %}
     {{ breadcrumb(ville) }}
-    <div class="row">
+    
+    <h3 class="p-bottom">{{ aires|length }} aires référencées</h3>
+    <div class="row playground-city-list">
         <div class="col-sm-6">
-            <ul>
                 {% for aire in aires %}
-                    <li>
-                       <a href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a> {{ aire.displayedAverage }}/5 
-                    </li>
+                    <div class="row nomargin p-bottom">
+                        <div class="col-xs-10">
+                            <a class="playground_link" href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="average"> {{ aire.displayedAverage }}</div> 
+                        </div>    
+                    </div>
                 {% else %}
                     <p>Aucune aire référencée</p>
-                {% endfor %}                
-            </ul>
-            {% if aires|length > maxperpage %}
-                {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
-            {% endif %}
-            <a href="{{path ('aire_new') }}" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une aire sur {{ ville.nom }}</a>
-        </div>
+                {% endfor %}  
+           </div>
             <div id="map-canvas" class="col-sm-6">
                 <img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" />  
             </div>
+    </div>
+     {% if aires|length > maxperpage %}
+                {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+            {% endif %}
+            <a href="{{path ('aire_new') }}" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une aire sur {{ ville.nom }}</a>
+                    
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

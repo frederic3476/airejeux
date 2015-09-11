@@ -1,6 +1,10 @@
 {% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
 
 {% block content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Recherche</li> 
+    </ul>
     <h3 class="p-bottom">Rechercher une aire de jeux </h3> 
     <div class="row nomargin">
         <form  id="form-playground" class="form-horizontal" action="{{ path('search') }}" method="get" enctype="multipart/form-data">
@@ -59,7 +63,7 @@
                 </div>
             </div>    
             {{ form_rest(form) }}
-            <input class="btn btn-lg btn-primary center-block" type="submit" value="Rechercher" />
+            <input class="btn btn-lg btn-blue center-block" type="submit" value="Rechercher" />
         </form>
     {% endblock %}  
     

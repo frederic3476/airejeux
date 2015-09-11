@@ -2,16 +2,20 @@
 
 {% block content %}
     {{ breadcrumb(departement) }}
-    <ul>
         {% for ville in villes %}
-            <li>
-                <a href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a> {{ ville.aires|length}} aires 
-            </li>
+            <div class="row nomargin p-bottom">
+                <div class="col-xs-6">
+                    <a class="city" href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a>
+                    <i class="code"> {{ ville.code }}</i>
+                </div>
+                <div class="col-xs-2 col-xs-push-4">
+                    <span class="nbrAire"> {{ ville.aires|length}} aires </span>
+                </div>    
+            </div>
         {% else %}
             <h4>Aucune aire référencée dans ce département</h4>
-        {% endfor %}    
-    </ul>
-    {% if villes|length > maxperpage %}    
+        {% endfor %}        
+    {% if villes|length > searchmaxperpage %}    
         {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
     {% endif %}    
 {% endblock %}

@@ -4,7 +4,7 @@
     {{ breadcrumb(aire) }}
     <div class="row">
         <h1>{{ aire.nom }}</h1>
-        Ajouter le {{ aire.createdat|date('d-m-Y') }} par {{ aire.user.username }}
+        Ajouté le {{ aire.createdat|date('d-m-Y') }} par {{ aire.user.username }}
         <div id="img_playground" class="col-xs-8">            
                 <img class="img-responsive" 
                      src="{% if aire.filename %} 
@@ -56,21 +56,35 @@
     <div class="row nomargin">
         <div id="caract" class="col-lg-12">    
             <h3>Informations générales:</h3>
-            <p>
-                Ville: {{ aire.ville.nom }}
-            </p>
-            <p>
-                Surface: {{ aire.displayedSurface }}
-            </p>
-            <p>
-                Age minimum: {{ aire.ageMin }}
-            </p>  
-            <p>
-                Age maximum: {{ aire.ageMax }}
-            </p> 
-            <p>
-                Nombre de jeux: {{ aire.nbrJeux }}
-            </p> 
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>
+                        Ville: {{ aire.ville.nom }}
+                    </p>
+                    <div>
+                        Surface {{ aire.displayedSurface }}
+                    </div>
+                    <div>
+                        de {{ aire.ageMin }}
+                        à <br/>
+                        {{ aire.ageMax }} ans
+                    </div> 
+                    <div>
+                        {{ aire.nbrJeux }} jeux
+                    </div> 
+                </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <img src="{{ asset('bundles/applisunairejeux/images/picnic_') }}{%if aire.isPicnic %}on{%else%}off{%endif%}.png" />
+                        </div>
+                        <div class="row">
+                            <img src="{{ asset('bundles/applisunairejeux/images/picnic_') }}{%if aire.isSport %}on{%else%}off{%endif%}.png" />
+                        </div>
+                        <div class="row">
+                            <img src="{{ asset('bundles/applisunairejeux/images/shadow_') }}{%if aire.isShadow %}on{%else%}off{%endif%}.png" />
+                        </div>
+                    </div>
+            </div>
         </div>
     </div>
     <div class="row nomargin">        

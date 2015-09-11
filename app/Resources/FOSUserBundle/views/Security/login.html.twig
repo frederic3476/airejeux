@@ -3,6 +3,10 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Connexion</li> 
+    </ul>    
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -20,8 +24,8 @@
                 <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <button class="btn btn-primary" type="submit"> S'identifier</button>
-                        <a class="btn btn-primary" href="{{ path('fos_user_registration_register') }}"> S'inscrire</a>
+                        <button class="btn btn-blue" type="submit"> S'identifier</button>
+                        <a class="btn btn-blue" href="{{ path('fos_user_registration_register') }}"> S'inscrire</a>
                     </div>
                     <div class="col-lg-12 text-center">
                         <a href="{{ path('fos_user_resetting_request') }}">J'ai oublié mon mot de passe</a>

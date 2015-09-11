@@ -40,7 +40,7 @@ class SearchType extends AbstractType
                                         'choices' => array_combine(range(0, 5), range(0, 5))
                                         ))
                 ->add('is_picnic',  'checkbox', array( 'label' => 'Aire de pique-nique', 'required' => false))
-                ->add('is_sport',  'checkbox', array( 'label' => 'Appareils de sport', 'required' => false))
+                ->add('is_sport',  'checkbox', array( 'label' => 'Equipements sportifs', 'required' => false))
                 ->add('is_shadow',  'checkbox', array( 'label' => 'Ombre', 'required' => false))  ;
     }
     

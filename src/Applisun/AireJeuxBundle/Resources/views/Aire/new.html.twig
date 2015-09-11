@@ -9,6 +9,10 @@
 {% endblock %}    
 
 {% block content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Ajouter une aire de jeux</li> 
+    </ul>
     <div class="row nomargin">
     <form  id="form-playground" class="form-horizontal" action="{{ path('aire_new') }}" method="post" enctype="multipart/form-data">
             <h3 class="p-bottom">Informations générales: </h3> 
@@ -82,7 +86,7 @@
             </div>    
 
             {{ form_rest(form) }}
-            <input class="btn btn-lg btn-primary center-block" type="submit" value="Ajouter" />
+            <input class="btn btn-lg btn-blue center-block" type="submit" value="Ajouter" />
             </form>
         </div>    
 {% endblock %}

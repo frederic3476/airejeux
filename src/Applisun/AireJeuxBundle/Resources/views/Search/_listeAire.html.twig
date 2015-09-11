@@ -1,11 +1,11 @@
 {% for aire in aires %}
-            <div class="col-xs-4">
+            <div class="col-xs-6 col-sm-4">
                 <img class="img-responsive" src="{% if aire.filename %} 
                      {{ asset('uploads/aires/500-'~aire.filename) }} 
                 {% else %} 
                     {{ asset('bundles/applisunairejeux/images/imagedefaut.png') }} 
                     {% endif %}" />
-                <div class="row playground-body nomargin">
+                <div class="row nomargin">
                         <div class="col-xs-12 nopadding">
                             <a class="city-link" href="{{ path('departement_show', {'slug': aire.ville.departement.slug, 'id': aire.ville.departement.id, 'page': 1 }) }}" >{{ aire.ville.departement.nom | truncate(15, true, '...') }}</a>
                             <span class="separator_link"> > </span> 
