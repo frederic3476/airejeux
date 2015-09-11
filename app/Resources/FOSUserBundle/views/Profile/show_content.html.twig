@@ -1,14 +1,19 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block fos_user_content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Mon compte</li> 
+    </ul> 
 <div class="fos_user_user_show">
-    <h2>Informations personnelles</h2>
+    <h3 class="p-bottom">Informations personnelles</h3>
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <a href="{{ path('fos_user_profile_edit') }}">Modifier</a>
-    <a href="{{ path('fos_user_change_password') }}">Changer de mot de passe</a>
+    <a class="btn btn-blue" href="{{ path('fos_user_profile_edit') }}">Modifier</a>
+    <a class="btn btn-blue" href="{{ path('fos_user_change_password') }}">Changer de mot de passe</a>
 </div>
 <div>
-    <h2>Mes aires</h2>
+    <h3 class="p-bottom">Mes aires</h3>
     <ul>
     {% for aire in user.aires %}
         <li><a href="{{ path('aire_show', {'id': aire.id}) }}">{{ aire.nom }} à {{ aire.ville.nom }}</a></li>
@@ -18,10 +23,11 @@
     </ul>    
 </div>
 <div>
-    <h2>Mes notes</h2>
+    <h3 class="p-bottom">Mes notes</h3>
 {% for vote in user.votes %}
     <li>{{ vote.score }}/5 sur <a href="{{ path('aire_show', {'id': vote.aire.id}) }}">{{ vote.aire.nom }} à {{ vote.aire.ville.nom }}</a></li>
 {% else %}
             aucun vote
         {% endfor %}
 </div>
+{%endblock%}

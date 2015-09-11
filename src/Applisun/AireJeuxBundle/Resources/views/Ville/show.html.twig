@@ -26,7 +26,7 @@
      {% if aires|length > maxperpage %}
                 {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
             {% endif %}
-            <a href="{{path ('aire_new') }}" class="btn btn-block btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une aire sur {{ ville.nom }}</a>
+            <a href="{{path ('aire_new') }}" class="btn btn-block btn-blue"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter une aire sur {{ ville.nom }}</a>
                     
 {% endblock %}
 {% block javascripts %}

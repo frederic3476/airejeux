@@ -93,7 +93,7 @@ class AireController extends Controller {
         $aP->setClassName('map');
         $aP->setElementId('map-canvas');
         $aP->setCenter(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude()));
-        $aP->setZoom('17');
+        $aP->setZoom('10');
         $aP->addMarker(array('lat' => $aire->getLatitude(), 'lng' => $aire->getLongitude(), 'name' => $aire->getNom()));        
         
         return $this->render('ApplisunAireJeuxBundle:Aire:show.html.twig', array(

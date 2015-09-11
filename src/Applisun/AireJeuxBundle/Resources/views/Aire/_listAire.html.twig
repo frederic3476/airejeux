@@ -11,7 +11,7 @@
                 <div class="col-md-9">
                     <div class="row playground-body">
                         <div class="col-md-12">
-                            <a class="playground-link" href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom | truncate(16, true, '...') }}</a>
+                            <a class="playground-link" href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom | truncate(24, false, '...') }}</a>
                         </div>
                     </div>    
                     <div class="row">    
