@@ -1,0 +1,15 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
+
+{% block title %}
+     Contact
+{% endblock %}
+{% block content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Contact</li> 
+    </ul>
+    <h3 class="p-bottom">Contacter-nous </h3> 
+    <div class="row nomargin">
+        Message envoyé avec succés {{ data.nom }}
+   </div>        
+    {% endblock %}      

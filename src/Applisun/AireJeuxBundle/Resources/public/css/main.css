@@ -17,6 +17,16 @@ aside{
     margin-top: 36px;
 }
 
+#nav-wrapper.affix {
+    top: 0;
+    width: 100%;
+    z-index: 999;    
+}
+
+w-100p{
+    width: 100%;
+}
+
 .mw-100p{
     max-width: 100%;
 }
@@ -46,6 +56,7 @@ aside{
 .navbar-default .navbar-nav>li>a {
     color: white;
     font-size: 15px;
+    font-weight: 600;
 }
 
 .navbar-default .navbar-nav .login a:hover {
@@ -55,8 +66,27 @@ aside{
 
 .navbar-default.orange {
     background-color: #FBB03B;
-    border-color: #FBB03B;
-    min-height: 55px;
+    min-height: 75px;
+    margin-bottom: 0;
+}
+
+.subnav {
+    max-height: 35px;
+    background: #0097aa;
+    overflow: hidden;
+}
+
+.subnav .container{
+    padding-top: 0;
+}
+
+.subnav .container .n-user{
+   padding-top: 10px;
+   display: inline-block;
+}
+
+.subnav span{
+    color: white;
 }
 
 .breadcrumb.fil{
@@ -64,7 +94,7 @@ aside{
 }
 
 #closest_playground{
-    padding-top: 20px;
+    padding: 20px 0;
 }
 
 .playground-list{
@@ -154,6 +184,11 @@ aside{
     font-weight: 600;
 }
 
+.form-group ul{
+    color: red;
+    list-style-type:none;
+}
+
 #form-city input{
     width: 100%;
     line-height: 2em;
@@ -207,12 +242,6 @@ aside{
     margin-left: 0px;
 }
 
-.span9{
-    padding-top: 50px;
-}
-
-
-
 .fright{
     float: right;
 }
@@ -225,18 +254,18 @@ aside{
     border-bottom : 2px solid white;
 }
 
-.navbar-default .navbar-nav .login{
+.subnav .login{
     font-size: 15px;
     line-height: 1em;
     margin-top: 9px;
 }
 
-.navbar-default .navbar-nav .login a{
+.subnav .login a{
     padding: 5px;
     display: block;
 }
 
-.navbar-nav .login:hover {
+.subnav .login:hover {
    border-bottom : 0; 
 }
 
@@ -288,17 +317,28 @@ aside{
 
 #share_playground a{
     margin-bottom: 13px;
-    width: 100%;
 }
 
 .picto-opacity{
     opacity: 0.3;
 }
 
+.btn-circle{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.btn-circle .glyphicon{
+    right: 5px;
+}
+
 .vote{
     color: #fff;
     //background-color: #5cb85c;
-    border: 3px solid #4cae4c;
+    border: 3px solid #5cb85c;
     border-radius: 4px;
         margin-bottom: 15px;
 }
@@ -312,6 +352,17 @@ aside{
 .vote .vote-value{
     margin-top: 6px;
     margin-bottom: 6px;
+}
+
+#comment-form{
+        padding-top: 15px;
+    background-color: #FBB03B;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+#comment-form h2{
+    color: white;
 }
 
 #ad_mobile{
@@ -516,7 +567,7 @@ span.score {
       
       .panel-default>.panel-heading {
     color: white;
-    background-color: #AA352B;
+    background-color: #0097aa;
     border-color: #ddd;
       }
 

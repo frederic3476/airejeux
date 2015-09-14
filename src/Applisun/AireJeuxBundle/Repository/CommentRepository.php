@@ -18,7 +18,7 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
         $maxcommentperpage = $container->getParameter('maxcommentperpage');
         
         $query = $this->getEntityManager()
-		              ->createQuery('SELECT c FROM ApplisunAireJeuxBundle:Comment c WHERE c.aire = :id ORDER BY c.createdAt DESC')
+		              ->createQuery('SELECT c FROM ApplisunAireJeuxBundle:Comment c WHERE c.aire = :id ORDER BY c.updatedAt DESC, c.createdAt DESC')
 		              ->setParameter('id', $aire_id)
                               ->setFirstResult(($page-1) * $maxcommentperpage)
                               ->setMaxResults($maxcommentperpage);

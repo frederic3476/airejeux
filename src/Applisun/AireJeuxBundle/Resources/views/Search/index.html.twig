@@ -1,5 +1,12 @@
 {% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
 
+{% block title %}
+     Recherche d'aire de jeux
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+{% endblock %}  
 {% block content %}
     <ul class="breadcrumb fil">
         <li><a href="{{ path('index') }}">Accueil</a></li>
@@ -7,7 +14,7 @@
     </ul>
     <h3 class="p-bottom">Rechercher une aire de jeux </h3> 
     <div class="row nomargin">
-        <form  id="form-playground" class="form-horizontal" action="{{ path('search') }}" method="get" enctype="multipart/form-data">
+        <form  id="form-playground" class="form-horizontal" action="{{ path('search') }}" method="get">
             <div class="nomargin">
                 {{ form_errors(form.departement) }}
                 {{ form_label(form.departement) }}
@@ -69,5 +76,8 @@
     
  {% block javascripts %}
     {{ parent() }}
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     <script src="{{ asset('bundles/applisunairejeux/js/autocompletion.js') }}" type="text/javascript"></script>
  {% endblock %} 

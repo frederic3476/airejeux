@@ -5,6 +5,7 @@ namespace Applisun\AireJeuxBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Applisun\AireJeuxBundle\Form\Type\ContactType;
 
 use Applisun\AireJeuxBundle\Highmap\Highmap;
 use Zend\Json\Expr;
@@ -76,4 +77,65 @@ class DefaultController extends Controller
         return  $this->render('ApplisunAireJeuxBundle:Default:index.html.twig', array(
             'carte' => $ob));
     }
+    
+    /**
+     * @Route("/users/{page}", name="users")
+     */
+    public function usersAction($page = 1)
+    {  
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $users= $em->getRepository('ApplisunAireJeuxBundle:User')->getAllActiveUsers($this->container);
+        
+        /*echo '<pre>';
+        \Doctrine\Common\Util\Debug::dump($users, 3);
+        echo '</pre>';
+        exit;*/
+        
+        return  $this->render('ApplisunAireJeuxBundle:Default:users.html.twig', array(
+            'users' => $users));
+    }
+    
+    /**
+     * @Route("/application", name="application")
+     */
+    public function applicationAction()
+    {  
+        return array();
+    }
+    
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction()
+    {  
+        $form = $this->createForm(new ContactType());
+
+        $request = $this->getRequest();
+        
+        if ($request->getMethod() == 'GET') {
+
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                
+                $em = $this->getDoctrine()->getManager();
+
+                $data = $request->query->get('applisun_contact_form');                
+                
+                //envoi du mail 
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('AireJeux.com : message de '.$data['nom'])
+                    ->setFrom($data['email'])
+                    ->setTo('frederic.teissier@live.fr')
+                    ->setBody($this->renderView('ApplisunAireJeuxBundle:Default:email.txt.twig', array('data' => $data)));
+                $this->get('mailer')->send($message);
+             
+                return $this->render('ApplisunAireJeuxBundle:Default:contactOK.html.twig', array('data' => $data));
+            }
+        }
+        
+        return $this->render('ApplisunAireJeuxBundle:Default:contact.html.twig', array('form' => $form->createView()));
+    }
+    
 }

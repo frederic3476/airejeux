@@ -2,6 +2,8 @@
 
 namespace Applisun\AireJeuxBundle\Repository;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * UserRepository
  *
@@ -10,4 +12,27 @@ namespace Applisun\AireJeuxBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    public function getAllActiveUsers(ContainerInterface $container,$page = 1)
+    {
+        $maxuserperpage = $container->getParameter('maxuserperpage');
+        
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('u','count(u.id) as nbr');
+        $qb->join('u.aires', 'a');
+        $qb->groupBy('u.id');
+        $qb->orderBy('nbr', 'DESC')
+                ->setFirstResult(($page-1) * $maxuserperpage)
+                              ->setMaxResults($maxuserperpage);
+                    
+        /*$results = $qb->getQuery()->getResult();
+        $users = array();
+        foreach ($results as $result){
+            $users[] = array('value'=> $result['nbr'], 
+                            "id" => $result[0]->getId(), 
+                            "nom" => $result[0]->getUsername());
+        }  */              
+        
+        return new Paginator($qb);
+    }
 }

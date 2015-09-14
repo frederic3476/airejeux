@@ -12,7 +12,7 @@
                       <div class="form-group nomargin">
                           <div class="inner-addon right-addon">
                               <i class="glyphicon glyphicon-search"></i>
-                              <input type="search" class="input-md form-control" placeholder="Rechercher une ville" name="query" value='{{ app.request.get('query') }}' id="applisun_aire_form_ville" />
+                              <input type="search" class="input-md form-control completion" placeholder="Rechercher une ville" name="query" value='{{ app.request.get('query') }}' id="applisun_aire_form_ville" />
                               <!--<input class="input-md" type="submit" value="rechercher" />-->
                           </div>    
                       </div>
@@ -23,7 +23,7 @@
         </div>
         
                     <div id="closest_playground" class="row">
-                         <button id="closest_button" class="btn btn-lg btn-blue center-block">Voir les aires de jeux proches de votre position</button>
+                         <button id="closest_button" class="btn btn-lg btn-blue center-block hidden-xs">Voir les aires de jeux proches de votre position</button>
                     </div>
     {% endblock %}
     {% block javascripts %}
