@@ -54,7 +54,8 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
     	$qb = $this->createQueryBuilder('a');
 
         $query = $qb
-            ->select('a, v')
+            ->select('a, vi, v')
+            ->join ('a.ville', 'vi')    
             ->leftJoin('a.votes', 'v')
             ->where('a.average IS NOT NULL')
             ->orderBy('a.average', 'DESC')
@@ -76,7 +77,8 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
     	$qb = $this->createQueryBuilder('a');
 
         $query = $qb
-            ->select('a')
+            ->select('a, v')
+            ->join ('a.ville', 'v')     
             ->orderBy('a.createdAt', 'DESC')
             ->setFirstResult(0)
             ->setMaxResults($limit)
@@ -95,7 +97,8 @@ class AireRepository extends \Doctrine\ORM\EntityRepository
     {
         
         $qb = $this->createQueryBuilder('a');
-        $qb->select('a','count(a.id) as nbr');
+        $qb->select('a, v','count(a.id) as nbr');
+        $qb->join ('a.ville', 'v'); 
         $qb->join('a.comments', 'c');
         $qb->groupBy('a.id');
         $qb->orderBy('nbr', 'DESC');
