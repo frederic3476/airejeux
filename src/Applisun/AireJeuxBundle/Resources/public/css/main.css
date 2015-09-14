@@ -581,6 +581,12 @@ span.score {
     background-color: #0097aa;
     border-color: #ddd;
       }
+      
+@media screen and (max-width:568px) {      
+    .hidden-xss{
+        display: none;
+    }
+}
 
 @media screen and (max-width:768px) {
     
