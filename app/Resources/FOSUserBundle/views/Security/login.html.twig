@@ -20,6 +20,7 @@
                 <div class="form-group">
                     <input class="form-control" type="password" id="password" name="_password" required="required" placeholder="Mot de passe:" />
                 </div>
+                <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                 <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 <div class="row">

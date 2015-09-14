@@ -44,7 +44,7 @@
                                     <a href="#" class="btn btn-default btn-block"><span class="hidden-xss">Vous avez <br></span> déjà voté</a>
                                 {% endif %}   
                             {% else %}
-                                <a href="{{path ('fos_user_security_login') }}" class="btn btn-default btn-block">Voter</a>
+                                <a href="{{path ('fos_user_security_login') }}" class="btn btn-default btn-block"><span class="glyphicon glyphicon-star"></span><br><span class="hidden-xss">Voter</span></a>
                             {% endif %}
                         </div>
                         <div class="col-sm-12 col-lg-12  col-md-3 col-xs-3 ">

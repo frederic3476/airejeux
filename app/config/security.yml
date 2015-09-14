@@ -24,7 +24,6 @@ security:
                provider: fos_userbundle
            logout:
                path:    /logout
-               target: /
               # provider: fos_userbundle
               # csrf_provider: form.csrf_provider
 
