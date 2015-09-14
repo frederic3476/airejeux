@@ -36,21 +36,21 @@
         </div>
                 <div id="share_playground" class="col-sm-3 col-lg-3 col-md-12 col-xs-12">
                     <div class="row nomargin">
-                        <div class="col-sm-12 col-lg-12 col-md-3 col-xs-3 nopadding">
+                        <div class="col-sm-12 col-lg-12 col-md-3 col-xs-3 ">
                             {% if is_granted('ROLE_USER') and is_granted('USER_CAN_VOTE', aire) %}
                                     {% include 'ApplisunAireJeuxBundle:Form:_voteForm.html.twig' with {'form': formVote} %}
                             {#{% else %}
                                 <a href="{{path ('fos_user_security_login') }}" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>Connectez-vous pour voter</a>#}
                             {% endif %}
                         </div>
-                        <div class="col-sm-12 col-lg-12  col-md-3 col-xs-3 nopadding">
+                        <div class="col-sm-12 col-lg-12  col-md-3 col-xs-3 ">
                             <a href="#comment" class="btn btn-success btn-block"><span class="glyphicon glyphicon-comment"></span> {{ aire.comments|length }}<br>Commenter</a> 
                         </div>                    
                         {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_USER') and is_granted('USER_CAN_AIRE_MODIFY', aire)) %}
-                            <div class="col-sm-12 col-lg-12 col-md-3 col-xs-3 nopadding">
+                            <div class="col-sm-12 col-lg-12 col-md-3 col-xs-3 ">
                                     <a class="btn btn-warning btn-block" href="{{ path('aire_edit', {'id': aire.id}) }}"><span class="glyphicon glyphicon-pencil"></span><br>Modifier</a>
                             </div>
-                            <div class="col-sm-12 col-lg-12 col-md-3 col-xs-3 nopadding">
+                            <div class="col-sm-12 col-lg-12 col-md-3 col-xs-3 ">
                                     <a class="btn btn-danger btn-block" href="{{ path('aire_delete', {'id': aire.id}) }}"><span class="glyphicon glyphicon-remove-sign"></span><br>Supprimer</a>
                             </div> 
                         {% endif %}
@@ -128,7 +128,7 @@
                     </div>
             </div>
          
-        <div id="map-canvas" class="col-sm-6 col-xs-12">
+        <div id="map-canvas" class="col-sm-5 col-xs-12">
             <img src="{{ asset('bundles/applisunairejeux/images/spinner.gif') }}" />            
         </div> 
     </div>  
