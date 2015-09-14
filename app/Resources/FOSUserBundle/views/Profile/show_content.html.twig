@@ -14,20 +14,6 @@
 </div>
 <div>
     <h3 class="p-bottom">Mes aires</h3>
-    <ul>
-    {% for aire in user.aires %}
-        <li><a href="{{ path('aire_show', {'id': aire.id}) }}">{{ aire.nom }} à {{ aire.ville.nom }}</a></li>
-        {% else %}
-            aucune aire crée
-        {% endfor %}
-    </ul>    
-</div>
-<div>
-    <h3 class="p-bottom">Mes notes</h3>
-{% for vote in user.votes %}
-    <li>{{ vote.score }}/5 sur <a href="{{ path('aire_show', {'id': vote.aire.id}) }}">{{ vote.aire.nom }} à {{ vote.aire.ville.nom }}</a></li>
-{% else %}
-            aucun vote
-        {% endfor %}
+    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': user.aires} %}   
 </div>
 {%endblock%}
