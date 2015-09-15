@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
+use Applisun\AireJeuxBundle\Utils\TransformString;
 use Applisun\AireJeuxBundle\Entity\Vote;
 
 class VoteController extends Controller
@@ -42,7 +42,7 @@ class VoteController extends Controller
 
             $this->get('session')->getFlashBag()->add('success', 'Votre vote est enregistré.');
 
-            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId())));
+            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId(), 'slug' => TransformString::slugify($aire->getNom()))));
         }
 
         $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue.');

@@ -3,6 +3,13 @@
 {% block title %}
      Aire de jeux : {{aire.nom }}
 {% endblock %}
+{% block meta %}
+    <meta name="description" content="AireJeux : {{ aire.nom }} à {{ aire.ville.nom }}">  
+    <meta content="{{ app.request.uri }}" property="og:url">
+    <meta content="{{ aire.nom }}" property="og:title">;
+    <meta content="AireJeux : {{ aire.nom }} à {{ aire.ville.nom }}" property="og:description">
+    <meta content="{{ asset('uploads/aires/100-'~aire.filename) }}" property="og:image">
+{% endblock %}
 {% block content %}
     {{ breadcrumb(aire) }}
     <div class="row">
@@ -11,7 +18,9 @@
         <div class="col-sm-1 col-lg-1 col-md-2 col-xs-2"> 
             <div class="row">
                         <div class="col-xs-12">
-                            <a href="" class="btn btn-primary btn-lg btn-circle"><span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.uri }}" class="btn btn-primary btn-lg btn-circle" target="_blank">
+                                <span class="glyphicon glyphicon-share-alt"></span>
+                            </a>
                         </div>
                         <div class="col-xs-12">
                             <a href="" class="btn btn-warning btn-lg btn-circle">Twitter</a>

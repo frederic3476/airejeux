@@ -2,14 +2,6 @@ applisun_aire_jeux:
     resource: "@ApplisunAireJeuxBundle/Controller/"
     type:     annotation
     prefix:   /
-
-applisun_application:
-    path: /application
-    defaults:
-        _controller: ApplisunAireJeuxBundle:Default:template
-        template: 'ApplisunAireJeux:Static:application.html.twig'
-        maxAge: 86400
-        sharedMaxAge: 86400    
     
 user_bundle:
    resource: "@ApplisunAireJeuxBundle/Resources/config/routing.yml"

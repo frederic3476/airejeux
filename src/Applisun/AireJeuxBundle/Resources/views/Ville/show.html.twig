@@ -12,7 +12,7 @@
                 {% for aire in aires %}
                     <div class="row nomargin p-bottom">
                         <div class="col-xs-10">
-                            <a class="playground_link" href="{{ path('aire_show', {'id': aire.id }) }}">{{ aire.nom }}</a>
+                            <a class="playground_link" href="{{ path('aire_show', {'id': aire.id, 'slug': slugify(aire.nom) }) }}">{{ aire.nom }}</a>
                         </div>
                         <div class="col-xs-2">
                             <div class="average"> {{ aire.displayedAverage }}</div> 

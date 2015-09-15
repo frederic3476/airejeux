@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Applisun\AireJeuxBundle\Utils\TransformString;
 use Applisun\AireJeuxBundle\Entity\Aire;
 use Applisun\AireJeuxBundle\Entity\Vote;
 use Applisun\AireJeuxBundle\Entity\Comment;
@@ -56,7 +57,7 @@ class AireController extends Controller {
         $form = $handler->createForm($aire);
 
         if ($handler->process($form, $this->getRequest())) {
-            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId())));
+            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId(), 'slug' => TransformString::slugify($aire->getNom()))));
         }
 
         return $this->render('ApplisunAireJeuxBundle:Aire:edit.html.twig', array(
@@ -66,9 +67,9 @@ class AireController extends Controller {
     }
     
     /**
-     * @Route("/aire/show/{id}", name="aire_show")
+     * @Route("/aire/{slug}/{id}", name="aire_show")
      */
-    public function showAction($id) {
+    public function showAction($id, $slug) {
         $aireManager = $this->get('applisun_aire_jeux.aire_manager');
         $aire = $aireManager->getAire($id);
         

@@ -1,1 +1,35 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
 
+{% block title %}
+    Aire de jeux : applications mobiles
+{% endblock %}
+{% block stylesheets %}
+    {{parent()}}
+            <link href="{{ asset('bundles/applisunairejeux/css/swiper.min.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock%}
+
+{% block content %}
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div id="site1" class="site-img">
+                    <h2><a href="http://www.aigha.com" target="blank">Aigha</a></h2>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div id="site2" class="site-img">
+                    <h2>Prochainement ! Compte Service Plus</h2>           
+                </div>
+            </div>
+
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+{%endblock%}  
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/applisunairejeux/js/swiper.min.js') }}"></script>
+
+{% endblock %}

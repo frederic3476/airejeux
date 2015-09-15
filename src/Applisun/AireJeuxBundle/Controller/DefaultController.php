@@ -101,7 +101,15 @@ class DefaultController extends Controller
      */
     public function applicationAction()
     {  
-        return array();
+        return  $this->render('ApplisunAireJeuxBundle:Static:application.html.twig');
+    }
+    
+    /**
+     * @Route("/mentions", name="mentions")
+     */
+    public function mentionsAction()
+    {  
+        return  $this->render('ApplisunAireJeuxBundle:Static:mentions.html.twig');
     }
     
     /**

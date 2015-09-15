@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Applisun\AireJeuxBundle\Utils\TransformString;
 use Applisun\AireJeuxBundle\Entity\Comment;
 use Applisun\AireJeuxBundle\Entity\Aire;
 
@@ -38,7 +39,7 @@ class CommentController extends Controller {
 
             $this->get('session')->getFlashBag()->add('success', 'Votre commentaire est enregistré.');
 
-            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId())));
+            return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId(), 'slug' => TransformString::slugify($aire->getNom()))));
         }
 
         $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue.');
@@ -63,7 +64,7 @@ class CommentController extends Controller {
             $comment->setUpdatedAt(new \DateTime('now'));
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a bien été modifié.');
-            return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId())));            
+            return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId(), 'slug' => TransformString::slugify($aire->getNom()))));            
         }
 
         return $this->render('ApplisunAireJeuxBundle:Comment:edit.html.twig', array(
@@ -84,7 +85,7 @@ class CommentController extends Controller {
             throw $this->createNotFoundException('Impossible de trouver de commentaire.');
         }
         $this->get('session')->getFlashBag()->add('success', 'Commentaire supprimé avec succès.');
-        return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId())));
+        return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId(), 'slug' => TransformString::slugify($aire->getNom()))));
     }
     
     /**
