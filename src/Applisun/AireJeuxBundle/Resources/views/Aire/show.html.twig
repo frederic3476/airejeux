@@ -6,7 +6,7 @@
 {% block meta %}
     <meta name="description" content="AireJeux : {{ aire.nom }} à {{ aire.ville.nom }}">  
     <meta content="{{ app.request.uri }}" property="og:url">
-    <meta content="{{ aire.nom }}" property="og:title">;
+    <meta content="{{ aire.nom }}" property="og:title">
     <meta content="AireJeux : {{ aire.nom }} à {{ aire.ville.nom }}" property="og:description">
     <meta content="{{ asset('uploads/aires/100-'~aire.filename) }}" property="og:image">
 {% endblock %}
@@ -19,14 +19,14 @@
             <div class="row">
                         <div class="col-xs-12">
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.uri }}" class="btn btn-primary btn-lg btn-circle" target="_blank">
-                                <span class="glyphicon glyphicon-share-alt"></span>
+                                <i class="fa fa-facebook"></i>
                             </a>
                         </div>
                         <div class="col-xs-12">
-                            <a href="" class="btn btn-warning btn-lg btn-circle">Twitter</a>
+                            <a href="" class="btn btn-warning btn-lg btn-circle"><i class="fa fa-twitter"></i></a>
                         </div>
                         <div class="col-xs-12">
-                            <a href="" class="btn btn-warning btn-lg btn-circle">Google +</a>
+                            <a href="" class="btn btn-danger btn-lg btn-circle"><i class="fa fa-google-plus"></i></a>
                         </div>
                     </div>  
         </div>    

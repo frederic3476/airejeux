@@ -101,6 +101,22 @@ w-100p{
     color: white;
 }
 
+//social
+#social{
+    margin-left: 15px;
+}
+
+#social .fa {
+    font-size: 20px;
+    color: white;
+    padding-top: 10px;
+    padding-left: 5px;
+}
+
+#social .fa:hover {
+    color: #FBB03B;
+}
+
 .breadcrumb.fil{
     background-color: transparent;
 }
@@ -581,6 +597,8 @@ span.score {
     background-color: #0097aa;
     border-color: #ddd;
       }
+      
+   
       
 @media screen and (max-width:568px) {      
     .hidden-xss{
