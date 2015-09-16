@@ -20,11 +20,12 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         
         $ob = new HighMap();
-        $ob->chart->renderTo('map');  
+        $ob->chart->renderTo('map');
         $ob->title->text('');
         $ob->credits->enabled(false);
+        $ob->legend->enabled(false);
         $ob->navigation(array("buttonOptions" => array("enabled" => false)));
-        $ob->mapNavigation(array("enabled" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
+        $ob->mapNavigation(array("enabled" => false, "enableMouseWheelZoom" => true, "enableTouchZoom" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
         
         $ob->plotOptions(array("series" => array(
                                     "point" => array(
@@ -48,7 +49,7 @@ class DefaultController extends Controller
                 "cursor" => "pointer",
                 "states" => array(
                     "hover" => array(
-                        "color" => "#5cb85c"                       
+                        "color" => "#FBB03B"                       
                     )
                 ),
                 "dataLabels" => array(

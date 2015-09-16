@@ -39,7 +39,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{path ('aire_new') }}" >AJOUTER</a></li>
                             <li><a href="{{ path('search') }}" >RECHERCHER</a></li>
-                            <li><a href="{{ path('users') }}" >CONTRIBUTEURS</a></li>
+                            <li><a href="{{ path('users') }}" >MEMBRES</a></li>
                             <li><a href="{{path ('fos_user_profile_show') }}">MON COMPTE</a></li>
 
                         </ul>
@@ -48,7 +48,7 @@
                 <div class="subnav">
                     <div class="navbar-inner">
                         <div class="container">
-                            <span class="n-user hidden-xss">4596 aires référencées / 145 utilisateurs</span>
+                            <span class="n-user hidden-xss">4596 aires référencées / 145 membres</span>
 
                             {% if is_granted('ROLE_USER') %}
                                 <a class="btn btn-link btn-circle fright" href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span></a>

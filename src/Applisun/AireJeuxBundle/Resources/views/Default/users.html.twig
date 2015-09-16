@@ -4,11 +4,11 @@
     {% block content %}
     <ul class="breadcrumb fil">
         <li><a href="{{ path('index') }}">Accueil</a></li>
-        <li class="active">Liste des utilisateurs</li> 
+        <li class="active">Liste des membres</li> 
     </ul>
         
         
-    <h3 class="p-bottom">{{ users|length }} utilisateurs</h3>
+    <h3 class="p-bottom">{{ users|length }} membres</h3>
     {% for user in users %}
             <div class="row nomargin p-bottom">
                 <div class="col-xs-10">
