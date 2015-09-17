@@ -86,8 +86,13 @@ fos_user:
         confirmation:
             enabled:    true
             template:   FOSUserBundle:Registration:email.txt.twig
+        form:
+            type: applisun_user_registration    
     resetting:
         token_ttl: 86400
+    profile:
+        form:
+            type: applisun_user_profile
    
 # FOSRest Configuration
 fos_rest:

@@ -67,7 +67,23 @@ class AireController extends Controller {
     }
     
     /**
-     * @Route("/aire/{slug}/{id}", name="aire_show")
+     * @Route("/aire/delete/{id}", name="aire_delete")
+     *
+     * @param integer $id
+     */
+    public function aireDeleteAction($id) {
+        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
+        $aire = $aireManager->getAire($id);
+        
+        if (!$aireManager->removeAire($aire)) {
+            throw $this->createNotFoundException('Impossible de trouver l\'aire de jeux.');
+        }
+        $this->get('session')->getFlashBag()->add('success', 'Aire supprimée avec succès.');
+        return $this->redirect($this->generateUrl('index'));
+    }
+    
+    /**
+     * @Route("/aire/{id}/{slug}", name="aire_show")
      */
     public function showAction($id, $slug) {
         $aireManager = $this->get('applisun_aire_jeux.aire_manager');
@@ -104,22 +120,6 @@ class AireController extends Controller {
             'formComment'  => isset($form_comment) ? $form_comment->createView() : null,
             'comments' => $aire->getComments(),
         ));
-    }
-    
-    /**
-     * @Route("/aire/delete/{id}", name="aire_delete")
-     *
-     * @param integer $id
-     */
-    public function aireDeleteAction($id) {
-        $aireManager = $this->get('applisun_aire_jeux.aire_manager');
-        $aire = $aireManager->getAire($id);
-        
-        if (!$aireManager->removeAire($aire)) {
-            throw $this->createNotFoundException('Impossible de trouver l\'aire de jeux.');
-        }
-        $this->get('session')->getFlashBag()->add('success', 'Aire supprimée avec succès.');
-        return $this->redirect($this->generateUrl('index'));
     }
     
     /**

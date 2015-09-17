@@ -9,6 +9,8 @@ use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * User
@@ -18,6 +20,7 @@ use JMS\Serializer\Annotation\Expose;
  *     @ORM\UniqueConstraint(name="mail", columns={"email"})})
  * @ORM\Entity(repositoryClass="Applisun\AireJeuxBundle\Repository\UserRepository")
  * @ExclusionPolicy("all") 
+ * @ORM\HasLifecycleCallbacks()
  * 
  */
 class User extends FOSUser
@@ -53,6 +56,23 @@ class User extends FOSUser
      */
     //protected $email;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="file_name", type="string", length=255, nullable=true)
+     */
+    private $fileName;
+    
+    
+    /**
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
+     * @Assert\Image(maxSize="20k", minWidth=40, minHeight=40, maxWidth=100, maxHeight=100, 
+     * minWidthMessage="l'avatar doit faire au moins 40px de largeur")
+     * minHeightMessage="l'avatar doit faire au moins 40px de hauteur")
+     * maxWidthMessage="l'avatar doit faire moins de 100px de largeur")
+     * maxHeightMessage="l'avatar doit faire moins de 100px de hauteur")
+     */
+    public $image;
 
     /**
      * @var ArrayCollection
@@ -110,6 +130,115 @@ class User extends FOSUser
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Set fileName
+     *
+     * @param string $fileName
+     *
+     * @return User
+     */
+    public function setFileName($fileName)
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    /**
+     * Get fileName
+     *
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->fileName;
+    }
+    
+    /**
+     * Get image
+     *
+     * @return UploadedFile
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image
+     *
+     * @param UploadedFile $file
+     */
+    public function setImage(UploadedFile $file = null)
+    {
+        $this->image = $file;
+    }    
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updated_at = new \DateTime();
+    }
+    
+    protected function getUploadDir()
+    {
+        return 'uploads/avatars';
+    }
+
+    public function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->fileName ? null : $this->getUploadDir().'/'.$this->fileName;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->fileName ? null : $this->getUploadRootDir().'/'.$this->fileName;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function preUpload()
+    {
+        if (null !== $this->image) {
+            // do whatever you want to generate a unique name
+            $this->fileName = uniqid().'.'.$this->image->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->image) {
+        return;
+      }
+
+      // if there is an error when moving the image, an exception will
+      // be automatically thrown by move(). This will properly prevent
+      // the entity from being persisted to the database on error
+      $this->image->move($this->getUploadRootDir(), $this->fileName);
+
+      unset($this->image);
+        }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+       unlink($this->getAbsolutePath());
     }
     
     /**

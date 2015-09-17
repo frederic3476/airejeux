@@ -19,7 +19,7 @@
         {% endblock%}
     </head>
     <body>
-        <div id="nav-wrapper" data-spy="affix" data-offset-top="60">
+        <div id="nav-wrapper" data-spy="affix" data-offset-top="120" data-offset-bottom="60">
             <nav class="navbar navbar-default orange">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,7 +48,7 @@
                 <div class="subnav">
                     <div class="navbar-inner">
                         <div class="container">
-                            <span class="n-user hidden-xss">4596 aires référencées / 145 membres</span>
+                            <span class="n-user hidden-xss">- aires référencées / - membres</span>
 
                             {% if is_granted('ROLE_USER') %}
                                 <a class="btn btn-link btn-circle fright" href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span></a>

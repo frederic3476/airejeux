@@ -1,7 +1,10 @@
 parameters:
+    applisun.entity.user.class: Applisun\AireJeuxBundle\Entity\User
     applisun_aire_jeux.aire_manager.class: Applisun\AireJeuxBundle\Service\AireManager
     applisun_aire_jeux.comment_manager.class: Applisun\AireJeuxBundle\Service\CommentManager
     applisun_aire_jeux.image_manager.class: Applisun\AireJeuxBundle\Service\ImageManager
+    applisun_aire_jeux.form.type.registration.class: Applisun\AireJeuxBundle\Form\Type\RegistrationFormType
+    applisun_aire_jeux.form.type.profile.class: Applisun\AireJeuxBundle\Form\Type\ProfileFormType
     applisun_aire_jeux.form.type.aire.class: Applisun\AireJeuxBundle\Form\Type\AireType
     applisun_aire_jeux.form.image.type.extension.class: Applisun\AireJeuxBundle\Form\Extension\ImageTypeExtension
     applisun_aire_jeux.form.handler.aire.class: Applisun\AireJeuxBundle\Form\Handler\AireFormHandler
@@ -45,6 +48,18 @@ services:
         class:     %applisun_aire_jeux.image_manager.class%
         
     # Form types
+    applisun_aire_jeux.form.registration.type:
+        class: %applisun_aire_jeux.form.type.registration.class%
+        tags:
+            - { name: form.type, alias: applisun_user_registration }
+        arguments: [%applisun.entity.user.class%]  
+        
+    applisun_aire_jeux.form.profile.type:
+        class: %applisun_aire_jeux.form.type.profile.class%
+        tags:
+            - { name: form.type, alias: applisun_user_profile }
+        arguments: [%applisun.entity.user.class%]      
+    
     applisun_aire_jeux.form.type.aire:
         class: %applisun_aire_jeux.form.type.aire.class%
         tags:

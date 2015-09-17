@@ -7,10 +7,24 @@
     </ul> 
 <div class="fos_user_user_show">
     <h3 class="p-bottom">Informations personnelles</h3>
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <a class="btn btn-blue" href="{{ path('fos_user_profile_edit') }}">Modifier</a>
-    <a class="btn btn-blue" href="{{ path('fos_user_change_password') }}">Changer de mot de passe</a>
+    <div class="row">
+        <div class="col-lg-3">
+            <img class="img-responsive" 
+                     src="{% if user.filename %} 
+                            {{ asset('uploads/avatars/'~user.filename) }} 
+                          {% else %} 
+                            {{ asset('bundles/applisunairejeux/images/avatardefaut.png') }} 
+                          {% endif %}"/>
+        </div>
+        <div class="col-lg-9">
+            <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+            <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        </div>    
+    </div>
+        <div class="row text-center">
+            <a class="btn btn-blue" href="{{ path('fos_user_profile_edit') }}">Modifier</a>
+            <a class="btn btn-blue" href="{{ path('fos_user_change_password') }}">Changer de mot de passe</a>
+        </div>
 </div>
 <div>
     <h3 class="p-bottom">Mes aires</h3>

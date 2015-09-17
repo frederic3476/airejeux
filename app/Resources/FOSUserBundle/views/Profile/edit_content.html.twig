@@ -21,7 +21,11 @@
                     {{ form_errors(form.current_password) }}
                     {{ form_widget(form.current_password, {'attr':{'placeholder':'Mot de passe actuel:', 'class':'form-control'}}) }}
                 </div>
-                {{ form_row(form._token) }}
+                <h4 class="p-bottom">Choisissez votre avatar</h4>
+                <div class="row nomargin text-center">
+                {{ form_widget(form.image) }}
+                </div>  
+                {{ form_rest(form) }}
                 <div>
                     <input class="btn btn-blue center-block" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
                 </div>

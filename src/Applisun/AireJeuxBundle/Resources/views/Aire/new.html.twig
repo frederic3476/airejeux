@@ -82,6 +82,8 @@
             {{ form_widget(form.description) }}
             <h3 class="p-bottom">Image: </h3>
             <div class="row nomargin text-center">
+                (500x280 pixels minimum)
+                {{ form_errors(form.image) }}
                 {{ form_widget(form.image) }}
             </div>    
 

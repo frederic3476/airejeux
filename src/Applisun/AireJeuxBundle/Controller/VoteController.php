@@ -16,7 +16,7 @@ class VoteController extends Controller
 {
 
 /**
-     * @Route("/aire/{id}/vote", name="vote_aire")
+     * @Route("/{id}/vote", name="vote_aire")
      * @Method({"POST"})
      *
      * @param integer $id

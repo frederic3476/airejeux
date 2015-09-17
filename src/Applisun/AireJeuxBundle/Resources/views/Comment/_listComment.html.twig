@@ -1,7 +1,13 @@
 {% for comment in comments %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            Par {{ comment.user.username }} 
+            <img class="img-responsive" 
+                     src="{% if comment.user.filename %} 
+                            {{ asset('uploads/avatars/'~comment.user.filename) }} 
+                          {% else %} 
+                            {{ asset('bundles/applisunairejeux/images/avatardefaut.png') }} 
+                          {% endif %}"/>
+            {{ comment.user.username }} 
             {% if comment.updatedat is null %} 
                 ajouté le {{ comment.createdat|date('d-m-Y') }} 
             {% else %} 

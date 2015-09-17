@@ -16,7 +16,7 @@ use Applisun\AireJeuxBundle\Entity\Aire;
 class CommentController extends Controller {
 
     /**
-     * @Route("/aire/{id}/comment", name="comment_aire")
+     * @Route("/{id}/comment", name="comment_aire")
      * @Method({"POST"})
      *
      * @param integer $id
@@ -64,7 +64,7 @@ class CommentController extends Controller {
             $comment->setUpdatedAt(new \DateTime('now'));
             $em->flush();
             $this->get('session')->getFlashBag()->add('success', 'Votre commentaire a bien été modifié.');
-            return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId(), 'slug' => TransformString::slugify($aire->getNom()))));            
+            return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId(), 'slug' => TransformString::slugify($comment->getAire()->getNom()))));            
         }
 
         return $this->render('ApplisunAireJeuxBundle:Comment:edit.html.twig', array(

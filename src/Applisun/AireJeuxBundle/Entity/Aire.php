@@ -167,7 +167,9 @@ class Aire implements BreadCrumbInterface
     
     /**
      * @var \Symfony\Component\HttpFoundation\File\UploadedFile
-     * @Assert\File(maxSize="500k")
+     * @Assert\Image(maxSize="500k", minWidth=500, minHeight=280, 
+     * minWidthMessage="l'image doit faire au moins 500px de largeur",
+     * minHeightMessage="l'image doit faire au moins 280px de hauteur")
      */
     public $image;
     

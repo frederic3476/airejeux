@@ -24,7 +24,15 @@
                     {{ form_errors(form.plainPassword.second) }}
                     {{ form_widget(form.plainPassword.second, {'attr':{'placeholder':'Confirmer mot de passe:', 'class':'form-control'}}) }}
                 </div>
-                {{ form_row(form._token) }}
+                <h4 class="p-bottom">Choisissez votre avatar</h4>
+            <div class="row nomargin text-center">
+                <div class="form-group">
+                (40x40 pixels minimum, 100x100 pixels maximum)
+                {{ form_errors(form.image) }}
+                {{ form_widget(form.image) }}
+                </div>
+            </div>
+                {{ form_rest(form) }}
                 <div class="form-group">
                     <input class="btn btn-blue center-block" type="submit" value="{{ 'registration.submit'|trans }}" />
                 </div>

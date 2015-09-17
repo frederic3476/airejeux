@@ -2,25 +2,33 @@
 
 {% block title 'Liste des utilisateurs' %}
     {% block content %}
-    <ul class="breadcrumb fil">
-        <li><a href="{{ path('index') }}">Accueil</a></li>
-        <li class="active">Liste des membres</li> 
-    </ul>
-        
-        
-    <h3 class="p-bottom">{{ users|length }} membres</h3>
-    {% for user in users %}
-            <div class="row nomargin p-bottom">
-                <div class="col-xs-10">
-                    <span>{{ user[0].username }}</span>
-                </div>
-                <div class="col-xs-2">
-                    <span class="nbrAire">{{ user.nbr }} aires </span>
-                </div>    
-            </div>        
-    {% endfor %}
-    
-    {% if users|length > maxuserperpage %}    
-        {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
-    {% endif %}    
-{% endblock %}
+        <ul class="breadcrumb fil">
+            <li><a href="{{ path('index') }}">Accueil</a></li>
+            <li class="active">Liste des membres</li> 
+        </ul>
+
+
+        <h3 class="p-bottom">{{ users|length }} membres</h3>
+        {% for user in users %}
+            <div class="row nomargin p-bottom list_user">
+                <div class="col-lg-2 col-xs-4">
+                    <img class="img-responsive" 
+                         src="{% if user[0].filename %} 
+                         {{ asset('uploads/avatars/'~user[0].filename) }} 
+                    {% else %} 
+                        {{ asset('bundles/applisunairejeux/images/avatardefaut.png') }} 
+                        {% endif %}"/>
+                    </div>          
+                    <div class="col-lg-8 col-xs-5">
+                        <span>{{ user[0].username }}</span>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                        <span class="nbrAire">{{ user.nbr }} aires </span>
+                    </div>    
+                </div>        
+                {% endfor %}
+
+                    {% if users|length > maxuserperpage %}    
+                        {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}
+                    {% endif %}    
+                    {% endblock %}
