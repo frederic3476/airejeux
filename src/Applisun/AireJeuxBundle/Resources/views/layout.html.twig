@@ -48,7 +48,7 @@
                 <div class="subnav">
                     <div class="navbar-inner">
                         <div class="container">
-                            <span class="n-user hidden-xss">- aires référencées / - membres</span>
+                            {{ render_esi(controller('ApplisunAireJeuxBundle:Default:numbers')) }} 
 
                             {% if is_granted('ROLE_USER') %}
                                 <a class="btn btn-link btn-circle fright" href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span></a>

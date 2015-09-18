@@ -47,6 +47,7 @@ class CommentController extends Controller {
         return $this->forward('ApplisunAireJeuxBundle:Aire:showAire', array(
                     'id' => $aire->getId(),
         ));
+        
     }
 
     /**
@@ -103,7 +104,12 @@ class CommentController extends Controller {
         
         $comments = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Comment')->getCommentByAire($this->container, $aire_id, $page);        
          
-        return $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));
+        $response = $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));
+        
+        $response->setMaxAge(600);
+        $response->setSharedMaxAge(600);
+        
+        return $response;
     }
 
 }

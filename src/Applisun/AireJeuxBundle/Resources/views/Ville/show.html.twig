@@ -3,6 +3,9 @@
 {% block title %}
      Aire de jeux : {{ville.nom }}
 {% endblock %}
+{% block meta %}
+    <meta name="description" content="Aire de jeux à {{ville.nom }}"> 
+{% endblock %}
 {% block content %}
     {{ breadcrumb(ville) }}
     

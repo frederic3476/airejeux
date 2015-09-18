@@ -4,7 +4,7 @@
      Aire de jeux : {{aire.nom }}
 {% endblock %}
 {% block meta %}
-    <meta name="description" content="AireJeux : {{ aire.nom }} à {{ aire.ville.nom }}">  
+    <meta name="description" content="Aire de jeux : {{ aire.nom }} à {{ aire.ville.nom }}">  
     <meta content="{{ app.request.uri }}" property="og:url">
     <meta content="{{ aire.nom }}" property="og:title">
     <meta content="AireJeux : {{ aire.nom }} à {{ aire.ville.nom }}" property="og:description">
@@ -166,7 +166,7 @@
         {% endif %}
     {% endif %}
     <div class="col-xs-12">
-        {{ render(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
+        {{ render_esi(controller('ApplisunAireJeuxBundle:Comment:show', {'aire_id': aire.id, 'page': 1})) }}
     </div>
 </div>
 

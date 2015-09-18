@@ -147,4 +147,19 @@ class DefaultController extends Controller
         return $this->render('ApplisunAireJeuxBundle:Default:contact.html.twig', array('form' => $form->createView()));
     }
     
+    
+    public function numbersAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $users= $em->getRepository('ApplisunAireJeuxBundle:User')->findAll();
+        $aires = $em->getRepository('ApplisunAireJeuxBundle:Aire')->findAll();
+        
+        $response = $this->render('ApplisunAireJeuxBundle:Default:numbers.html.twig', array('nbUsers' => count($users), 'nbAires' => count($aires)));
+        
+        $response->setSharedMaxAge(600);
+        
+        return $response;
+    }
+    
 }

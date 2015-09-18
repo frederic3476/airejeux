@@ -1,6 +1,9 @@
 {% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
 
 {% block title 'Liste des utilisateurs' %}
+    {% block meta %}
+    <meta name="description" content="Liste des membres AireJeux.com"> 
+    {% endblock %}
     {% block content %}
         <ul class="breadcrumb fil">
             <li><a href="{{ path('index') }}">Accueil</a></li>
