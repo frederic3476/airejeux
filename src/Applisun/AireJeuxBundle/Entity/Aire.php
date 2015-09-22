@@ -214,7 +214,7 @@ class Aire implements BreadCrumbInterface
      *     referencedColumnName="id",
      *     onDelete="CASCADE"
      * )
-     * @Serializer\Exclude()
+     *
      */
     private $ville;
     
