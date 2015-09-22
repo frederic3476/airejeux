@@ -60,6 +60,7 @@ class User extends FOSUser
      * @var string
      *
      * @ORM\Column(name="file_name", type="string", length=255, nullable=true)
+     * @Expose
      */
     private $fileName;
     
