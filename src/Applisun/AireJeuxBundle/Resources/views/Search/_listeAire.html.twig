@@ -14,7 +14,7 @@
                 </div>    
                     <div class="row">    
                         <div class="col-xs-12">
-                            <a class="playground-link" href="{{ path('aire_show', {'id': aire.id, 'slug': slugify(aire.nom) }) }}">{{ aire.nom | truncate(16, true, '...') }}</a>
+                            <a class="playground-link" href="{{ path('aire_show', {'id': aire.id, 'slug': slugify(aire.nom) }) }}">{{ aire.nom | truncate(20, false, '...') }}</a>
                         </div>
                         <div class="col-xs-12 hidden-xss"> 
                             <span class="score">

@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>
             {% block title %}
-                Aires de jeux française
+                Airejeux.com: site de référencement des aires de jeux publiques
             {% endblock %}
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -83,26 +83,28 @@
                     </section>
                     {% block aside %}    
                         <aside class="col-md-4 visible-lg visible-md">
-                            <div id="ad_mobile" class="row nomargin">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p>Télécharger bientôt notre application mobile pour smartphone et tablette !!!</p>
+                            <a href="{{ path('application') }}">
+                                <div id="ad_mobile" class="row nomargin">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p>Télécharger bientôt notre application mobile pour smartphone et tablette !!!</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="{{ asset('bundles/applisunairejeux/images/android.png') }}" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="{{ asset('bundles/applisunairejeux/images/apple.png') }}" />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <img src="{{ asset('bundles/applisunairejeux/images/android.png') }}" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <img src="{{ asset('bundles/applisunairejeux/images/apple.png') }}" />
-                                        </div>
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="{{ asset('bundles/applisunairejeux/images/appli-airejeux.png') }} " />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <img class="img-responsive" src="{{ asset('bundles/applisunairejeux/images/appli-airejeux.png') }} " />
-                                </div>
-                            </div>
+                            </a>    
                             <div class="playground-list">
                                 <div class="vignette">NOUVEAUTES</div>
                                 {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }} 
@@ -128,6 +130,16 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="{{ asset('bundles/applisunairejeux/js/bootstrap.js') }}" type="text/javascript"></script>
         <script src="{{ asset('bundles/applisunairejeux/js/main.js') }}" type="text/javascript"></script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-67868956-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
     {% endblock %}
 </body>
 </html>

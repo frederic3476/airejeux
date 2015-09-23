@@ -1,18 +1,22 @@
 @media screen and (max-width:768px) {
  
-    .navbar-toggle {
+    body {
+        background-color: white;
+    }
+    
+    .navbar-toggle, .subnav, .breadcrumb.fil, #footer {
         display: none;
       }
       
     .navbar-header{
-          background: #286090;
+          background: #FBB03B;
     }
     
     input[type="submit"]{
         line-height: 1em;
         text-align: center;
-        background-color: #5cb85c;
-        border-color: #4cae4c;
+        background-color: #0097aa;
+        border-color: #0097aa;
         font-weight: 400;
         color: #fff;
         font-size: 20px;
@@ -22,6 +26,11 @@
     input[type="submit"]:hover{
         background-color: #5cb85c;
         border-color: #4cae4c;
+    }
+    
+    .navbar-default.orange {
+        background-color: #FBB03B;
+        min-height: 50px;
     }
 }
 

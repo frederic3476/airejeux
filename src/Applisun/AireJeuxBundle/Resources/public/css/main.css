@@ -129,20 +129,20 @@ w-100p{
 }
 
 .playground-list .playground-link{
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 600;
     color: #1f1f1f;
 }
 
 .playground-link{
-   font-size: 17px;
+   font-size: 1.1em;
     font-weight: 600;
     color: #1f1f1f; 
 }
 
 
 .playground-list .city-link{
-    font-size: 13px;
+    font-size: 0.9em;
     color: #a2a2a2;
     padding-left: 20px;
     vertical-align: -webkit-baseline-middle;
@@ -159,6 +159,18 @@ w-100p{
     color: white;
 }
 
+.btn-bluelight{
+   background-color: #00a7e7;
+   border-color: #00a7e7;
+   color: white;
+}
+
+.btn-bluelight:hover{
+   background-color: #00A7B1;
+   border-color: #00A7B1;
+   color: white;
+}
+
 .thumb-playground{
     position: relative;
 }
@@ -173,6 +185,7 @@ w-100p{
 .city-name .city-link{
     color: white;
     padding: 0 5px;
+    font-size: 0.9em;
 }
 
 .city-name a:hover{
@@ -634,7 +647,11 @@ span.score {
           margin-top: 0;
       }
       
-      
+     .swiper-container {
+    background: -webkit-linear-gradient(top, white , #e3e4e8);
+    margin: 25px auto !important;
+    padding: 15px;
+} 
       
    
       
@@ -651,8 +668,7 @@ span.score {
 @media screen and (max-width:768px) {
     
     #contenu {
-        padding-top: 0;
-        padding-left: 5px;
+        padding: 0 0 20px 5px;
     }
     
     #map-canvas{
