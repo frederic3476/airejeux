@@ -18,6 +18,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 
 use Applisun\AireJeuxBundle\Entity\Aire;
 use Applisun\AireJeuxBundle\Entity\User as User;
+use Applisun\AireJeuxBundle\Utils\TransformString;
 
 class ApiController extends Controller {
     
@@ -646,7 +647,103 @@ class ApiController extends Controller {
             $view = $this->getErrorsView($errors);
             return $view;
         }
-    }        
+    }
+    
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Resetting password",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @QueryParam(name="username", nullable=false, strict=true, description="name or email")
+     */
+    
+    public function resettingPasswordAction(ParamFetcher $paramFetcher)
+    {
+        $username = $paramFetcher->get('username');
+        $view = View::create();
+        $user = $this->get('fos_user.user_manager')->findUserByUsernameOrEmail($username);
+        
+        if (null === $user) {
+            $view->setData('Utilisateur ou email inconnu!');
+            $view->setStatusCode(400);
+            return $view;
+        }
+        
+        // new password is generated and put into the mail
+        $newPass = TransformString::generatePass(8);
+        
+        
+        //$this->get('fos_user.mailer')->sendResettingEmailMessage($user);
+        $user->setPlainPassword($newPass);
+        //$this->get('fos_user.user_manager')->updatePassword($user); 
+        //$user->setPasswordRequestedAt(new \DateTime());
+        $this->get('fos_user.user_manager')->updateUser($user);
+        
+        //envoi du mail 
+        $message = \Swift_Message::newInstance()
+                ->setSubject('AireJeux.com : nouveau mot de passe')
+                ->setFrom('contact@airejeux.com')
+                ->setTo($user->getEmail())
+                ->setBody($this->renderView('ApplisunAireJeuxBundle:Mobile:email.txt.twig', array('username' => $username, 'newPass' => $newPass)));
+        $this->get('mailer')->send($message);
+
+        $view->setData('Email envoyé:'.$newPass)->setStatusCode(200);
+            return $view;        
+    }
+    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Creates a new user from the submitted data.",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @RequestParam(name="username", nullable=false, strict=true, description="name")
+     * @RequestParam(name="email", nullable=false, strict=true, description="email")
+     * @RequestParam(name="password", nullable=false, strict=true, description="password")
+     */
+    
+    public function postRegisterAction(ParamFetcher $paramFetcher)
+    {
+        $view = View::create();
+        
+        //check if already exist
+        $userByName = $this->get('fos_user.user_manager')->findUserByUsernameOrEmail($paramFetcher->get('username'));
+        $userByEmail = $this->get('fos_user.user_manager')->findUserByUsernameOrEmail($paramFetcher->get('email'));
+        
+        if ($userByName !== null){
+            $view->setData('Il existe déjà un membre avec ce nom !');
+            $view->setStatusCode(400);
+            return $view;
+        }
+        
+        if ($userByEmail !== null){
+            $view->setData('Il existe déjà un membre avec cet email !');
+            $view->setStatusCode(400);
+            return $view;
+        }
+        
+        $user = $this->get('fos_user.user_manager')->createUser();
+        $user->setEnabled(true);
+                        
+        $user->setUsername($paramFetcher->get('username'));
+        $user->setEmail($paramFetcher->get('email'));
+        $user->setPlainPassword($paramFetcher->get('password'));
+        
+        $this->get('fos_user.user_manager')->updateUser($user);
+        
+        $view->setData('Inscription réussie')->setStatusCode(200);
+            return $view; 
+    }
     
     
     

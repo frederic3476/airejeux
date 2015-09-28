@@ -74,6 +74,13 @@ resetting:
 
             Cordialement,
             L'équipe airejeux.com
+        messageAPI: |
+            Bonjour %username% !
+                        
+            Votre nouveau mot de passe est: %newPass%
+
+            Cordialement,
+            L'équipe airejeux.com   
 
 # Global strings
 layout:
