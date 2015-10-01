@@ -419,7 +419,7 @@ w-100p{
     color: white;
 }
 
-#ad_mobile{
+#adMobile{
     padding-bottom: 20px;
     border: 2px solid black;
     padding-top: 20px;
@@ -430,7 +430,7 @@ w-100p{
     background: linear-gradient(top, white , #e3e4e8); /* Standard syntax */
 }
 
-#ad_mobile p{
+#adMobile p{
     padding-top: 5px;
     font-weight: 600;
     font-size: 1.2em;
