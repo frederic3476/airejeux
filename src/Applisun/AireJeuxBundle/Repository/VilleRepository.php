@@ -70,13 +70,19 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
     public function getNearCity($lat, $lng)
     {
         $query = $this->getEntityManager()
-		              ->createQuery('SELECT v FROM ApplisunAireJeuxBundle:Ville v WHERE v.latitude between :lat-0.03 and :lat+0.03 and v.longitude between :lon-0.03 and :lon+0.03')
+		              ->createQuery('SELECT v FROM ApplisunAireJeuxBundle:Ville v WHERE v.latitude between :lat-0.05 and :lat+0.05 and v.longitude between :lon-0.05 and :lon+0.05')
 		              ->setParameter('lat', $lat)
                               ->setParameter('lon', $lng);
         
         return $query->getResult();
     }
     
+    
+    /**
+     * Get all cities by zone
+     *
+     * @return array
+     */
     public function getAllAiresByDepartement($idDepart){
         $qb = $this->createQueryBuilder('v');
         $qb->select('v','count(a.id) as nbr');
@@ -85,6 +91,32 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
         $qb->groupBy('v.id');
         $qb->orderBy('v.nom', 'ASC');        
         $qb->setParameter('id', $idDepart);
+        $results = $qb->getQuery()->getResult();
+        $cities = array();
+        foreach ($results as $result){
+            $cities[] = array('value'=> $result['nbr'], 
+                            "id" => $result[0]->getId(), 
+                            "nom" => $result[0]->getNom(), 
+                            "code" => $result[0]->getCode());
+        }                
+        
+        return $cities;
+    }
+    
+    /**
+     * Get cities by list of ids
+     *
+     * @return array
+     */
+    public function getFavorisByIds($ids){
+        $qb = $this->createQueryBuilder('v');
+        $qb->select('v','count(a.id) as nbr');
+        $qb->join('v.aires', 'a')
+           ->where('v.id IN (:ids)')
+           ->setParameter('ids', $ids)
+           ->groupBy('v.id')
+           ->orderBy('v.nom', 'ASC');
+        
         $results = $qb->getQuery()->getResult();
         $cities = array();
         foreach ($results as $result){
