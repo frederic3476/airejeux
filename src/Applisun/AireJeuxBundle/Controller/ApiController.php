@@ -746,6 +746,28 @@ class ApiController extends Controller {
     }
     
     
-    
+    /**
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Creates a new user from the submitted data.",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when errors"
+     *   }
+     * )
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     * @RequestParam(name="favorite", nullable=false, strict=true, description="list of favorite's id")
+     */
+    public function postFavoriteCityAction(ParamFetcher $paramFetcher)
+    {
+        $view = View::create();
+        $arrayIds = explode ('|', $paramFetcher->get('favorite'));
+        $cities = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Ville')->getFavorisByIds($arrayIds);
+        
+        $serializer = $this->get('jms_serializer');
+        $data = $serializer->serialize($cities, "json");
+        
+        return new response($data, 200);
+    }
 }
 
