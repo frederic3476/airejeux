@@ -15,7 +15,11 @@
                     <i class="code"> {{ ville.code }}</i>
                 </div>
                 <div class="col-xs-2 nopadding">
-                    <span class="nbrAire"> {{ ville.aires|length}} aires </span>
+                    <span class="nbrAire"> 
+                        {% transchoice ville.aires|length with {'%count%': ville.aires|length} from "airejeux" %}
+                                aire.number
+                        {% endtranschoice %}
+                    </span>
                 </div>    
             </div>
         {% else %}
