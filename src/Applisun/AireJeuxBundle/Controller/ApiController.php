@@ -1,4 +1,4 @@
-<?php
+²<?php
 
 namespace Applisun\AireJeuxBundle\Controller;
 
@@ -185,13 +185,13 @@ class ApiController extends Controller {
         $user = $this->getUser();        
         $aire->setUser($user);
         
+        //TODO use a manager
         if ($paramFetcher->get('img64') && $paramFetcher->get('img64') !== ''){
             $image = imagecreatefromstring(base64_decode($paramFetcher->get('img64')));
             $file_name = uniqid().'.png';
             imagepng($image, $aire->getUploadRootDir()."/".$file_name);
             $aire->setFileName($file_name);
-            
-            //TODO create thumbnail
+                        
             $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($file_name, array('normal' => 
                                                                                                                         array('w'=> 500, 'h' => 280), 
                                                                                                                    'thumb'=> 

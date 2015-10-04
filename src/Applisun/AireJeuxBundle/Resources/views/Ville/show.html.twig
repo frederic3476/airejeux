@@ -9,7 +9,11 @@
 {% block content %}
     {{ breadcrumb(ville) }}
     
-    <h3 class="p-bottom">{{ aires|length }} aires référencées</h3>
+    <h3 class="p-bottom">
+        {% transchoice aires|length with {'%count%': aires|length} from "airejeux" %}
+                                aire.ref.number
+        {% endtranschoice %}
+    </h3>
     <div class="row playground-city-list">
         <div class="col-sm-6">
                 {% for aire in aires %}

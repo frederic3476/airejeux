@@ -625,7 +625,11 @@ span.score {
     
     .p-bottom{
        border-bottom: 2px solid #e3e4e8; 
-    }    
+    } 
+    
+    .b-bottom-blue{
+      border-bottom: 3px solid #0097aa; 
+    }
       
       .no-margin{
          margin-left: 0;

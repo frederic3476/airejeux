@@ -163,5 +163,18 @@ class AireController extends Controller {
         
         return $response;
     }
+    
+    /**
+     * @Route("/aire/near/{latitude}/{longitude}/{perimeter}", name="aire_near")
+     */
+    public function nearAction($latitude, $longitude, $perimeter) {
+         $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getNearAires($latitude, $longitude, $perimeter);
+         
+         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
+         $response->setMaxAge(600);
+         $response->setSharedMaxAge(600);
+        
+        return $response;
+    }
 
 }

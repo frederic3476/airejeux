@@ -179,6 +179,40 @@
     </button> 
 {% endif %}    
 {% endblock %}
+    
+{% block aside %}    
+                        <aside class="col-md-4 visible-lg visible-md">
+                            <a href="{{ path('application') }}">
+                                <div id="adMobile" class="row nomargin">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p>Télécharger bientôt notre application mobile pour smartphone et tablette !!!</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="{{ asset('bundles/applisunairejeux/images/android.png') }}" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="{{ asset('bundles/applisunairejeux/images/apple.png') }}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="img-responsive" src="{{ asset('bundles/applisunairejeux/images/appli-airejeux.png') }} " />
+                                    </div>
+                                </div>
+                            </a> 
+                             <div class="playground-list b-bottom-blue">
+                                <div class="vignette">AIRES PROCHES</div>
+                                {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:near', { 'latitude': aire.latitude, 'longitude': aire.longitude, 'perimeter': 0.05})) }} 
+                            </div>        
+                        </aside>
+                                        
+{% endblock %}                                    
+    
+ 
 {% block javascripts %}
     {{ parent() }}
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
