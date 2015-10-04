@@ -1,4 +1,4 @@
-²<?php
+<?php
 
 namespace Applisun\AireJeuxBundle\Controller;
 
