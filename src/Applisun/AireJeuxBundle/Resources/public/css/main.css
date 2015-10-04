@@ -35,6 +35,7 @@ aside{
   
   .affix .navbar-default.orange{ 
       min-height: 62px;
+      border-bottom: 2px solid white;
   }
   
   .affix img{
