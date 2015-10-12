@@ -67,11 +67,9 @@ class User extends FOSUser
     
     /**
      * @var \Symfony\Component\HttpFoundation\File\UploadedFile
-     * @Assert\Image(maxSize="20k", minWidth=40, minHeight=40, maxWidth=100, maxHeight=100, 
-     * minWidthMessage="l'avatar doit faire au moins 40px de largeur")
-     * minHeightMessage="l'avatar doit faire au moins 40px de hauteur")
-     * maxWidthMessage="l'avatar doit faire moins de 100px de largeur")
-     * maxHeightMessage="l'avatar doit faire moins de 100px de hauteur")
+     * @Assert\Image(maxSize="200k", minWidth=100, minHeight=100, 
+     * minWidthMessage="l'avatar doit faire au moins 100px de largeur")
+     * minHeightMessage="l'avatar doit faire au moins 100px de hauteur")
      */
     public $image;
 

@@ -193,9 +193,9 @@ class ApiController extends Controller {
             $aire->setFileName($file_name);
                         
             $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($file_name, array('normal' => 
-                                                                                                                        array('w'=> 500, 'h' => 280), 
-                                                                                                                   'thumb'=> 
-                                                                                                                        array('w'=> 100, 'h' => 56 )));
+                                                                                                              array('w'=> 500, 'h' => 280, 'copyright' => true), 
+                                                                                                       'thumb'=> 
+                                                                                                              array('w'=> 100, 'h' => 56, 'copyright' => false )));
         }
         
         $errors = $this->get('validator')->validate($aire);
@@ -631,9 +631,9 @@ class ApiController extends Controller {
             
             //TODO create thumbnail
             $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($file_name, array('normal' => 
-                                                                                                                        array('w'=> 500, 'h' => 280), 
-                                                                                                                   'thumb'=> 
-                                                                                                                        array('w'=> 100, 'h' => 56 )));           
+                                                                                                        array('w'=> 500, 'h' => 280, 'copyright' => true), 
+                                                                                                      'thumb'=> 
+                                                                                                        array('w'=> 100, 'h' => 56, 'copyright' => false )));          
         }
         
         $errors = $this->get('validator')->validate($aire);
@@ -678,11 +678,7 @@ class ApiController extends Controller {
         // new password is generated and put into the mail
         $newPass = TransformString::generatePass(8);
         
-        
-        //$this->get('fos_user.mailer')->sendResettingEmailMessage($user);
         $user->setPlainPassword($newPass);
-        //$this->get('fos_user.user_manager')->updatePassword($user); 
-        //$user->setPasswordRequestedAt(new \DateTime());
         $this->get('fos_user.user_manager')->updateUser($user);
         
         //envoi du mail 
@@ -710,6 +706,7 @@ class ApiController extends Controller {
      * @RequestParam(name="username", nullable=false, strict=true, description="name")
      * @RequestParam(name="email", nullable=false, strict=true, description="email")
      * @RequestParam(name="password", nullable=false, strict=true, description="password")
+     * @RequestParam(name="img64", nullable=true, strict=true, description="Image en base 64")
      */
     
     public function postRegisterAction(ParamFetcher $paramFetcher)
@@ -738,6 +735,17 @@ class ApiController extends Controller {
         $user->setUsername($paramFetcher->get('username'));
         $user->setEmail($paramFetcher->get('email'));
         $user->setPlainPassword($paramFetcher->get('password'));
+        
+        //TODO avatar
+        if ($paramFetcher->get('img64') && $paramFetcher->get('img64') !== ''){
+            $image = imagecreatefromstring(base64_decode($paramFetcher->get('img64')));
+            $file_name = uniqid().'.png';
+            imagepng($image, $user->getUploadRootDir()."/".$file_name);
+            $user->setFileName($file_name);
+            
+            $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($file_name, array('avatar' => 
+                                                                                                        array('w'=> 100, 'h' => 100, 'copyright' => false) ), false); 
+        }
         
         $this->get('fos_user.user_manager')->updateUser($user);
         

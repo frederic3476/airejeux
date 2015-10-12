@@ -1,5 +1,6 @@
-<div class="row no-margin">        
+<div class="row no-margin">
     {% for aire in aires %}
+        {%if (data.latitude and not(data.latitude == aire.latitude)) or not(data.latitude) %}
         <div class="row bottom-10 {% if not loop.last %}p-bottom {% endif %} no-margin">
             <div class="col-lg-3  col-md-12 visible-lg nopadding">
                 <img src="{% if aire.filename %} 
@@ -17,13 +18,25 @@
                     <div class="row">    
                         <div class="col-md-9">
                             <a class="city-link" href="{{ path('ville_show', {'slug': aire.ville.slug, 'id': aire.ville.id, 'page': 1 }) }}" >{{ aire.ville.nom | truncate(15, false, '...') }}</a>
+                            <br>
+                            {%if (data.latitude) %}
+                                <span class="distanceKM">
+                                    {% if aire.distance < 1 %}
+                                        {{aire.distance |number_format(2, '.', ',') *100 }} mètres
+                                    {% else %}    
+                                        {{aire.distance |number_format(2, '.', ',') }} Km
+                                    {% endif %}
+                                </span>
+                            {% endif %} 
                         </div>
                         <div class="col-md-3"> 
-                            <div class="average">{{ aire.displayedAverage }}</div> 
+                            <div class="average">{{ aire.average }}</div>                            
                         </div>
-                    </div>    
+                    </div>
+                        
                 </div>
-            </div>       
+            </div> 
+        {% endif %}                
     {% endfor %}
 </div>            
 

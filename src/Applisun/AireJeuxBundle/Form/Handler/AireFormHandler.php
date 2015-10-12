@@ -72,10 +72,10 @@ class AireFormHandler {
             $aire->upload();
             
             //create thumbnail
-            $this->imanager->createImageFromOriginal($aire->getFileName(), array('normal' => 
-                                                                                        array('w'=> 500, 'h' => 280), 
-                                                                                    'thumb'=> 
-                                                                                        array('w'=> 100, 'h' => 56 )));
+            $this->imanager->createImageFromOriginal($aire->getFileName(),  array('normal' => 
+                                                                                      array('w'=> 500, 'h' => 280, 'copyright' => true), 
+                                                                                   'thumb'=> 
+                                                                                      array('w'=> 100, 'h' => 56, 'copyright' => false )));
 
             $request->getSession()->getFlashBag()->add('success', 'L\'aire de jeux a bien été modifiée.');
 

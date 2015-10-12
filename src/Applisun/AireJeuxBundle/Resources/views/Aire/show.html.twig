@@ -30,13 +30,16 @@
                         </div>
                     </div>  
         </div>    
-        <div id="img_playground" class="col-sm-8 col-lg-8 col-md-10 col-xs-10">            
+        <div id="img_playground" class="col-sm-8 col-lg-8 col-md-10 col-xs-10">
+            <div class="picture_playground">
                 <img class="img-responsive" 
                      src="{% if aire.filename %} 
                             {{ asset('uploads/aires/500-'~aire.filename) }} 
                           {% else %} 
                             {{ asset('bundles/applisunairejeux/images/imagedefaut.png') }} 
                           {% endif %}"/>
+                <img class="copyright" src="{{ asset('bundles/applisunairejeux/images/copyright.svg') }}">         
+            </div>              
                 <span class="score">
                     {{ displayAverage(aire.average) }}
                     
@@ -154,7 +157,7 @@
     {% if aire.description %}
         <div class="row nomargin">
             <h3 class="p-bottom">Informations complémentaires:</h3>
-            <p>{{ aire.description }}</p>
+            <p>{{ aire.description | nl2br }}</p>
         </div>
     {% endif %}    
 <div id="comment" class="row">
@@ -219,6 +222,7 @@
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ googlemapkey }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=geometry"></script>
     <script>
                 var page_num = 2;
                 var nb_comment = {{ aire.comments|length }};

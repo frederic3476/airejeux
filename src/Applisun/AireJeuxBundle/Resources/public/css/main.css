@@ -17,6 +17,18 @@ aside{
     margin-top: 36px;
 }
 
+.navbar-header img{
+    width: 100px;
+    position: absolute;
+    top: 10px;
+}
+
+.navbar-header .textelogo{
+    position: relative;
+    margin-left: 106px;
+    width: 130px;
+}
+
 .affix {
       top: 0;
       width: 100%;
@@ -39,7 +51,8 @@ aside{
   }
   
   .affix img{
-      display: none;
+      width: 50px;
+    top: 5px;
   }
   
 
@@ -91,6 +104,7 @@ w-100p{
     color: white;
     font-size: 15px;
     font-weight: 600;
+    line-height: inherit;
 }
 
 .navbar-default .navbar-nav .login a:hover {
@@ -99,9 +113,9 @@ w-100p{
 }
 
 .navbar-default.orange {
-    background-color: #FBB03B;
     min-height: 75px;
     margin-bottom: 0;
+    background-color: #eea236;
 }
 
 .subnav {
@@ -117,6 +131,7 @@ w-100p{
 .subnav .container .n-user{
    padding-top: 10px;
    display: inline-block;
+   padding-left: 130px;
 }
 
 .subnav span{
@@ -136,7 +151,7 @@ w-100p{
 }
 
 #social .fa:hover {
-    color: #FBB03B;
+    color: #E56A0C;
 }
 
 .breadcrumb.fil{
@@ -185,6 +200,17 @@ w-100p{
     color: white;
 }
 
+.btn-orange{
+    color: #fff;
+    background-color: #FBB03E;
+    border-color: #FBB03E;
+}
+
+.btn-orange:hover{
+    background-color: #0097aa;
+    color: #ce4b0a;
+}
+
 .btn-bluelight{
    background-color: #00a7e7;
    border-color: #00a7e7;
@@ -197,7 +223,7 @@ w-100p{
    color: white;
 }
 
-.thumb-playground{
+.thumb-playground, .picture_playground{
     position: relative;
 }
 
@@ -259,7 +285,7 @@ w-100p{
 .playground-list .average, .playground-city-list .average {
     color: white;
     display: block;
-    background: white url("../images/casquette-average.png") right center no-repeat;
+    background: white url("../images/casquettejaune.svg") right center no-repeat;
     width: 44px;
     height: 35px;
     text-align: center;
@@ -336,6 +362,8 @@ w-100p{
 }
 
 .navbar-nav>li:hover {
+    font-size: 13px;
+    line-height: 1.2;
     border-bottom : 2px solid white;
 }
 
@@ -400,6 +428,20 @@ w-100p{
     padding-top: 20px;
 }
 
+
+#img_playground img{
+    position: relative;
+}
+
+#img_playground .copyright{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 40px;
+    opacity: 0.7;
+}
+
 #share_playground a{
     margin-bottom: 13px;
 }
@@ -411,13 +453,18 @@ w-100p{
 .btn-circle{
     width: 40px;
     height: 40px;
-    border-radius: 100%;
     font-size: 19px;
+    border-radius: 100%;    
     margin-bottom: 10px;
+    //margin-left: 20px;
 }
 
 .btn-circle .glyphicon{
     right: 5px;
+}
+
+.btn.btn-link.btn-circle, btn.btn-orange.btn-circle{
+    padding-left: 35px;
 }
 
 .vote{
@@ -647,11 +694,11 @@ span.score {
     padding-bottom: 20px;
       }
       
-      #footer li{
-          display: inline-block;
+      #footer .col-sm-4{
           padding-right: 10px;
           padding-left: 8px;
           border-right: 1px solid white;
+          text-align: center;
       }
       
       .panel-default>.panel-heading {
@@ -687,9 +734,21 @@ span.score {
     background: -webkit-linear-gradient(top, white , #e3e4e8);
     margin: 25px auto !important;
     padding: 15px;
-} 
+}
+
+.distanceKM{
+    padding-left: 15px;
+}
       
-   
+.distance {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #0097aa;
+    color: white;
+    padding: 0 5px;
+    font-size: 0.9em;
+}
       
 @media screen and (max-width:568px) {      
     .hidden-xss{
@@ -724,5 +783,10 @@ span.score {
         margin-right: 0;
         margin-left: 0;
         margin-bottom: 20px;
+    }
+    
+    .navbar-header img {
+        width: 76px;
+        padding-left: 10px;
     }
 }

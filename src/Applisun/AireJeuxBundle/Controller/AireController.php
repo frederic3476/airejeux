@@ -11,6 +11,7 @@ use Applisun\AireJeuxBundle\Entity\Aire;
 use Applisun\AireJeuxBundle\Entity\Vote;
 use Applisun\AireJeuxBundle\Entity\Comment;
 use Applisun\AireJeuxBundle\Position\AirePosition;
+use Applisun\AireJeuxBundle\Utils\Maths;
 
 class AireController extends Controller {
 
@@ -28,9 +29,9 @@ class AireController extends Controller {
             //create thumbnail
             if ($entity->getFileName()){
                 $this->get('applisun_aire_jeux.image_manager')->createImageFromOriginal($entity->getFileName(), array('normal' => 
-                                                                                                                        array('w'=> 500, 'h' => 280), 
+                                                                                                                        array('w'=> 500, 'h' => 280, 'copyright' => true), 
                                                                                                                    'thumb'=> 
-                                                                                                                        array('w'=> 100, 'h' => 56 )));
+                                                                                                                        array('w'=> 100, 'h' => 56, 'copyright' => false )));
             }
             $this->get('session')->getFlashBag()->add('success', 'L\'aire de jeux a bien été créé.');
 
@@ -165,16 +166,49 @@ class AireController extends Controller {
     }
     
     /**
-     * @Route("/aire/near/{latitude}/{longitude}/{perimeter}", name="aire_near")
+     * @Route("/aire/near/{latitude}/{longitude}/{perimeter}", name="aire_near", options={"expose"=true})
      */
-    public function nearAction($latitude, $longitude, $perimeter) {
+    public function nearAction(Request $request, $latitude, $longitude, $perimeter) {
+        
          $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getNearAires($latitude, $longitude, $perimeter);
+         $result = array();
+         //TODO calcul distance for sort
+         foreach ($aires as $aire){
+             $distance = Maths::distance($latitude, $longitude, $aire->getLatitude(), $aire->getLongitude());
+             
+             $result[] = array('id'=> $aire->getId(),  
+                            "nom" => $aire->getNom(),
+                            "filename" => $aire->getFileName(),
+                            "average" => $aire->getAverage(),
+                            "latitude" => $aire->getLatitude(),
+                            "longitude" => $aire->getLongitude(),
+                            "distance" => $distance,
+                            "ville" => array('id'=>$aire->getVille()->getId(), 
+                                             'nom'=> $aire->getVille()->getNom(), 
+                                             'slug' => $aire->getVille()->getSlug()));
+             
+         } 
          
-         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
-         $response->setMaxAge(600);
-         $response->setSharedMaxAge(600);
+         usort($result, array("\Applisun\AireJeuxBundle\Controller\AireController", "cmp")); 
+         
+         if($request->isXmlHttpRequest()) {
+             $response = $this->render('ApplisunAireJeuxBundle:Search:_listeAire.html.twig', array('aires' => $result, 'data' => array('latitude' => $latitude,
+                                                                                                                                'longitude' => $longitude,
+                                                                                                                                'perimeter' => $perimeter)));
+         }
+         else{
+            $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $result, 'data' => array('latitude' => $latitude,
+                                                                                                                                'longitude' => $longitude,
+                                                                                                                                'perimeter' => $perimeter)));
+            $response->setMaxAge(600);
+            $response->setSharedMaxAge(600);                                                                                                                  
+         }         
         
         return $response;
+    }
+    
+    static function cmp($a, $b){
+        return ($a["distance"] > $b["distance"]) ? +1 : -1;
     }
 
 }

@@ -10,7 +10,16 @@
                     </a>    
                         <div class="city-name">
                             <a class="city-link" href="{{ path('ville_show', {'slug': aire.ville.slug, 'id': aire.ville.id, 'page': 1 }) }}" >{{ aire.ville.nom | truncate(20, false, '...') }}</a>                             
-                        </div>    
+                        </div>
+                        {%if (data.latitude) %}
+                                <div class="distance">
+                                    {% if aire.distance< 1 %}
+                                        {{aire.distance |number_format(2, '.', ',') *100 }} mètres
+                                    {% else %}    
+                                        {{aire.distance |number_format(2, '.', ',') }} Km
+                                    {% endif %}
+                                </div>
+                        {% endif %} 
                 </div>    
                     <div class="row">    
                         <div class="col-xs-12">

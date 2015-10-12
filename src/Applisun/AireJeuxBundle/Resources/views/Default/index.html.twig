@@ -48,12 +48,9 @@
     
     function successPosition(position) {
         $('#closest_playground').html('<div class="text-center"><img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" /></div>');
-    $.ajax({
-                url: Routing.generate('closest'),
+        $.ajax({
+                url: Routing.generate('aire_near', { latitude: position.coords.latitude, longitude: position.coords.longitude, perimeter: {{ perimeter }} }),
                 type: "GET",
-                data: "latitude="+position.coords.latitude+
-                      "&longitude="+position.coords.longitude+
-                      "&perimeter={{ perimeter }}",
                         dataType: "html",
                         success: function (response, statut) {
                             $('#closest_playground').html(response);
@@ -63,7 +60,7 @@
                             $('#closest_playground').html('erreur');
                             $('#closest_button').addClass('hide');
                         }
-                });
-                }
-                          </script>  
+        });
+        }
+    </script>  
 {% endblock %}

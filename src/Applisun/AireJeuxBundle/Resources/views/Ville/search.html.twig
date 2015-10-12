@@ -1,11 +1,30 @@
 {% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
 
+{% block title %}
+     Recherche ville 
+{% endblock %}
+{% block meta %}
+    <meta name="description" content="Recherche d'une ville"> 
+{% endblock %} 
+
 {% block content %}
-    <ul>
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Recherche d'une ville</li> 
+    </ul>
         {% for ville in villes %}
-            <li>
-                <a href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a> {{ ville.value}} aires 
-            </li>
-        {% endfor %}    
-    </ul>        
+            <div class="row nomargin p-bottom">
+                <div class="col-xs-10 nopadding">
+                    <a class="city" href="{{ path('ville_show', {'slug': ville.slug, 'id': ville.id, 'page': 1 }) }}">{{ ville.nom }}</a>
+                    <i class="code"> {{ ville.code }}</i>
+                </div>
+                <div class="col-xs-2 nopadding">
+                    <span class="nbrAire"> 
+                        {% transchoice ville.value with {'%count%': ville.value} from "airejeux" %}
+                                aire.number
+                        {% endtranschoice %}
+                    </span>
+                </div>    
+            </div>
+        {% endfor %} 
 {% endblock %}
