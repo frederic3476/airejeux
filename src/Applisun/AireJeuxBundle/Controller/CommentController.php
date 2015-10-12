@@ -86,7 +86,7 @@ class CommentController extends Controller {
             throw $this->createNotFoundException('Impossible de trouver de commentaire.');
         }
         $this->get('session')->getFlashBag()->add('success', 'Commentaire supprimé avec succès.');
-        return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId(), 'slug' => TransformString::slugify($aire->getNom()))));
+        return $this->redirect($this->generateUrl('aire_show', array('id' => $comment->getAire()->getId(), 'slug' => TransformString::slugify($comment->getAire()->getNom()))));
     }
     
     /**
