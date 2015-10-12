@@ -106,8 +106,8 @@ class CommentController extends Controller {
          
         $response = $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));
         
-        $response->setMaxAge(600);
-        $response->setSharedMaxAge(600);
+        $response->setMaxAge(60);
+        $response->setSharedMaxAge(60);
         
         return $response;
     }
