@@ -28,6 +28,6 @@
 </div>
 <div>
     <h3 class="p-bottom">Mes aires</h3>
-    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': user.aires, 'data': null} %}   
+    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': user.aires, 'data': {'latitude':null}} %}   
 </div>
 {%endblock%}
