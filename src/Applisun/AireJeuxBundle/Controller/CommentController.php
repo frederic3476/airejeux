@@ -104,10 +104,7 @@ class CommentController extends Controller {
         
         $comments = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Comment')->getCommentByAire($this->container, $aire_id, $page);        
          
-        $response = $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));
-        
-        $response->setMaxAge(60);
-        $response->setSharedMaxAge(60);
+        $response = $this->render('ApplisunAireJeuxBundle:Comment:_listComment.html.twig', array('comments' => $comments, 'page' => $page));        
         
         return $response;
     }
