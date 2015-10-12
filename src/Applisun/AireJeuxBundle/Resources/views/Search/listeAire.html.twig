@@ -4,7 +4,7 @@
 <h3 class="p-bottom">{{ aires|length }} résultat(s): </h3>     
 <div id="search" class="row no-margin">  
     <div class="row bottom-10 no-margin">
-    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': aires} %}
+    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': aires, 'data': {'latitude': null}} %}
         </div>  
 </div>
 {% if aires|length > searchmaxperpage %}
