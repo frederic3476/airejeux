@@ -131,10 +131,10 @@ class AireController extends Controller {
     public function moreCommentedAction() {
          $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getMoreCommentedAires($this->container->getParameter('limit'));
          
-         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
+         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires, 'data'=> array('latitude'=>null)));
          
-         $response->setMaxAge(600);
-         $response->setSharedMaxAge(600);
+         //$response->setMaxAge(600);
+         //$response->setSharedMaxAge(600);
         
         return $response;
     }
@@ -145,9 +145,9 @@ class AireController extends Controller {
     public function newestAction() {
          $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getNewAires($this->container->getParameter('limit'));
          
-         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
-         $response->setMaxAge(600);
-         $response->setSharedMaxAge(600);
+         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires, 'data'=> array('latitude'=>null)));
+         //$response->setMaxAge(600);
+         //$response->setSharedMaxAge(600);
         
         return $response;
     }
@@ -158,9 +158,9 @@ class AireController extends Controller {
     public function topAction() {
          $aires = $this->getDoctrine()->getRepository('ApplisunAireJeuxBundle:Aire')->getTopAires($this->container->getParameter('limit'));
          
-         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires));
-         $response->setMaxAge(600);
-         $response->setSharedMaxAge(600);
+         $response = $this->render('ApplisunAireJeuxBundle:Aire:_listAire.html.twig', array('aires' => $aires, 'data'=> array('latitude'=>null)));
+         //$response->setMaxAge(600);
+         //$response->setSharedMaxAge(600);
         
         return $response;
     }
