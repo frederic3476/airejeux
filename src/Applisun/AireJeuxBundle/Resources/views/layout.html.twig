@@ -55,7 +55,7 @@
                             {% if is_granted('ROLE_USER') %}
                                 <a class="btn btn-link btn-circle fright" href="{{path ('fos_user_security_logout') }}"><span class="glyphicon glyphicon-remove-sign"></span></a>
                                 {% else %}
-                                <a class="btn btn-orange btn-circle fright" href="{{path ('fos_user_security_login') }}"><span class="glyphicon glyphicon-user"></span></a>  
+                                <a class="btn btn-link btn-circle fright" href="{{path ('fos_user_security_login') }}"><span class="glyphicon glyphicon-user"></span></a>  
                                 {% endif %}  
                             <div id="social" class="fright">
                                 <a href="https://www.facebook.com/airejeuxcom-1628442374088893/timeline/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
