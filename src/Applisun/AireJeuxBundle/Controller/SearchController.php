@@ -34,7 +34,7 @@ class SearchController extends Controller {
             
             $aires = $em->getRepository('ApplisunAireJeuxBundle:Aire')->findAireByParametres($this->container, $data, $page);                
                 
-            return $this->render('ApplisunAireJeuxBundle:Search:_listeAire.html.twig', array('aires' => $aires));
+            return $this->render('ApplisunAireJeuxBundle:Search:_listeAire.html.twig', array('aires' => $aires, 'data'=> array('latitude'=>null)));
         }
         
 
