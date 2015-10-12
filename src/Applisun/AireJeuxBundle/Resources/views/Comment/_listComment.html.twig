@@ -3,7 +3,7 @@
         <div class="panel-heading">
             <img class="img-responsive" 
                      src="{% if comment.user.filename %} 
-                            {{ asset('uploads/avatars/'~comment.user.filename) }} 
+                            {{ asset('uploads/avatars/100-'~comment.user.filename) }} 
                           {% else %} 
                             {{ asset('bundles/applisunairejeux/images/avatardefaut.png') }} 
                           {% endif %}"/>
