@@ -57,7 +57,7 @@ class AireController extends Controller {
         $handler = $this->get('applisun_aire_jeux.form.handler.aire');
         $form = $handler->createForm($aire);
 
-        if ($handler->process($form, $this->getRequest())) {
+        if ($handler->process($form, $this->getRequest())) {       
             return $this->redirect($this->generateUrl('aire_show', array('id' => $aire->getId(), 'slug' => TransformString::slugify($aire->getNom()))));
         }
 

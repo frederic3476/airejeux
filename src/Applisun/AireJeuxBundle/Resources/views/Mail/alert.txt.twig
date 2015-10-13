@@ -1,0 +1,13 @@
+{% trans_default_domain 'airejeux' %}
+
+{% block subject %}
+{% autoescape false %}
+{{ 'alert.email.subject'|trans({'%type%': data.type, '%action%': data.action}) }}
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{{ 'alert.email.message'|trans({'%type%': data.type, '%action%': data.action, 'user': data.user, 'info': data.info}) }}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}{% endblock %}

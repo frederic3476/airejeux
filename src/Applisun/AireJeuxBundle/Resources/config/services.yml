@@ -3,11 +3,14 @@ parameters:
     applisun_aire_jeux.aire_manager.class: Applisun\AireJeuxBundle\Service\AireManager
     applisun_aire_jeux.comment_manager.class: Applisun\AireJeuxBundle\Service\CommentManager
     applisun_aire_jeux.image_manager.class: Applisun\AireJeuxBundle\Service\ImageManager
+    applisun_aire_jeux.mail_manager.class: Applisun\AireJeuxBundle\Service\MailManager
     applisun_aire_jeux.form.type.registration.class: Applisun\AireJeuxBundle\Form\Type\RegistrationFormType
     applisun_aire_jeux.form.type.profile.class: Applisun\AireJeuxBundle\Form\Type\ProfileFormType
     applisun_aire_jeux.form.type.aire.class: Applisun\AireJeuxBundle\Form\Type\AireType
     applisun_aire_jeux.form.image.type.extension.class: Applisun\AireJeuxBundle\Form\Extension\ImageTypeExtension
     applisun_aire_jeux.form.handler.aire.class: Applisun\AireJeuxBundle\Form\Handler\AireFormHandler
+    applisun_aire_jeux.subscriber.alert.class: Applisun\AireJeuxBundle\EventDispatcher\Subscriber\AlertSubscriber
+    applisun_aire_jeux.listener.alert.class: Applisun\AireJeuxBundle\EventDispatcher\Listener\AlertListener
     applisun_aire_jeux.voter.user_aire_modify.class: Applisun\AireJeuxBundle\Security\UserAireModifyVoter
     applisun_aire_jeux.form.type.vote_aire.class: Applisun\AireJeuxBundle\Form\Type\VoteType
     applisun_aire_jeux.form.type.comment_aire.class: Applisun\AireJeuxBundle\Form\Type\CommentType
@@ -46,6 +49,12 @@ services:
     
     applisun_aire_jeux.image_manager:
         class:     %applisun_aire_jeux.image_manager.class%
+        
+    applisun_aire_jeux.mail_manager:
+        class:     %applisun_aire_jeux.mail_manager.class%
+        arguments: [@service_container]
+        calls:
+            - [setMailer, ["@mailer"]]
         
     # Form types
     applisun_aire_jeux.form.registration.type:
@@ -86,6 +95,20 @@ services:
     applisun_aire_jeux.form.handler.aire:
         class: %applisun_aire_jeux.form.handler.aire.class%
         arguments: [@doctrine.orm.entity_manager, @applisun_aire_jeux.aire_manager, @applisun_aire_jeux.image_manager, @form.factory]
+        
+    # Subscriber
+    applisun_aire_jeux.subscriber.alert:
+        class: %applisun_aire_jeux.subscriber.alert.class%
+        tags:
+            - { name: kernel.event_subscriber }
+            
+    # Listener
+    alert.listener:
+            class: %applisun_aire_jeux.listener.alert.class%
+            arguments: [@applisun_aire_jeux.mail_manager]
+            tags:
+                - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+                - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
         
     # Security voter
     applisun_aire_jeux.voter.user_modify_aire:

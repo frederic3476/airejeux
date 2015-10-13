@@ -2,3 +2,17 @@ vote.number: '{0} aucun vote|{1}%count% vote|]1,Inf[%count% votes'
 member.number: '{0} aucun membre|{1}%count% membre|]1,Inf[%count% membres'
 aire.number: '{0} 0 aire|{1}%count% aire|]1,Inf[%count% aires'
 aire.ref.number: '{0} aucune aire référencée|{1}%count% aire référencée|]1,Inf[%count% aires référencées'
+
+# Alert
+alert:
+    email:
+        subject: %type% %action% !
+        message: |
+            Bonjour !
+            
+            Un(e) %type% a été %action%.
+            Utilisateur: %user%
+            Informations: %info%
+
+            Cordialement,
+            L'équipe airejeux.com
