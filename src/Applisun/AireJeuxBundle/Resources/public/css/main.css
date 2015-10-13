@@ -55,6 +55,11 @@ aside{
     top: 5px;
   }
   
+  .affix .textelogo {
+    margin-left: 60px;
+    top: 20px;
+  }
+  
 
 /*#nav-wrapper.affix {
     top: 0;
