@@ -11,7 +11,9 @@ alert:
             Bonjour !
             
             Un(e) %type% a été %action%.
+            
             Utilisateur: %user%
+            
             Informations: %info%
 
             Cordialement,

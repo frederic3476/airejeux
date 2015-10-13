@@ -7,7 +7,7 @@
 {% endblock %}
 {% block body_text %}
 {% autoescape false %}
-{{ 'alert.email.message'|trans({'%type%': data.type, '%action%': data.action, 'user': data.user, 'info': data.info}) }}
+{{ 'alert.email.message'|trans({'%type%': data.type, '%action%': data.action, '%user%': data.user, '%info%': data.info}) }}
 {% endautoescape %}
 {% endblock %}
 {% block body_html %}{% endblock %}

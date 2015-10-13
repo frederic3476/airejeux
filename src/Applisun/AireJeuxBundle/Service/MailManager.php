@@ -55,7 +55,7 @@ class MailManager {
         
         if ($send){
         $message = \Swift_Message::newInstance()
-                    ->setSubject('AireJeux.com')
+                    ->setSubject('AireJeux.com : '.$data["type"].' '.$data["action"])
                     ->setFrom('webmaster@airejeux.com')
                     ->setTo('frederic.teissier@live.fr')
                     ->setBody($this->container->get('templating')->render('ApplisunAireJeuxBundle:Mail:alert.txt.twig', array('data' => $data)));
