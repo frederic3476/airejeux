@@ -60,8 +60,6 @@ class MailManager {
                     ->setTo('frederic.teissier@live.fr')
                     ->setBody($this->container->get('templating')->render('ApplisunAireJeuxBundle:Mail:alert.txt.twig', array('data' => $data)));
         
-        var_dump($this->container->get('templating')->render('ApplisunAireJeuxBundle:Mail:alert.txt.twig', array('data' => $data))); exit;
-        
         $this->mailer->send($message);
         }
     }
