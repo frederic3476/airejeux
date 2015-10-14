@@ -8,31 +8,167 @@
 {% endblock %}
 {% block stylesheets %}
     {{parent()}}
-            <link href="{{ asset('bundles/applisunairejeux/css/swiper.min.css') }}" type="text/css" rel="stylesheet" />
-        {% endblock%}
+    <link href="{{ asset('bundles/applisunairejeux/css/swiper.min.css') }}" type="text/css" rel="stylesheet" />
+{% endblock%}
 
 {% block content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">Applications mobiles</li> 
+    </ul>
+    <p>
+        Téléchargez gratuitement notre appplication mobile pour les smartphones Android et prochainement pour iOS.
+    </p>
+
+
+    <div class="row">
+        <div class="col-xs-3 col-xs-push-3">
+            <a href="https://play.google.com/store/apps/details?id=com.applisun.airejeux" target="_blank"><img class="img-responsive" src="{{ asset('bundles/applisunairejeux/images/Google_play.png') }}" /></a>
+        </div>
+        <div class="col-xs-3 col-xs-push-3">
+            <img class="img-responsive" src="{{ asset('bundles/applisunairejeux/images/app_store.png') }}" />
+        </div>
+    </div>       
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <div id="site1" class="site-img">
-                    <h2>En construction</h2>
+                <div class="row">
+                    <div class="col-xs-4 col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-map.png') }}" />
+                    </div>
+                    <div class="col-xs-2 text-center">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-proche.png') }}" />
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="col-xs-11">
+                        <h4>Carte des aires de jeux</h4>
+                        <p>Visualisez les aires de jeux proches de votre position  (<5km par défaut) et accédez à leur fiche descriptive.</p>
+                        <p>Depuis la carte vous pouvez afficher la liste des aires de jeux proches de votre position de la plus proche à la plus éloignée.</p>
+                        <p>Vous avez la possibilité de rafraîchir la carte et de changer la distance de recherche.</p>
+                    </div>     
                 </div>
             </div>
             <div class="swiper-slide">
-                <div id="site2" class="site-img">
-                    <h2>En construction</h2>         
+                <div class="row">
+                    <div class="col-xs-4 col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-connexion.png') }}" />
+                    </div>
+                    <div class="col-xs-2 text-center">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-inscription.png') }}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-11">
+                        <h4>Connexion et inscription</h4>
+                        <p>Vous pouvez vous connecter à votre compte, récupérer votre mot de passe et accéder à un formulaire d'inscription.Vous pouvez
+                            aussi choisir de sauvegarder votre login et votre mot de passe.</p>
+                        <p>Avoir un compte est indispensable pour ajouter une aire de jeux, noter ou commenter.</p>
+                    </div>     
                 </div>
             </div>
-
+            <div class="swiper-slide">        
+                <div class="row">
+                    <div class="col-xs-3 col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-departement.png') }}" />
+                    </div>
+                    <div class="col-xs-3 col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-ville.png') }}" />
+                    </div>
+                    <div class="col-xs-3 col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-listAire.png') }}" />
+                    </div>
+                </div>    
+                <div class="row">    
+                    <div class="col-xs-11">
+                        <h4>Annuaire des aires de jeux</h4>
+                        <p>Accédez à l'annuaire des départements, à la liste des villes et enfin à la liste des aires de jeux.</p>
+                        <p>Vous avez la possibilité d'enregistrer vos villes favorites.</p>
+                    </div>     
+                </div>    
+            </div>
+            <div class="swiper-slide">
+                <div class="row">
+                    <div class="col-xs-4 col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-fiche.png') }}" />
+                    </div>
+                    <div class="col-xs-2 text-center">
+                    </div>
+                    <div class="col-xs-4">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-comment.png') }}" />
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="col-xs-11">
+                        <h4>Fiche de l'aire de jeux</h4>
+                        <p>Affichez la fiche descriptive d'une aire de jeux comportant ses caractéristiques : nom, image, note moyenne, tranche d'âge, type de revêtement, le nombre de jeux,
+                            aire de pique-nique, équipements sportifs, coin ombragé...</p>
+                        <p>Consultez les commentaires des membres.</p>
+                        <p>En étant membre, vous avez la possibilité de noter, commenter et/ou ajouter une photo de l'aire (si elle n'est pas présente).</p>
+                        <p>Vous pouvez partager l'aire de jeux par SMS, Email, Facebook, Dropbox...</p>
+                    </div>     
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-ajouter.png') }}" />
+                    </div>
+                    <div class="col-xs-7">
+                        <h4>Ajouter une aire de jeux</h4>
+                        <p>Aprés identification, vous pouvez ajouter une aire de jeux en choisissant:
+                        <ul>
+                            <li>Un nom</li>
+                            <li>Une ville (une liste des villes proches de votre position est automatiquement affichée)</li>
+                            <li>Une surface</li>
+                            <li>L'âge minimum et maximum</li>
+                            <li>Le nombre de jeux</li>
+                            <li>La présence ou non de tables de pique-nique, d'équipements sportif et d'ombre</li>
+                            <li>Des informations complémentaires</li>
+                            <li>Une photo</li>                             
+                        </ul></p>
+                    </div>     
+                </div>
+            </div>                        
+            <div class="swiper-slide">
+                <div class="row">
+                    <div class="col-xs-4  col-xs-push-1">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-recherche.png') }}" />
+                    </div>
+                    <div class="col-xs-2">
+                    </div>    
+                    <div class="col-xs-4">
+                        <img class="img-responsive img-thumbnail" src="{{ asset('bundles/applisunairejeux/images/captures/capture-rechercheOK.png') }}" />
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="col-xs-11">
+                        <h4>Rechercher une ville</h4>
+                        <p>Saisissez le nom de la ville que vous souhaitez consulter et affichez les aires de jeux existantes.</p>
+                    </div>     
+                </div>
+            </div>           
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
-    </div>
+    </div>                 
+
 {%endblock%}  
 
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/applisunairejeux/js/swiper.min.js') }}"></script>
-
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            loop: true,
+            autoplay: 5000,
+            speed: 600
+        });
+    </script>
 {% endblock %}

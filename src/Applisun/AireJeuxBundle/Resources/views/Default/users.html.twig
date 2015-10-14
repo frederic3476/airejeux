@@ -8,16 +8,18 @@
         <ul class="breadcrumb fil">
             <li><a href="{{ path('index') }}">Accueil</a></li>
             <li class="active">Liste des membres</li> 
-        </ul>
-
-
-        <h3 class="p-bottom">{{ users|length }} membres</h3>
+        </ul> 
+        <h3 class="p-bottom">
+            {% transchoice users|length with {'%count%': users|length} from "airejeux" %}
+                            member.number
+            {% endtranschoice %}
+        </h3>
         {% for user in users %}
             <div class="row nomargin p-bottom list_user">
                 <div class="col-lg-2 col-xs-4">
                     <img class="img-responsive" 
                          src="{% if user[0].filename %} 
-                         {{ asset('uploads/avatars/'~user[0].filename) }} 
+                         {{ asset('uploads/avatars/100-'~user[0].filename) }} 
                     {% else %} 
                         {{ asset('bundles/applisunairejeux/images/avatardefaut.png') }} 
                         {% endif %}"/>
@@ -26,7 +28,11 @@
                         <span>{{ user[0].username }}</span>
                     </div>
                     <div class="col-lg-2 col-xs-3">
-                        <span class="nbrAire">{{ user.nbr }} aires </span>
+                        <span class="nbrAire">
+                            {% transchoice user.nbr with {'%count%': user.nbr} from "airejeux" %}
+                                aire.number
+                            {% endtranschoice %}
+                        </span>
                     </div>    
                 </div>        
                 {% endfor %}

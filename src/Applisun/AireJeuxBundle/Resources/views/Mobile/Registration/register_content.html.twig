@@ -1,0 +1,26 @@
+{% extends "ApplisunAireJeuxBundle:Mobile:layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form class="form-horizontal" action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+    <div class="form-group">
+        {{ form_errors(form.username) }}
+        {{ form_widget(form.username, {'attr':{'placeholder':'Login:', 'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_errors(form.email) }}
+        {{ form_widget(form.email, {'attr':{'placeholder':'Email:', 'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_errors(form.plainPassword.first) }}
+        {{ form_widget(form.plainPassword.first, {'attr':{'placeholder':'Mot de passe:', 'class':'form-control'}}) }}
+    </div>
+    <div class="form-group">
+        {{ form_errors(form.plainPassword.second) }}
+        {{ form_widget(form.plainPassword.second, {'attr':{'placeholder':'Confirmer mot de passe:', 'class':'form-control'}}) }}
+    </div>
+    {{ form_row(form._token) }}
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+</form>
