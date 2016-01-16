@@ -25,7 +25,7 @@ class DefaultController extends Controller
         $ob->credits->enabled(false);
         $ob->legend->enabled(false);
         $ob->navigation(array("buttonOptions" => array("enabled" => false)));
-        $ob->mapNavigation(array("enabled" => false, "enableMouseWheelZoom" => true, "enableTouchZoom" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
+        $ob->mapNavigation(array("enabled" => false, "enableMouseWheelZoom" => false, "enableTouchZoom" => true, "buttonOptions" => array("verticalAlign" => "bottom")));
         
         $ob->plotOptions(array("series" => array(
                                     "point" => array(
