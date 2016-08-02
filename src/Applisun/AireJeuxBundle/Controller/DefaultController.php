@@ -21,6 +21,7 @@ class DefaultController extends Controller
         
         $ob = new HighMap();
         $ob->chart->renderTo('map');
+        $ob->chart->backgroundColor('rgba(255,255,255,0');
         $ob->title->text('');
         $ob->credits->enabled(false);
         $ob->legend->enabled(false);
