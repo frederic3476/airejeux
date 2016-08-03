@@ -82,15 +82,6 @@
                     <section id="contenu" class="col-xs-12 col-md-8">        
                         {% block content %}
                         {% endblock %}
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- conteneur2 -->
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:728px;height:90px"
-                             data-ad-client="ca-pub-1034834267685351"
-                             data-ad-slot="5468114429"></ins>
-                        <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
                     </section>
                     {% block aside %}    
                         <aside class="col-md-4 visible-lg visible-md">
@@ -128,21 +119,28 @@
                             </a>    
                             <div class="playground-list">
                                 <div class="vignette">NOUVEAUTES</div>
-                                {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }} 
-                            </div>  
-                            <div class="playground-list">
+                                {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:newest')) }}
+                            </div>
+                            <div class="playground-list b-bottom-blue">
                                 <div class="vignette">TOP 5</div>
                                 {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:top')) }}
                             </div>
-                            <div class="playground-list b-bottom-blue">
-                                <div class="vignette">+ COMMENTEES</div>
-                                {{ render_esi(controller('ApplisunAireJeuxBundle:Aire:moreCommented')) }}
-                            </div>    
                         </aside> 
-                    {% endblock %}    
-                </div>           
+                    {% endblock %}
+                </div>
+                <div class="center-block">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- conteneur2 -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:728px;height:90px"
+                         data-ad-client="ca-pub-1034834267685351"
+                         data-ad-slot="5468114429"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
             </div>
-        </div>  
+        </div>
 
         {% include 'ApplisunAireJeuxBundle::footer.html.twig' %}
 
