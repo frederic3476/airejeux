@@ -92,6 +92,10 @@ aside{
     max-width: 1100px;
 }
 
+.container{
+    max-width: 1100px !important;
+}
+
 .nopadding{
     padding: 0;
 }
@@ -177,6 +181,7 @@ aside{
     border-right: 3px solid #0097aa;
     border-top: 3px solid #0097aa;
     padding: 20px;
+    background: white;
 }
 
 .playground-list .playground-link{
