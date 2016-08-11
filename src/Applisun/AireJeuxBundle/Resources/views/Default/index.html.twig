@@ -49,7 +49,7 @@
     function successPosition(position) {
         $('#closest_playground').html('<div class="text-center"><img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" /></div>');
         $.ajax({
-                url: Routing.generate('aire_near', { latitude: position.coords.latitude, longitude: position.coords.longitude, perimeter: 0.04 }),
+                url: Routing.generate('aire_near', { latitude: position.coords.latitude, longitude: position.coords.longitude, perimeter: 0.02 }),
                 type: "GET",
                         dataType: "html",
                         success: function (response, statut) {
