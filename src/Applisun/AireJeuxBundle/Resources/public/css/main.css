@@ -563,9 +563,15 @@ aside{
   padding-top: 24px;
 }
 
+#box{
+    height: 100%;
+}
+
 #map{
     height: 600px;
     min-width: 320px;
+    position: relative;
+    //height:100%;
 }
 
 #map img{
@@ -804,9 +810,13 @@ span.score {
         width: 76px;
         padding-left: 10px;
     }
-    
     .main{
         background: white;
         padding: 0;
+    }
+    
+    #map{
+        min-width: 0;
+        height:100%;
     }
 }
