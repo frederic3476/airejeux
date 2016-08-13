@@ -804,4 +804,9 @@ span.score {
         width: 76px;
         padding-left: 10px;
     }
+    
+    .main{
+        background: white;
+        padding: 0;
+    }
 }
