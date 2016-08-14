@@ -202,6 +202,7 @@ aside{
     color: #a2a2a2;
     padding-left: 20px;
     vertical-align: -webkit-baseline-middle;
+    display: block;
 }
 
 .btn-blue{
