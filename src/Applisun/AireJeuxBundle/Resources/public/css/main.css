@@ -82,8 +82,9 @@ aside{
 .contain{
     background-color: rgba(255,255,255,0.9);
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 20px;
     max-width: 1100px;
+    padding: 20px;
 }
 
 
@@ -180,7 +181,7 @@ aside{
     border-left: 3px solid #0097aa;
     border-right: 3px solid #0097aa;
     border-top: 3px solid #0097aa;
-    padding: 20px;
+    padding: 20px 10px;
     background: white;
 }
 
@@ -188,6 +189,8 @@ aside{
     font-size: 1em;
     font-weight: 600;
     color: #1f1f1f;
+    display: block;
+    margin-left: 5px;
 }
 
 .playground-link{
@@ -518,7 +521,7 @@ aside{
     padding-bottom: 20px;
     border: 2px solid black;
     padding-top: 20px;
-    margin: 40px auto;
+    margin: 0 auto 40px auto;
     background: -webkit-linear-gradient(top, white , #e3e4e8); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(top, white, #e3e4e8); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(top, white, #e3e4e8); /* For Firefox 3.6 to 15 */
