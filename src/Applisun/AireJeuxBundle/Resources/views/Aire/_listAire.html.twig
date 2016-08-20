@@ -1,13 +1,14 @@
 <div class="row no-margin">
     {% for aire in aires %}
         {%if (data.latitude and not(data.latitude == aire.latitude)) or not(data.latitude) %}
-        <div class="row bottom-10 {% if not loop.last %}p-bottom {% endif %} no-margin">
-            <div class="col-lg-3  col-md-12 visible-lg nopadding">
-                <img src="{% if aire.filename %} 
-                     {{ asset('uploads/aires/100-'~aire.filename) }} 
-                {% else %} 
-                    {{ asset('bundles/applisunairejeux/images/thumbnail_defaut.png') }} 
-                    {% endif %}" />
+            {%if loop.index <= 6 %}
+                <div class="row bottom-10 {% if not loop.last %}p-bottom {% endif %} no-margin">
+                    <div class="col-lg-3  col-md-12 visible-lg nopadding">
+                        <img src="{% if aire.filename %} 
+                             {{ asset('uploads/aires/100-'~aire.filename) }} 
+                        {% else %} 
+                            {{ asset('bundles/applisunairejeux/images/thumbnail_defaut.png') }} 
+                        {% endif %}" />
                 </div> 
                 <div class="col-lg-9 col-md-12">
                     <div class="row playground-body">
@@ -33,10 +34,11 @@
                             <div class="average">{{ aire.average }}</div>                            
                         </div>
                     </div>
-                        
+
                 </div>
             </div> 
-        {% endif %}                
+        {% endif %}
+            {% endif %}                
     {% endfor %}
 </div>            
 
