@@ -206,6 +206,11 @@ aside{
     padding-left: 20px;
     vertical-align: -webkit-baseline-middle;
     display: block;
+    text-transform: lowercase;
+}
+
+.playground-list .city-link:first-letter{
+    text-transform: uppercase;
 }
 
 .btn-blue{
