@@ -239,6 +239,7 @@ class Aire implements BreadCrumbInterface
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
+        $this->updatedAt = new \DateTime('now');
         $this->votes = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
@@ -591,7 +592,7 @@ class Aire implements BreadCrumbInterface
             $total += $vote->getScore();
         }
 
-        $this->average = $total / $count;
+        $this->average = round($total / $count, 1);
     }
 
     /**
@@ -836,7 +837,7 @@ class Aire implements BreadCrumbInterface
     {
         if(!$this->getCreatedAt())
         {
-          $this->created_at = new \DateTime();
+          $this->createdAt = new \DateTime();
         }
     }
 
@@ -845,7 +846,7 @@ class Aire implements BreadCrumbInterface
      */
     public function setUpdatedAtValue()
     {
-        $this->updated_at = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
     
     protected function getUploadDir()
