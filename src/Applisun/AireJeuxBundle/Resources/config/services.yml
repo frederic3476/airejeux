@@ -105,7 +105,7 @@ services:
     # Listener
     alert.listener:
             class: %applisun_aire_jeux.listener.alert.class%
-            arguments: [@applisun_aire_jeux.mail_manager]
+            arguments: [@applisun_aire_jeux.mail_manager, @applisun_aire_jeux.image_manager]
             tags:
                 - { name: doctrine.event_listener, event: postPersist, method: postPersist }
                 - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
