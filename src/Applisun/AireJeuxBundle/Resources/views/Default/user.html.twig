@@ -1,0 +1,28 @@
+{% extends "ApplisunAireJeuxBundle::layout.html.twig" %}
+
+{% block title 'Liste des utilisateurs' %}
+    {% block meta %}
+    <meta name="description" content="Liste des membres AireJeux.com"> 
+    {% endblock %}
+    {% block content %}
+    <ul class="breadcrumb fil">
+        <li><a href="{{ path('index') }}">Accueil</a></li>
+        <li class="active">profil de {{ user.username}}</li> 
+    </ul> 
+<div class="fos_user_user_show">
+    <div class="row">
+        <div class="col-xs-12">
+            <img class="img-responsive" 
+                     src="{% if user.filename %} 
+                            {{ asset('uploads/avatars/100-'~user.filename) }} 
+                          {% else %} 
+                            {{ asset('bundles/applisunairejeux/images/avatardefaut.png') }} 
+                          {% endif %}"/>
+        </div> 
+    </div>
+</div>
+<div>
+    <h3 class="p-bottom">Ses aires</h3>
+    {% include 'ApplisunAireJeuxBundle:Search:_listeAire.html.twig' with {'aires': user.aires, 'data': {'latitude':null}} %}   
+</div>
+{%endblock%}

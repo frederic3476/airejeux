@@ -14,7 +14,7 @@
     {{ breadcrumb(aire) }}
     <div class="row">
         <h1>{{ aire.nom }}</h1>
-        <h5>Ajouté le {{ aire.createdat|date('d-m-Y') }} par {{ aire.user.username }}</h5>
+        <h5>Ajouté le {{ aire.createdat|date('d-m-Y') }} par <a class="author" href="{{ path('user', {'id': aire.user.id}) }}">{{ aire.user.username }}</a></h5>
         <div class="col-sm-1 col-lg-1 col-md-2 col-xs-2"> 
             <div class="row">
                         <div class="col-xs-12">

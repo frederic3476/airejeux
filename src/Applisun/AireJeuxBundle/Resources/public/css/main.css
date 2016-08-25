@@ -319,6 +319,16 @@ aside{
     font-weight: 600;
 }
 
+.author{
+    color: orange;
+    font-weight: 600;
+}
+
+.author:hover{
+    color: black;
+    text-decoration: none;
+}
+
 .form-group ul, #form-playground ul{
     color: red;
     list-style-type:none;
@@ -751,9 +761,14 @@ span.score {
          height: 40px;
       }
       
-      .list_user .col-lg-8 span:first-child{
+      .list_user .col-lg-8 a:first-child{
           font-weight: 400;
           font-size: 1.5em;
+          color: black;
+      }
+      
+      .list_user .col-lg-8 a:first-child:hover{
+          color: orange;
       }
       
       .list_user .nbrAire{

@@ -99,6 +99,18 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/user/{id}", name="user")
+     */
+    public function userAction($id)
+    {  
+        $em = $this->getDoctrine()->getEntityManager();
+        
+        $user= $em->getRepository('ApplisunAireJeuxBundle:User')->findOneById($id);
+        return  $this->render('ApplisunAireJeuxBundle:Default:user.html.twig', array(
+            'user' => $user));
+    }
+    
+    /**
      * @Route("/application", name="application")
      */
     public function applicationAction()
