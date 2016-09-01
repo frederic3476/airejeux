@@ -35,7 +35,7 @@ class DepartementController extends Controller
             'route' => 'departement_show',
             'slug' => $slug,
             'id' => $id,
-            'pages_count' => (!is_array($count_ville)?ceil($count_ville / $this->container->getParameter('maxperpage')):1),
+            'pages_count' => (!is_array($count_ville)?ceil($count_ville / $this->container->getParameter('maxvilleperpage')):1),
             'nbr_operation' => (!is_array($count_ville)?$count_ville:0),
             'route_params' => array()
         );   

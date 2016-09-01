@@ -36,6 +36,7 @@ twig:
         maxperpage: 10
         searchmaxperpage: 24
         maxuserperpage: 20
+        maxvilleperpage: 20
         perimeter: 0.05
 
 # Assetic Configuration

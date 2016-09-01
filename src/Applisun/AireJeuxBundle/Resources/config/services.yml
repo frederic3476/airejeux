@@ -27,6 +27,7 @@ parameters:
     searchmaxperpage: 24
     maxcommentperpage: 5
     maxuserperpage: 20
+    maxvilleperpage: 20
     perimeter: 0.05
     limit: 5
     sizeimage:
