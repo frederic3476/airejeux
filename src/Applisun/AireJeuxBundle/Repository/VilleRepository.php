@@ -23,7 +23,7 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
     {        
         $qb = $this->getEntityManager()
                 ->createQuery('select v, count(a.id) as nbr from ApplisunAireJeuxBundle:Ville v LEFT JOIN v.aires a WHERE LOWER(v.nom) LIKE :query GROUP BY v.id ORDER BY v.nom ASC')
-                ->setParameter('query', strtolower($queryString).'%');
+                ->setParameter('query', strtolower(trim($queryString)).'%');
         
         $results = $qb->getResult();
         $cities = array();
@@ -40,7 +40,7 @@ class VilleRepository extends \Doctrine\ORM\EntityRepository
     
     public function getVilleActiveByDepartement(ContainerInterface $container, $idDepart,$page=1)
     {
-        $maxperpage = $container->getParameter('maxperpage');
+        $maxperpage = $container->getParameter('maxvilleperpage');
         
         $query = $this->getEntityManager()
 		              ->createQuery('SELECT v FROM ApplisunAireJeuxBundle:Ville v INNER JOIN v.aires a WHERE v.departement = :id')
