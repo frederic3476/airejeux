@@ -37,7 +37,9 @@ var myOptions = {
           function(results, status) {
             if(status == google.maps.GeocoderStatus.OK) {
               if(results[0]) {
-                document.getElementById("applisun_aire_form_ville").value = results[0].address_components[2].short_name+'|'+results[0].address_components[6].short_name;
+                 if (results[0].address_components[6] != undefined){ 
+                    document.getElementById("applisun_aire_form_ville").value = results[0].address_components[2].short_name+'|'+results[0].address_components[6].short_name;
+                 }
               }
               else {
                 document.getElementById("applisun_aire_form_ville").value = "No results";
