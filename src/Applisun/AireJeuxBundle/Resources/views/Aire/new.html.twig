@@ -20,18 +20,13 @@
                 {{ form_errors(form.nom) }}
                 {{ form_label(form.nom) }}
                 {{ form_widget(form.nom, {'attr':{'placeholder':'Nom:', 'class':'form-control'}}) }}
-            </div>
-            <div class="nomargin">
-                {{ form_errors(form.ville) }}
-                {{ form_label(form.ville) }}
-                {{ form_widget(form.ville, {'attr':{'class':'form-control completion'}}) }}
-            </div>
-            <h3 class="p-bottom">Caractéristiques: </h3> 
+            </div>        
+            <h3 class="p-bottom">Localisation: </h3> 
             <div class="row">
                 <div class="col-sm-4">
-                    {{ form_errors(form.surface) }}
-                    {{ form_label(form.surface) }}
-                    {{ form_widget(form.surface, {'attr':{'class':'form-control'}}) }}
+                    {{ form_errors(form.ville) }}
+                    {{ form_label(form.ville) }}
+                    {{ form_widget(form.ville, {'attr':{'class':'form-control completion'}}) }}
                 </div>
                 <div class="col-sm-4">
                     {{ form_errors(form.latitude) }}
@@ -47,19 +42,25 @@
             <div class="row">
                 <h4>Cliquer sur la carte pour situer l'aire de jeu</h4>
                 <div id="map-canvas" class="col-xs-12"></div>  
-            </div>    
+            </div>  
+            <h3 class="p-bottom">Caractéristiques: </h3>     
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    {{ form_errors(form.surface) }}
+                    {{ form_label(form.surface) }}
+                    {{ form_widget(form.surface, {'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="col-sm-3">
                     {{ form_errors(form.ageMin) }}
                     {{ form_label(form.ageMin) }}
                     {{ form_widget(form.ageMin, {'attr':{'class':'form-control'}}) }}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     {{ form_errors(form.ageMax) }}
                     {{ form_label(form.ageMax) }}
                     {{ form_widget(form.ageMax, {'attr':{'class':'form-control'}}) }}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     {{ form_errors(form.nbrJeux) }}
                     {{ form_label(form.nbrJeux) }}
                     {{ form_widget(form.nbrJeux, {'attr':{'class':'form-control'}}) }}
