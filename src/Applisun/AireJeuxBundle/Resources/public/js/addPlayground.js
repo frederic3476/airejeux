@@ -29,6 +29,7 @@ var myOptions = {
                 }
                 document.getElementById('applisun_aire_form_latitude').value=location.lat();
                 document.getElementById('applisun_aire_form_longitude').value=location.lng();
+                document.getElementById("applisun_aire_form_ville").value = "";
                 getAddress(location);
             }
 
