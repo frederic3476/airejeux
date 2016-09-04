@@ -42,7 +42,7 @@ class VilleTransformer implements DataTransformerInterface
             return "";
         }
 
-        return $ville->getNom()."|".$ville->getCode();
+        return $ville->getNom()." (".$ville->getCode().")";
     }
 
     /**
@@ -59,20 +59,22 @@ class VilleTransformer implements DataTransformerInterface
         }
         
         //get code
-        $tab = explode('|', $str);
-        $nom = $tab[0];
+        //$tab = explode('|', $str);
+        //$nom = $tab[0];
         
-        if (isset($tab[1])){
+        preg_match("/(.*) \((.*?)\)/", $str, $output_array);
         
-        $code = $tab[1];
+        if (isset($output_array[2])){
+        
+        $code = $output_array[2];
+        $nom = $output_array[1];
 
         $ville = $this->om
             ->getRepository('ApplisunAireJeuxBundle:Ville')
-            ->findOneBy(array('nom' => $nom,'code' => $code))
-        ;
-
+            ->findOneBy(array('nom' => $nom,'code' => $code));
         }
         else {
+            $nom = $output_array[1];
             $ville = $this->om
             ->getRepository('ApplisunAireJeuxBundle:Ville')
             ->findOneBy(array('nom' => $nom));

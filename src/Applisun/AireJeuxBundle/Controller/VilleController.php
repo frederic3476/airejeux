@@ -102,10 +102,13 @@ class VilleController extends Controller
             return $this->redirect($this->generateUrl('index'));
         }
         
-        $tab = explode('|', $query);
-        if (count($tab) == 2)
+        preg_match("/(.*) \((.*?)\)/", $query, $output_array);
+        if (isset($output_array[2]))
         {
-            $ville = $em->getRepository('ApplisunAireJeuxBundle:Ville')->findOneBy(array('nom' => $tab[0],'code' => $tab[1]));
+            $code = $output_array[2];
+            $nom = $output_array[1];
+        
+            $ville = $em->getRepository('ApplisunAireJeuxBundle:Ville')->findOneBy(array('nom' => $nom,'code' => $code));
             return $this->redirect($this->generateUrl('ville_show', array('slug' => $ville->getSlug(), 'id' => $ville->getId(), 'page' => 1)));
         }
         else{

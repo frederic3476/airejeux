@@ -1,1 +1,1 @@
-[{% for ville in villes %}"{{ ville.nom }}|{{ ville.code }}"{% if not loop.last %},{% endif %}{% endfor %}]
+[{% for ville in villes %}"{{ ville.nom }} ({{ ville.code }})"{% if not loop.last %},{% endif %}{% endfor %}]

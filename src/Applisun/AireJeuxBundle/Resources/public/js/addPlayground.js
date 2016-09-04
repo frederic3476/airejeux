@@ -39,7 +39,7 @@ var myOptions = {
             if(status == google.maps.GeocoderStatus.OK) {
               if(results[0]) {
                  if (results[0].address_components[6] != undefined){ 
-                    document.getElementById("applisun_aire_form_ville").value = results[0].address_components[2].short_name+'|'+results[0].address_components[6].short_name;
+                    document.getElementById("applisun_aire_form_ville").value = results[0].address_components[2].short_name+' ('+results[0].address_components[6].short_name+')';
                  }
               }
               else {
