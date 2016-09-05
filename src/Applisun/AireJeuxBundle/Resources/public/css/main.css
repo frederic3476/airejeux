@@ -395,11 +395,16 @@ aside{
     float: left;
 }
 
-.navbar-nav>li:hover {
+.navbar-nav>li:hover, .navbar-nav>li.actif {
     font-size: 13px;
-    line-height: 1.2;
     border-bottom : 2px solid white;
+    background-color: none;
 }
+
+.navbar-nav>li:hover, .navbar-nav>li.actif>a {
+    color: black;
+}
+
 
 .subnav .login{
     font-size: 15px;

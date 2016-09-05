@@ -38,12 +38,13 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="{{path ('index') }}" >ACCUEIL</a></li>
-                            <li><a href="{{path ('aire_new') }}" >AJOUTER</a></li>
-                            <li><a href="{{ path('search') }}" >RECHERCHER</a></li>
-                            <li><a href="{{ path('users') }}" >MEMBRES</a></li>
-                            <li><a href="{{path ('fos_user_profile_show') }}">MON COMPTE</a></li>
+                        {% set route = app.request.get('_route') %}
+                        <ul class="nav navbar-nav navbar-right">                          
+                            <li {% if route == 'index' %} class="actif" {%endif%}><a href="{{path ('index') }}">ACCUEIL</a></li>
+                            <li {% if route == 'aire_new' %} class="actif" {%endif%}><a href="{{path ('aire_new') }}">AJOUTER</a></li>
+                            <li {% if route == 'search' %} class="actif" {%endif%}><a href="{{ path('search') }}" >RECHERCHER</a></li>
+                            <li {% if route == 'users' %} class="actif" {%endif%}><a href="{{ path('users') }}" >MEMBRES</a></li>
+                            <li {% if route == 'fos_user_profile_show' %} class="actif" {%endif%}><a href="{{path ('fos_user_profile_show') }}">MON COMPTE</a></li>
 
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -80,6 +81,7 @@
                     {% endfor %}
                 {% endfor %}
                 <div class="row contain">
+                    {% block mainTitle %}{% endblock %}
                     <section id="contenu" class="col-xs-12 col-md-8">        
                         {% block content %}
                         {% endblock %}
