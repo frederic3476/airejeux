@@ -180,6 +180,13 @@ class ApiController extends Controller {
         $ville = $this->getDoctrine()->getEntityManager()
             ->getRepository('ApplisunAireJeuxBundle:Ville')
             ->findOneBy(array('nom' => $nom,'code' => $code));
+        
+        if (!isset($ville)){
+          $ville = $this->getDoctrine()->getEntityManager()
+            ->getRepository('ApplisunAireJeuxBundle:Ville')
+            ->findOneBy(array('code' => $code));  
+        }
+        
         $aire->setVille($ville);
         
         $user = $this->getUser();        

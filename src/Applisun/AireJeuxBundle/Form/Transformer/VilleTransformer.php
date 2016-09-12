@@ -72,6 +72,13 @@ class VilleTransformer implements DataTransformerInterface
         $ville = $this->om
             ->getRepository('ApplisunAireJeuxBundle:Ville')
             ->findOneBy(array('nom' => $nom,'code' => $code));
+        
+        if (!isset($ville)){
+          $ville = $this->om
+            ->getRepository('ApplisunAireJeuxBundle:Ville')
+            ->findOneBy(array('code' => $code));  
+        }
+        
         }
         else {
             $nom = $output_array[1];
