@@ -15,13 +15,16 @@
         {% endtranschoice %}
     </h3>
     <div class="row playground-city-list">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
                 {% for aire in aires %}
                     <div class="row nomargin p-bottom">
-                        <div class="col-xs-8">
+                        <div class="col-xs-9">
                             <a class="playground_link" href="{{ path('aire_show', {'id': aire.id, 'slug': slugify(aire.nom) }) }}">{{ aire.nom }}</a>
                         </div>
-                        <div class="col-xs-4">
+                        <div class="col-xs-3">
+                            <div class=" nbjeux text-center nopadding">
+                                <span class="number_game">{{ aire.nbrJeux }}</span>
+                            </div>
                             {%if aire.isPicnic %}
                                 <img src="{{ asset('bundles/applisunairejeux/images/picnic_on.png') }}" alt="Aire de pique-nique" title="Aire de pique-nique" />
                             {%endif%}
@@ -37,9 +40,6 @@
                     <p>Aucune aire référencée</p>
                 {% endfor %}  
            </div>
-            <div id="map-canvas" class="col-sm-5">
-                <img src="{{ asset('bundles/applisunairejeux/images/ui-anim_basic_16x16.gif') }}" />  
-            </div>
     </div>
      {% if aires|length > maxperpage %}
                 {% include 'ApplisunAireJeuxBundle:Default:pagination.html.twig' %}

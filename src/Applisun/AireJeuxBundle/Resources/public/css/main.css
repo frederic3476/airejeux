@@ -320,11 +320,33 @@ aside{
 }
 
 .playground-city-list img{
-    width: 20px;
+    width: 25px;
     float: left;
     margin-left: 5px;
     display: block;
-    margin-top: 9px;
+    margin-top: 5px;
+}
+
+.playground-city-list .nbjeux{
+    width: 26px;
+    height: 25px;
+    border: 1px solid #F93;
+    float: left;
+    margin-top: 5px;
+    border-radius: 4px;
+}
+
+.playground-city-list .number_game {
+    font-size: 2.1em;
+    color: #F93;
+    font-weight: 500;
+    display: block;
+    line-height: 1em;
+}
+
+.playground-city-list .text_game {
+    font-size: 0.8em;
+    color: #a2a2a2;
 }
 
 .author{
